@@ -55,24 +55,30 @@ Simpson's paradox as tilting lines, gradient descent as a ball on a surface you
 tilt, Conway's Life as a brush you paint with, the Doppler effect, ray-traced
 reflection you aim, modular arithmetic as a clock, binary counting you flip.
 
-## Automation — how the daily run is wired (local, this Mac)
+## Automation — how the daily run is wired
 
-Runs autonomously via macOS `launchd` (chosen over a cloud routine because `gh`
-is already authenticated locally, so it can push directly with no extra setup).
+**ACTIVE: cloud routine** (set up 2026-07-22). Runs in Anthropic's cloud even when
+the Mac is off. GitHub account `thewahish` is connected to claude.ai, so it can
+clone + push `thewahish/fathom` directly.
 
-- **Trigger:** `~/Library/LaunchAgents/com.obai.fathom.daily.plist` — fires daily
-  at **09:00 Asia/Damascus** (local). Runs only while the Mac is awake/logged in;
-  a missed run fires on next wake.
-- **Runner:** `~/.fathom/run.sh` → `cd ~/ai/Ideas` and runs
-  `claude -p "$(cat ~/.fathom/prompt.txt)" --model claude-sonnet-5 --dangerously-skip-permissions`,
-  then relies on the prompt to commit + push to `main`.
-- **Prompt:** `~/.fathom/prompt.txt` (the standing "continue Fathom" instruction).
-- **Logs:** `~/.fathom/logs/` (per-run, `latest.log` symlink; pruned after 30d).
-- **Manage:** `launchctl list | grep fathom` · reload after edits:
-  `launchctl unload <plist> && launchctl load -w <plist>` · to run once now:
-  `zsh ~/.fathom/run.sh`. Push auth: `gh auth setup-git` is configured.
-- To move this to the cloud instead: connect GitHub at
-  claude.ai/code/onboarding, then create a routine (config was drafted 2026-07-22).
+- **Routine id:** `trig_01DNWBbhmg6BVz7NNVfKBbZL` ·
+  manage at https://claude.ai/code/routines/trig_01DNWBbhmg6BVz7NNVfKBbZL
+- **Schedule:** cron `0 6 * * *` = **09:00 Asia/Damascus** (06:00 UTC; the platform
+  adds a few min of jitter). Model `claude-sonnet-5`. Repo `thewahish/fathom`.
+  Tools: Bash/Read/Write/Edit/Glob/Grep. The prompt = the standing "continue
+  Fathom, build one machine, push to main" instruction.
+- **Only one automation should run.** Don't also enable the local job below, or
+  you'll get two machines/day and push races.
+
+**STANDBY: local launchd job** — installed but **DISABLED** (2026-07-22) so it
+doesn't double-build against the cloud routine. Use it only if you retire the
+cloud routine (e.g. want it to run against the local working copy).
+
+- Files: `~/Library/LaunchAgents/com.obai.fathom.daily.plist`, `~/.fathom/run.sh`,
+  `~/.fathom/prompt.txt`. Logs: `~/.fathom/logs/`. Fires 09:00 local when enabled.
+- Re-enable: `launchctl load -w ~/Library/LaunchAgents/com.obai.fathom.daily.plist`
+  (and first disable the cloud routine at the link above). Run once now:
+  `zsh ~/.fathom/run.sh`. Push auth via `gh` (`gh auth setup-git` done).
 
 ## Open threads / notes
 
