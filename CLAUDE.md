@@ -30,7 +30,9 @@ with today and come away understanding something they didn't before.
 Adding a machine = three edits, no build step:
 1. Create `explorables/<slug>/` with `index.html` + a script (usually `sketch.js`).
    Copy an existing explorable's `index.html` as the frame — keep the header,
-   back-link, `.stage`, `.controls`, and `.caption` structure identical.
+   back-link, `.stage`, `.controls`, and `.caption` structure identical. The
+   frame loads `../../shared/chrome.js` *before* `sketch.js` (that provides the
+   aura and the `window.FATHOM` palette) — keep that order.
 2. Add one entry to `window.CATALOG` in `catalog.js` (increment `number`).
 3. Add one entry to the **top** of `window.NOTES` in `catalog.js` — a few honest
    sentences: what you built, and what you decided and why. Use today's date from
@@ -45,16 +47,23 @@ in `STATE.md` still works.
   not a decoration next to a paragraph. If the text could stand alone, the
   machine is too weak.
 - **One clear "aha."** Each machine makes exactly one thing click. Resist cramming.
-- **Amber (`--handle`, #ffc857) means "you can grab this."** Every machine. This
+- **Amber (`--m-handle`, #d97706) means "you can grab this."** Every machine. This
   is the collection's shared interaction vocabulary — never break it.
+- **Colors come ONLY from `window.FATHOM`.** The look is *Neural Expressive Web*:
+  pearl canvas, one teal brand aura refracted through glass, Inter Tight.
+  `shared/chrome.js` reads the machine palette from CSS vars in `shared/style.css`
+  and exposes it as `window.FATHOM`; every machine's `readTheme()` reads from it
+  (see `circle-and-wave/sketch.js`). NEVER hardcode a hex in a machine. Draw with
+  `bg: 'transparent'` so the canvas sits inside the glass stage. Data = teal
+  `FATHOM.a` + indigo `FATHOM.b`; area tints `FATHOM.fillA`/`fillB`; grab = amber
+  `FATHOM.handle`. Light/pearl only — no dark mode. To change a color, edit the
+  `--m-*` var in `shared/style.css`, nowhere else.
 - **No dependencies, no assets, no services.** Vanilla HTML/CSS/JS drawing to a
   canvas or SVG. No npm install, no external libraries, no images/audio you can't
   generate in code, no paid or key-gated APIs. It must load fast and work offline
   from a file.
 - **Self-contained + retina-crisp + responsive + works on touch.** Scale the
   canvas by `devicePixelRatio`; handle `pointer`/touch events; relayout on resize.
-- **Honor light and dark.** The shared CSS already does; canvas code must read the
-  theme (see `circle-and-wave/sketch.js` `readTheme()`).
 - **Write for a curious human, not a textbook.** Short lede, playful caption, the
   payoff line that connects the toy to the real world.
 - **Leave the site deployable.** Never commit a half-built machine. If you run out
@@ -71,9 +80,11 @@ assets you can't draw in code.
 
 ## House style (this is Obai's workspace)
 
-DM Sans + DM Mono, large readable type, mono section indices, one gradient accent,
-generous spacing, ADHD-friendly scannability. It's already in `shared/style.css` —
-reuse the tokens, don't reinvent per machine.
+Inter Tight + IBM Plex Mono (mono for the `No. 0X` indices + readouts), pearl
+canvas, glass surfaces, one teal aura, large readable type, mono section indices,
+generous spacing, ADHD-friendly scannability. It's all in `shared/style.css` —
+reuse the tokens and the existing component classes (`.stage`, `.controls`,
+`.btn`, `.seg`, `.readout`, `.caption`), don't reinvent per machine.
 
 ## Don't
 

@@ -27,6 +27,11 @@ window.CATALOG = [
 window.NOTES = [
   {
     date: "2026-07-22",
+    title: "A new skin — pearl, glass, and one teal light",
+    body: "Reskinned the whole project to the Neural Expressive Web language: a pearl canvas, a single teal aura that follows your cursor and refracts through frosted-glass cards, Inter Tight throughout. The machines moved onto the light glass too. The important part is invisible: every machine now pulls its colors from one shared place, so no future machine can wander off into its own palette. Amber still means 'you can grab this,' everywhere; the data is teal and indigo. That's the whole box of crayons now, on purpose — restraint is the look."
+  },
+  {
+    date: "2026-07-22",
     title: "Day 2 — the square that ruins your intuition",
     body: "Built machine No. 02: a population square split by a draggable prior line and two draggable accuracy lines, so a positive test result visibly separates into true positives and false alarms. I picked Bayes over the epicycles/Fourier idea at the top of the backlog — that one's a direct sequel to No. 01 but heavier to build well, and I'd rather ship one small complete thing than a rushed big one. Went with three independent drag handles instead of collapsing sensitivity and specificity into one slider, because real tests don't have equal rates and the asymmetry is part of the point. Default scenario (1% prior, 90%/90% test) gives an ~8% posterior, which is the whole lesson: a confident-sounding test result on a rare condition is still usually wrong. Presets let you jump straight to the punchline (rare disease → 99%-accurate test barely helps → 50/50 prior fixes everything) without needing to find it by dragging."
   },

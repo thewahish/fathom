@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-22 (Day 2 — machine No. 02, Bayes as area)
+**Last session:** 2026-07-22 (Day 2 — machine No. 02 + full visual reskin to Neural Expressive Web)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -84,8 +84,13 @@ cloud routine (e.g. want it to run against the local working copy).
 
 ## Open threads / notes
 
-- Design language locked: amber (#ffc857) = grabbable, blue (#5b8def) = sine,
-  violet (#a855f7) = cosine/second-axis, gradient accent blue→violet. Reuse.
+- Design language = Neural Expressive Web (pearl canvas, one teal aura through
+  glass, Inter Tight + IBM Plex Mono). Machine colors come ONLY from
+  `window.FATHOM` (set by `shared/chrome.js` from the `--m-*` CSS vars in
+  `shared/style.css`): teal `--m-a` = primary data, indigo `--m-b` = secondary,
+  amber `--m-handle` #d97706 = grabbable. Brand aura = `--brand-anchor` #0e7490.
+  Never hardcode a hex in a machine; edit the CSS var instead. Every page loads
+  `shared/chrome.js` (frame pages + machines, before `sketch.js`).
 - No build step by design. Don't introduce one. Don't add npm/frameworks.
 - `.nojekyll` is present so Pages serves folders as-is.
 - If a session runs short: ship a smaller complete machine rather than a big

@@ -6,7 +6,7 @@
   <title>Bayes, Seen as Area — Fathom</title>
   <meta name="description" content="Drag apart a square of everyone into who has a condition and who tests positive for it. Watch why a '90% accurate' test can still be wrong more often than right.">
   <link rel="stylesheet" href="../../shared/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='4' width='24' height='24' fill='none' stroke='%23a855f7' stroke-width='2.5'/><rect x='4' y='4' width='11' height='10' fill='%235b8def' fill-opacity='0.55'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='4' width='24' height='24' fill='none' stroke='%230e7490' stroke-width='2.5'/><rect x='4' y='4' width='11' height='10' fill='%230891b2' fill-opacity='0.55'/></svg>">
 </head>
 <body>
   <div class="wrap">
@@ -58,7 +58,7 @@
     </div>
 
     <p class="caption">
-      The square is everyone. The <b class="handle">amber</b> vertical line splits it into who actually has the condition (violet tint, left) and who doesn't (right) — drag it to change how rare the condition is. Each <b class="handle">amber</b> horizontal line splits its column into who tests positive (blue tint, top) and who tests negative (bottom) — the left one is how well the test catches true cases, the right one is how well it clears healthy people. Once you get a positive result, only the blue region matters, and it has two very different sources: violet-and-blue is a true positive, blue-alone is a false alarm. The posterior — the number in the last box — is just the true positives' share of all the blue.
+      The square is everyone. The <b class="handle">amber</b> vertical line splits it into who actually has the condition (violet tint, left) and who doesn't (right) — drag it to change how rare the condition is. Each <b class="handle">amber</b> horizontal line splits its column into who tests positive (teal tint, top) and who tests negative (bottom) — the left one is how well the test catches true cases, the right one is how well it clears healthy people. Once you get a positive result, only the teal region matters, and it has two very different sources: violet-and-teal is a true positive, teal-alone is a false alarm. The posterior — the number in the last box — is just the true positives' share of all the teal.
       <span class="hint">Start on "rare disease": a 90%-accurate test still gives you only ~8% odds of actually having it. Now click "99%-accurate test" — barely moves. Then "50/50 prior" — suddenly the same test is a near-lock. The test never changed. The population it's aimed at did.</span>
     </p>
 
@@ -68,6 +68,7 @@
     </footer>
   </div>
 
+  <script src="../../shared/chrome.js"></script>
   <script src="sketch.js"></script>
 </body>
 </html>

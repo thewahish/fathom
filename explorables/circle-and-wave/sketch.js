@@ -19,21 +19,24 @@
   let dragging = false;
   let lastT = null;
 
-  // theme (canvas can't use CSS vars directly)
+  // palette comes from window.FATHOM (single source of truth in
+  // shared/style.css, read by shared/chrome.js). No hardcoded colors here.
   let theme;
   function readTheme() {
-    const light = window.matchMedia('(prefers-color-scheme: light)').matches;
-    theme = light
-      ? { bg: '#ffffff', axis: 'rgba(0,0,0,0.10)', ring: 'rgba(0,0,0,0.22)',
-          text: '#6b7180', faint: 'rgba(0,0,0,0.05)' }
-      : { bg: '#12151c', axis: 'rgba(255,255,255,0.10)', ring: 'rgba(255,255,255,0.20)',
-          text: '#9aa1b0', faint: 'rgba(255,255,255,0.05)' };
-    theme.blue = '#5b8def';   // sine leg + sine wave
-    theme.violet = '#a855f7'; // cosine leg + cosine wave
-    theme.amber = '#ffc857';  // the grabbable point
+    const F = window.FATHOM || {};
+    theme = {
+      bg:     'transparent',                       // sit inside the glass stage
+      axis:   F.axis   || 'rgba(15,23,42,0.16)',
+      ring:   F.axis   || 'rgba(15,23,42,0.16)',
+      text:   F.muted  || '#64748b',
+      faint:  F.faint  || 'rgba(15,23,42,0.10)',
+      blue:   F.a      || '#0891b2',   // sine leg + sine wave
+      violet: F.b      || '#6366f1',   // cosine leg + cosine wave
+      amber:  F.handle || '#d97706',   // the grabbable point
+      glow:   F.handleGlow || 'rgba(217,119,6,0.40)'
+    };
   }
   readTheme();
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', readTheme);
 
   // geometry, recomputed on resize
   const g = {};
@@ -119,7 +122,7 @@
 
     // the grabbable point
     ctx.fillStyle = theme.amber;
-    ctx.shadowColor = 'rgba(255,200,87,0.55)';
+    ctx.shadowColor = theme.glow;
     ctx.shadowBlur = 14;
     dot(p.x, p.y, 8);
     ctx.shadowBlur = 0;

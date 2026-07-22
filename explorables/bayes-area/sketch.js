@@ -27,19 +27,24 @@
   let target = { ...PRESETS.rare };
   let dragging = null; // null | 'p' | 'se' | 'sp'
 
-  // theme (canvas can't use CSS vars directly)
+  // palette from window.FATHOM (single source of truth in shared/style.css,
+  // read by shared/chrome.js). No hardcoded colors here.
   let theme;
   function readTheme() {
-    const light = window.matchMedia('(prefers-color-scheme: light)').matches;
-    theme = light
-      ? { bg: '#ffffff', ring: 'rgba(0,0,0,0.22)', text: '#1c1e24', muted: '#6b7180', faint: 'rgba(0,0,0,0.06)' }
-      : { bg: '#12151c', ring: 'rgba(255,255,255,0.20)', text: '#eceef2', muted: '#9aa1b0', faint: 'rgba(255,255,255,0.06)' };
-    theme.violet = 'rgba(168,85,247,0.24)';
-    theme.blue = 'rgba(91,141,239,0.48)';
-    theme.amber = '#ffc857';
+    const F = window.FATHOM || {};
+    theme = {
+      bg:     'transparent',                        // sit inside the glass stage
+      ring:   F.axis   || 'rgba(15,23,42,0.16)',
+      text:   F.ink    || '#334155',
+      muted:  F.muted  || '#64748b',
+      faint:  F.faint  || 'rgba(15,23,42,0.10)',
+      violet: F.fillB  || 'rgba(99,102,241,0.20)',  // has-condition column
+      blue:   F.fillA  || 'rgba(8,145,178,0.42)',   // tests-positive band
+      amber:  F.handle || '#d97706',
+      glow:   F.handleGlow || 'rgba(217,119,6,0.40)'
+    };
   }
   readTheme();
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', readTheme);
 
   // geometry, recomputed on resize
   const g = {};
@@ -99,7 +104,7 @@
 
     // column labels
     ctx.fillStyle = theme.muted;
-    ctx.font = '13px "DM Sans", system-ui, sans-serif';
+    ctx.font = '13px "Inter Tight", system-ui, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
     if (leftW > 46) ctx.fillText('has condition', sqX + leftW / 2, sqY - 20);
@@ -118,7 +123,7 @@
     for (const key of ['p', 'se', 'sp']) {
       const pt = hp[key];
       ctx.fillStyle = theme.amber;
-      ctx.shadowColor = 'rgba(255,200,87,0.55)';
+      ctx.shadowColor = theme.glow;
       ctx.shadowBlur = 12;
       ctx.beginPath(); ctx.arc(pt.x, pt.y, 6.5, 0, TAU); ctx.fill();
       ctx.shadowBlur = 0;
@@ -126,7 +131,7 @@
 
     // small +/- ticks marking the test-outcome axis on each side
     ctx.fillStyle = theme.muted;
-    ctx.font = '11px "DM Mono", ui-monospace, monospace';
+    ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace';
     ctx.textAlign = 'right';
     ctx.fillText('tests +', sqX - 10, sqY + 12);
     ctx.fillText('tests −', sqX - 10, sqY + S - 4);
