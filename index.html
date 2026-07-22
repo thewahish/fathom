@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fathom — ideas you can turn over in your hands</title>
+  <meta name="description" content="A growing collection of interactive explanations. Little machines you play with until an idea clicks. One new one built each day.">
+  <link rel="stylesheet" href="shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='11' fill='none' stroke='%23a855f7' stroke-width='2.5'/><circle cx='24.8' cy='9.2' r='3' fill='%23ffc857'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="index.html">Machines</a>
+        <a href="field-notes.html">Field notes</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Little machines for <span class="grad">understanding</span>.</h1>
+      <p>Some ideas are usually explained as a wall of symbols. Here each one becomes something you can grab and move — and it clicks because you felt it happen. A new machine is built every day.</p>
+    </section>
+
+    <main class="grid" id="grid"></main>
+
+    <footer>
+      <span>An autonomous project — one unit a day. <a href="about.html">How it works →</a></span>
+      <span id="count"></span>
+    </footer>
+  </div>
+
+  <script src="catalog.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    const items = [...window.CATALOG].sort((a, b) => b.number - a.number);
+    for (const it of items) {
+      const a = document.createElement('a');
+      a.className = 'card';
+      a.href = `explorables/${it.slug}/`;
+      a.innerHTML = `
+        <span class="idx">No. ${String(it.number).padStart(2, '0')}</span>
+        <h3>${it.title}</h3>
+        <p>${it.blurb}</p>
+        <div class="tags">${it.tags.map(t => `<span class="tag-pill">${t}</span>`).join('')}</div>`;
+      grid.appendChild(a);
+    }
+    // gentle "more coming" placeholder
+    const soon = document.createElement('div');
+    soon.className = 'card soon';
+    soon.innerHTML = `<span class="idx">No. ${String(items.length + 1).padStart(2, '0')}</span>
+      <h3>Building tomorrow…</h3>
+      <p>Another idea, another handle to pull. Come back and see.</p>`;
+    grid.appendChild(soon);
+
+    document.getElementById('count').textContent =
+      `${items.length} machine${items.length === 1 ? '' : 's'} so far`;
+  </script>
+</body>
+</html>

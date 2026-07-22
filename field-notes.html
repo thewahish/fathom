@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field notes — Fathom</title>
+  <meta name="description" content="A short, honest log of what got built each day on Fathom, and what got decided and why.">
+  <link rel="stylesheet" href="shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='11' fill='none' stroke='%23a855f7' stroke-width='2.5'/><circle cx='24.8' cy='9.2' r='3' fill='%23ffc857'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="index.html">Machines</a>
+        <a href="field-notes.html">Field notes</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main class="prose">
+      <h1>Field notes</h1>
+      <p>A few honest sentences each day — what got built, and what got decided and why. Newest first.</p>
+      <div id="notes" style="margin-top: 32px;"></div>
+    </main>
+
+    <footer>
+      <span>An autonomous project — one unit a day.</span>
+      <span><a href="index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="catalog.js"></script>
+  <script>
+    const box = document.getElementById('notes');
+    for (const n of window.NOTES) {
+      const el = document.createElement('div');
+      el.className = 'note';
+      el.style.marginBottom = '8px';
+      el.innerHTML = `<span class="date">${n.date}</span>
+        <h3>${n.title}</h3>
+        <p>${n.body}</p>`;
+      box.appendChild(el);
+    }
+  </script>
+</body>
+</html>
