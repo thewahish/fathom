@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bayes, Seen as Area — Fathom</title>
+  <meta name="description" content="Drag apart a square of everyone into who has a condition and who tests positive for it. Watch why a '90% accurate' test can still be wrong more often than right.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='4' width='24' height='24' fill='none' stroke='%23a855f7' stroke-width='2.5'/><rect x='4' y='4' width='11' height='10' fill='%235b8def' fill-opacity='0.55'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 02</span>
+      <h1>Bayes, Seen as Area</h1>
+      <p class="lede">A test being "90% accurate" sounds like it settles things. It doesn't — not until you know how rare what it's testing for is. Drag the population apart and watch why.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A square representing everyone, split by a draggable vertical line into who has a condition and who doesn't, and by two draggable horizontal lines into who tests positive and who tests negative."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Preset scenarios">
+          <button data-preset="rare" class="on">rare disease</button>
+          <button data-preset="great">99%-accurate test</button>
+          <button data-preset="coin">50/50 prior</button>
+        </div>
+        <div class="control">
+          <label>has it</label>
+          <span class="readout" id="priorOut">1%</span>
+        </div>
+        <div class="control">
+          <label>catches it</label>
+          <span class="readout" id="seOut">90%</span>
+        </div>
+        <div class="control">
+          <label>clears healthy</label>
+          <span class="readout" id="spOut">90%</span>
+        </div>
+        <div class="control">
+          <label>P(has it | tested +)</label>
+          <span class="readout" id="postOut">8%</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      The square is everyone. The <b class="handle">amber</b> vertical line splits it into who actually has the condition (violet tint, left) and who doesn't (right) — drag it to change how rare the condition is. Each <b class="handle">amber</b> horizontal line splits its column into who tests positive (blue tint, top) and who tests negative (bottom) — the left one is how well the test catches true cases, the right one is how well it clears healthy people. Once you get a positive result, only the blue region matters, and it has two very different sources: violet-and-blue is a true positive, blue-alone is a false alarm. The posterior — the number in the last box — is just the true positives' share of all the blue.
+      <span class="hint">Start on "rare disease": a 90%-accurate test still gives you only ~8% odds of actually having it. Now click "99%-accurate test" — barely moves. Then "50/50 prior" — suddenly the same test is a near-lock. The test never changed. The population it's aimed at did.</span>
+    </p>
+
+    <footer>
+      <span>No. 02 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="sketch.js"></script>
+</body>
+</html>

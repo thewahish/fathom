@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-22 (Day 1 — setup + machine No. 01)
+**Last session:** 2026-07-22 (Day 2 — machine No. 02, Bayes as area)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -28,6 +28,11 @@
     a point circles; its height traces a sine wave. Drag the amber point to
     scrub. Modes: sine / cosine / both. Speed slider, play/pause, live readouts.
     This is the reference implementation — copy its structure and quality.
+  - **No. 02 — Bayes, Seen as Area** (`explorables/bayes-area/`): a population
+    square split by a draggable vertical line (prior/base rate) and two
+    draggable horizontal lines (sensitivity, specificity). Positive-test-result
+    area splits visibly into true positives vs. false alarms; posterior reads
+    off their ratio. Presets: rare disease, 99%-accurate test, 50/50 prior.
 
 ## Building next (pull one, or invent better)
 
@@ -36,16 +41,13 @@ Ordered rough plan; the natural sequel is at the top:
 1. **Epicycles / Fourier** — add a second circle on the tip of the first, then
    more; watch arbitrary shapes emerge. Direct sequel to No. 01 ("what if you add
    more circles?"). Higher effort — may want a simpler machine first.
-2. **Bayes as area** — a big square of "everyone"; drag the sliders for base rate
-   and test accuracy and watch the posterior become a visible sub-area. Kills the
-   "1% base rate" intuition trap.
-3. **Normal distribution from a Galton board** — drop balls through pegs; the
+2. **Normal distribution from a Galton board** — drop balls through pegs; the
    bell curve builds itself. Drag the number of rows / the peg bias.
-4. **Vectors & the dot product** — drag two arrows; the dot product shows as the
+3. **Vectors & the dot product** — drag two arrows; the dot product shows as the
    shadow of one on the other. Sign flips as the angle crosses 90°.
-5. **e and compound growth** — drag the compounding frequency and watch it climb
+4. **e and compound growth** — drag the compounding frequency and watch it climb
    toward e; the "continuous" limit becomes visible.
-6. **Sorting made physical** — bars you can watch a comparison sort reorder, one
+5. **Sorting made physical** — bars you can watch a comparison sort reorder, one
    swap at a time (only if the interaction, not just animation, teaches it).
 
 ## Backlog / ideas parking lot
