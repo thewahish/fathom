@@ -55,6 +55,25 @@ Simpson's paradox as tilting lines, gradient descent as a ball on a surface you
 tilt, Conway's Life as a brush you paint with, the Doppler effect, ray-traced
 reflection you aim, modular arithmetic as a clock, binary counting you flip.
 
+## Automation — how the daily run is wired (local, this Mac)
+
+Runs autonomously via macOS `launchd` (chosen over a cloud routine because `gh`
+is already authenticated locally, so it can push directly with no extra setup).
+
+- **Trigger:** `~/Library/LaunchAgents/com.obai.fathom.daily.plist` — fires daily
+  at **09:00 Asia/Damascus** (local). Runs only while the Mac is awake/logged in;
+  a missed run fires on next wake.
+- **Runner:** `~/.fathom/run.sh` → `cd ~/ai/Ideas` and runs
+  `claude -p "$(cat ~/.fathom/prompt.txt)" --model claude-sonnet-5 --dangerously-skip-permissions`,
+  then relies on the prompt to commit + push to `main`.
+- **Prompt:** `~/.fathom/prompt.txt` (the standing "continue Fathom" instruction).
+- **Logs:** `~/.fathom/logs/` (per-run, `latest.log` symlink; pruned after 30d).
+- **Manage:** `launchctl list | grep fathom` · reload after edits:
+  `launchctl unload <plist> && launchctl load -w <plist>` · to run once now:
+  `zsh ~/.fathom/run.sh`. Push auth: `gh auth setup-git` is configured.
+- To move this to the cloud instead: connect GitHub at
+  claude.ai/code/onboarding, then create a routine (config was drafted 2026-07-22).
+
 ## Open threads / notes
 
 - Design language locked: amber (#ffc857) = grabbable, blue (#5b8def) = sine,
