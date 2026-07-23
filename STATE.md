@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-22 (Day 2 — machine No. 02 + full visual reskin to Neural Expressive Web)
+**Last session:** 2026-07-23 (Day 3 — machine No. 03, the Galton board)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -33,6 +33,12 @@
     draggable horizontal lines (sensitivity, specificity). Positive-test-result
     area splits visibly into true positives vs. false alarms; posterior reads
     off their ratio. Presets: rare disease, 99%-accurate test, 50/50 prior.
+  - **No. 03 — The Board That Builds a Bell Curve** (`explorables/galton-board/`):
+    a Galton board. Balls fall through a triangular grid of pegs, each bounce
+    an independent coin flip, and pile up into a histogram that converges live
+    on the binomial curve (drawn as an overlay). Drag the amber lever above the
+    pegs to bias the coin — the pile leans but keeps its bell shape. Rows
+    (6–16) and drop rate are plain sliders.
 
 ## Building next (pull one, or invent better)
 
@@ -41,13 +47,11 @@ Ordered rough plan; the natural sequel is at the top:
 1. **Epicycles / Fourier** — add a second circle on the tip of the first, then
    more; watch arbitrary shapes emerge. Direct sequel to No. 01 ("what if you add
    more circles?"). Higher effort — may want a simpler machine first.
-2. **Normal distribution from a Galton board** — drop balls through pegs; the
-   bell curve builds itself. Drag the number of rows / the peg bias.
-3. **Vectors & the dot product** — drag two arrows; the dot product shows as the
+2. **Vectors & the dot product** — drag two arrows; the dot product shows as the
    shadow of one on the other. Sign flips as the angle crosses 90°.
-4. **e and compound growth** — drag the compounding frequency and watch it climb
+3. **e and compound growth** — drag the compounding frequency and watch it climb
    toward e; the "continuous" limit becomes visible.
-5. **Sorting made physical** — bars you can watch a comparison sort reorder, one
+4. **Sorting made physical** — bars you can watch a comparison sort reorder, one
    swap at a time (only if the interaction, not just animation, teaches it).
 
 ## Backlog / ideas parking lot

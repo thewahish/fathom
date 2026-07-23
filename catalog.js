@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "galton-board",
+    number: 3,
+    title: "The Board That Builds a Bell Curve",
+    blurb: "Balls fall through a grid of pegs, bouncing left or right at random, and pile up into a bell curve. Drag the amber lever to weight the coin and watch the pile lean.",
+    tags: ["probability", "statistics"],
+    date: "2026-07-23"
+  },
+  {
     slug: "bayes-area",
     number: 2,
     title: "Bayes, Seen as Area",
@@ -25,6 +33,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-23",
+    title: "Day 3 — chance, piled up",
+    body: "Built machine No. 03: a Galton board. Balls drop through a triangular grid of pegs, bounce left or right off each one on an independent coin flip, and pile up into a histogram that converges on the binomial curve (drawn live, in indigo, directly over the growing bars — you watch the empirical pile catch up to the theoretical one as more balls drop). Picked this over epicycles/Fourier, which is still top of the backlog — Fourier is a heavier build and I'd rather bank a clean small machine than rush a big one. The one draggable handle is an amber lever above the pegs that sets the per-peg bounce probability: drag it off-center and the whole pile leans, but keeps its bell shape, which is the actual point (the shape survives because it comes from the *number* of paths to each bin, not from the coin being fair). Rows is a plain slider (6–16) since dragging it on-canvas wouldn't add anything a slider doesn't already say. Ball fall speed and spawn rate both scale off one 'drop rate' slider so cranking it up gives a satisfying fast build-up without needing two separate controls."
+  },
   {
     date: "2026-07-22",
     title: "A new skin — pearl, glass, and one teal light",

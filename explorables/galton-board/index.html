@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Board That Builds a Bell Curve — Fathom</title>
+  <meta name="description" content="Balls fall through a grid of pegs, bouncing left or right at random, and pile up into a bell curve. Drag the amber lever to weight the coin and watch the pile lean.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='10' cy='9' r='2' fill='%230e7490'/><circle cx='22' cy='9' r='2' fill='%230e7490'/><circle cx='16' cy='16' r='2' fill='%230e7490'/><path d='M6 27 Q16 13 26 27' fill='none' stroke='%23d97706' stroke-width='2.5'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 03</span>
+      <h1>The Board That Builds a Bell Curve</h1>
+      <p class="lede">Every ball that falls through this board makes a string of pure coin-flip decisions — nothing but chance, one peg at a time. Watch what chance does anyway, once enough of it piles up.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A triangular grid of pegs. Balls drop from the top, bounce left or right at each peg, and land in bins below that grow into a bell-shaped histogram. An amber lever above the pegs controls how likely each bounce is to go right."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="play">Pause</button>
+        <button class="btn" id="reset">Reset</button>
+        <div class="control">
+          <label for="rows">rows</label>
+          <input type="range" id="rows" min="6" max="16" value="12">
+        </div>
+        <div class="control">
+          <label for="speed">drop rate</label>
+          <input type="range" id="speed" min="1" max="100" value="55">
+        </div>
+        <div class="control">
+          <label>bias</label>
+          <span class="readout" id="biasOut">50% right</span>
+        </div>
+        <div class="control">
+          <label>dropped</label>
+          <span class="readout" id="countOut">0</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Each ball hits a row of pegs and bounces left or right off each one — a fresh, independent coin flip every time, decided purely by the <b class="handle">amber</b> lever's odds. One ball's path is unpredictable. But the more rights and lefts a path needs to add up, the more paths there are that land near the middle and the fewer that land at either edge — so the pile that builds at the bottom isn't random at all. It's the bell curve, assembling itself out of nothing but chance.
+      <span class="hint">Drag the <b class="handle">amber</b> lever off-center and the whole pile leans with it — the shape survives, just shifted. Pull "rows" up and the curve gets smoother and relatively narrower: more coin flips per ball, less relative room for extremes. This is the same reason exam scores, heights, and measurement errors all tend to land in bell curves — each one is the sum of many small, mostly-independent nudges.</span>
+    </p>
+
+    <footer>
+      <span>No. 03 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
