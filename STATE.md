@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-23 (Day 3 — machine No. 03, the Galton board)
+**Last session:** 2026-07-24 (Day 4 — machine No. 04, the dot product as a shadow)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -39,6 +39,13 @@
     on the binomial curve (drawn as an overlay). Drag the amber lever above the
     pegs to bias the coin — the pile leans but keeps its bell shape. Rows
     (6–16) and drop rate are plain sliders.
+  - **No. 04 — The Dot Product, Seen as a Shadow** (`explorables/dot-product/`):
+    two arrows (teal A, indigo B) from a shared origin, both draggable at the
+    tip. A dashed guide line runs through A's direction; a perpendicular drop
+    from B's tip lands on that line, and the thick translucent bar from the
+    origin to that landing point *is* the dot product — its signed length
+    times |A|. Drag B past 90° from A and the landing point crosses to the far
+    side of the origin, flipping the sign live. Readouts: |A|, |B|, angle, A·B.
 
 ## Building next (pull one, or invent better)
 
@@ -47,11 +54,9 @@ Ordered rough plan; the natural sequel is at the top:
 1. **Epicycles / Fourier** — add a second circle on the tip of the first, then
    more; watch arbitrary shapes emerge. Direct sequel to No. 01 ("what if you add
    more circles?"). Higher effort — may want a simpler machine first.
-2. **Vectors & the dot product** — drag two arrows; the dot product shows as the
-   shadow of one on the other. Sign flips as the angle crosses 90°.
-3. **e and compound growth** — drag the compounding frequency and watch it climb
+2. **e and compound growth** — drag the compounding frequency and watch it climb
    toward e; the "continuous" limit becomes visible.
-4. **Sorting made physical** — bars you can watch a comparison sort reorder, one
+3. **Sorting made physical** — bars you can watch a comparison sort reorder, one
    swap at a time (only if the interaction, not just animation, teaches it).
 
 ## Backlog / ideas parking lot

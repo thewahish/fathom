@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "dot-product",
+    number: 4,
+    title: "The Dot Product, Seen as a Shadow",
+    blurb: "Drag two arrows from a shared origin. The dot product is the shadow one casts on the other, times the other's length — and it flips sign the instant the angle passes 90°.",
+    tags: ["vectors", "linear algebra"],
+    date: "2026-07-24"
+  },
+  {
     slug: "galton-board",
     number: 3,
     title: "The Board That Builds a Bell Curve",
@@ -33,6 +41,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-24",
+    title: "Day 4 — vectors, multiplied by shadow",
+    body: "Built machine No. 04: two arrows from a shared origin, and the dot product drawn as what it actually is — drop a perpendicular from one arrow's tip onto the other's line, and the dot product is that shadow's signed length times how long the other arrow is. Picked this over epicycles/Fourier (still top of backlog, still the heavier build) and over e/compound growth, because the dot product has the clearest single 'aha': the shadow visibly slides through the origin and flips to the other side the instant the angle crosses 90°, which is the sign flip that trips people up in every linear algebra course. Kept it to two draggable amber tips and four plain readouts (|A|, |B|, angle, A·B) rather than adding a formula toggle or grid-snap — the shadow bar itself already shows the |A|·cos(θ)·|B| construction, so a separate breakdown control would be explaining the picture instead of trusting it. Faint concentric unit rings give scale without needing axis numbers cluttering the stage."
+  },
   {
     date: "2026-07-23",
     title: "Day 3 — chance, piled up",

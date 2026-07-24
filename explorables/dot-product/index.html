@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Dot Product, Seen as a Shadow — Fathom</title>
+  <meta name="description" content="Drag two arrows. The dot product is the shadow one casts on the other, times the other's length — and it flips sign the instant the angle passes 90°.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><line x1='5' y1='27' x2='27' y2='9' stroke='%230e7490' stroke-width='2.5'/><line x1='5' y1='27' x2='24' y2='23' stroke='%236366f1' stroke-width='2.5'/><circle cx='27' cy='9' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 04</span>
+      <h1>The Dot Product, Seen as a Shadow</h1>
+      <p class="lede">"Multiply the vectors" sounds abstract until you see what it actually measures: how much one arrow falls along the other's direction, like a shadow cast straight down onto it. Drag either tip and watch the shadow — and the number — move.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Two arrows from a shared origin. A dashed line drops from the tip of one arrow straight onto the line through the other, marking the shadow it casts."></canvas>
+      <div class="controls">
+        <button class="btn" id="reset">Reset</button>
+        <div class="control">
+          <label>|A|</label>
+          <span class="readout" id="magAOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>|B|</label>
+          <span class="readout" id="magBOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>angle</label>
+          <span class="readout" id="angleOut">0°</span>
+        </div>
+        <div class="control">
+          <label>A·B</label>
+          <span class="readout" id="dotOut">0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Drop a perpendicular from the tip of B straight onto the line through A — that's B's <em>shadow</em> on A, and its signed length is <b>|B|·cos(angle)</b>. The dot product is just that shadow's length times how long A is: <b>A·B = |A| × (B's shadow on A)</b>. When the angle between them is under 90°, the shadow falls forward, on A's own side of the origin, and A·B is positive. Push the angle past 90° and the shadow flips to fall <em>behind</em> the origin — the shadow, and the dot product, go negative. At exactly 90° the shadow vanishes to a point: two vectors with nothing of each other in them.
+      <span class="hint">Drag either <b class="handle">amber</b> arrowtip. Watch the shadow (the thick segment on A's line) slide through zero as you swing B across perpendicular.</span>
+    </p>
+
+    <footer>
+      <span>No. 04 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
