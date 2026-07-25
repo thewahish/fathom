@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Number Compound Interest Can't Get Past — Fathom</title>
+  <meta name="description" content="Drag the compounding frequency up as far as it goes. $1 at 100% interest keeps growing — but it walks straight up to a wall named e and stops just short of it.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M5 27 Q10 27 14 18 Q20 6 28 6' fill='none' stroke='%230e7490' stroke-width='2.5'/><line x1='4' y1='6' x2='28' y2='6' stroke='%2364748b' stroke-width='1.5' stroke-dasharray='2,2'/><circle cx='17.5' cy='12.8' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 05</span>
+      <h1>The Number Compound Interest Can't Get Past</h1>
+      <p class="lede">Compound $1 at 100% interest more often — yearly, monthly, daily, every hour — and it grows a little more every time. Drag the frequency up as far as it goes. The growth doesn't run away. It walks straight up to a wall and stops just short of it.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Two connected panels. On the left, a curve plots how much one dollar grows in a year as the number of compounding periods increases, flattening toward a horizontal line. On the right, a staircase shows that compounding happening across one year at the current frequency, next to a dashed smooth reference curve. A draggable amber dot on the left curve sets the compounding frequency."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Preset compounding frequencies">
+          <button data-preset="1">yearly</button>
+          <button data-preset="12" class="on">monthly</button>
+          <button data-preset="365">daily</button>
+          <button data-preset="max">continuous</button>
+        </div>
+        <div class="control">
+          <label>compounded</label>
+          <span class="readout" id="nOut">12×/yr</span>
+        </div>
+        <div class="control">
+          <label>$1 becomes</label>
+          <span class="readout" id="valOut">2.613035</span>
+        </div>
+        <div class="control">
+          <label>short of e by</label>
+          <span class="readout" id="gapOut">0.105247</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Split the year into <em>n</em> equal chunks and pay 1/n of the 100% rate at each one — that's ordinary compound interest, and the year-end value is (1 + 1/n)<sup>n</sup>. Push <em>n</em> up and every chunk adds a smaller top-up, but there are more of them; those two effects don't cancel, they trade off, so the total creeps up and then all but stops moving. On the right, the staircase is exactly that trade-off made visible: <em>n</em> discrete jumps across the year, chasing the dashed smooth curve without ever quite becoming it.
+      <span class="hint">Drag the <b class="handle">amber</b> dot on the left curve all the way to the right — splitting the year into 3,000 pieces (compounding every few hours) still only reaches 2.71828…, the same wall every time, no matter how far you push. That wall is <em>e</em>. It isn't a coincidence — it's the definition: <em>e</em> is what compounding becomes once you squeeze the interval to nothing, which is why it's the base rate underneath every process that grows continuously, from bacteria to radioactive decay to the natural logarithm itself.</span>
+    </p>
+
+    <footer>
+      <span>No. 05 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

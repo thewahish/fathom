@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-24 (Day 4 — machine No. 04, the dot product as a shadow)
+**Last session:** 2026-07-25 (Day 5 — machine No. 05, e as the wall compounding can't cross)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -46,6 +46,14 @@
     origin to that landing point *is* the dot product — its signed length
     times |A|. Drag B past 90° from A and the landing point crosses to the far
     side of the origin, flipping the sign live. Readouts: |A|, |B|, angle, A·B.
+  - **No. 05 — The Number Compound Interest Can't Get Past** (`explorables/e-and-compounding/`):
+    left panel plots (1+1/n)^n against n (log scale) as a curve that climbs and
+    flattens against a dashed asymptote at e; drag the amber dot along that curve
+    to set n. Right panel takes the same n and renders an actual year of
+    compounding as a staircase chasing a dashed continuous-growth curve — at
+    n=1 it's one big jump, by n≈3,000 the staircase is visually indistinguishable
+    from smooth growth. A dashed line ties the dot's height to the staircase's
+    year-end value (same number). Presets: yearly / monthly / daily / continuous.
 
 ## Building next (pull one, or invent better)
 
@@ -53,10 +61,8 @@ Ordered rough plan; the natural sequel is at the top:
 
 1. **Epicycles / Fourier** — add a second circle on the tip of the first, then
    more; watch arbitrary shapes emerge. Direct sequel to No. 01 ("what if you add
-   more circles?"). Higher effort — may want a simpler machine first.
-2. **e and compound growth** — drag the compounding frequency and watch it climb
-   toward e; the "continuous" limit becomes visible.
-3. **Sorting made physical** — bars you can watch a comparison sort reorder, one
+   more circles?"). Higher effort — may want to keep banking smaller machines first.
+2. **Sorting made physical** — bars you can watch a comparison sort reorder, one
    swap at a time (only if the interaction, not just animation, teaches it).
 
 ## Backlog / ideas parking lot

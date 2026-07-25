@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "e-and-compounding",
+    number: 5,
+    title: "The Number Compound Interest Can't Get Past",
+    blurb: "Drag the compounding frequency up as far as it goes — yearly, monthly, daily, every few hours. $1 at 100% interest keeps growing, but it walks straight up to a wall named e and stops just short of it.",
+    tags: ["e", "limits", "growth"],
+    date: "2026-07-25"
+  },
+  {
     slug: "dot-product",
     number: 4,
     title: "The Dot Product, Seen as a Shadow",
@@ -41,6 +49,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-25",
+    title: "Day 5 — compounding, squeezed until it stops",
+    body: "Built machine No. 05: (1+1/n)^n, drawn as a curve that climbs and then flattens against a wall at e as the compounding frequency n goes up. Picked this over epicycles/Fourier (still the heavier build, still top of the backlog) because it had the cleanest single draggable handle of anything left on the list — one amber dot, sliding along the limit curve, sets n directly. The left panel is that curve on a log-n axis; the right panel takes the same n and renders it as an actual year of compounding, a staircase racing a dashed continuous-growth curve, so you can watch discrete jumps visually melt into smooth growth as you drag n up. Tied the two panels together the same way No. 01 ties its circle to its wave: a dashed horizontal line from the dot straight across to the staircase's year-end point, because they're the same number. Rounded n to the nearest integer only for the staircase's step count (real compounding needs whole periods); the curve and dot use continuous n so the drag feels perfectly smooth. Cut a first-draft 'quarterly' preset and the on-canvas panel-title captions after they visibly collided at phone width — down to four presets (yearly/monthly/daily/continuous) and letting the axis labels and readouts carry the explanation instead, which is enough."
+  },
   {
     date: "2026-07-24",
     title: "Day 4 — vectors, multiplied by shadow",
