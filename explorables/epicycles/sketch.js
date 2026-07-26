@@ -135,7 +135,7 @@
 
     // pen dot (the output point — not draggable, so not amber)
     ctx.fillStyle = theme.indigo;
-    ctx.shadowColor = 'rgba(99,102,241,0.45)';
+    ctx.shadowColor = theme.indigo;
     ctx.shadowBlur = 10;
     dot(penX, penY, 5.5);
     ctx.shadowBlur = 0;
@@ -174,8 +174,6 @@
     ctx.shadowBlur = 14;
     dot(hx, leverY, 8);
     ctx.shadowBlur = 0;
-    ctx.fillStyle = theme.bg === 'transparent' ? '#fdfbf6' : theme.bg;
-    dot(hx, leverY, 3);
     ctx.textAlign = 'left';
   }
 
