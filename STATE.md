@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-25 (Day 5 — machine No. 05, e as the wall compounding can't cross)
+**Last session:** 2026-07-26 (Day 6 — machine No. 06, epicycles: a circle riding a circle)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -54,14 +54,27 @@
     n=1 it's one big jump, by n≈3,000 the staircase is visually indistinguishable
     from smooth growth. A dashed line ties the dot's height to the staircase's
     year-end value (same number). Presets: yearly / monthly / daily / continuous.
+  - **No. 06 — The Circle That Rides a Circle** (`explorables/epicycles/`): a big
+    circle turns once; a small circle rides its tip and spins k times in that
+    same trip (k a whole number, -6 to 6, forwards or backwards). The pen at the
+    small circle's tip traces the combined shape — a plain circle, a dimpled
+    loop, a multi-pointed flower, depending on k. Drag the amber lever (same
+    track-with-ticks pattern as the Galton board's bias lever) to set k live;
+    the full closed curve redraws instantly since integer k always closes after
+    exactly one big-circle revolution. A second slider sets the small circle's
+    size (R2/R1), which sharpens or softens the loops without changing how many
+    there are. Caption ties it to Fourier series: stack more circles the same
+    way, sized and timed right, and you can draw any repeating shape.
 
 ## Building next (pull one, or invent better)
 
 Ordered rough plan; the natural sequel is at the top:
 
-1. **Epicycles / Fourier** — add a second circle on the tip of the first, then
-   more; watch arbitrary shapes emerge. Direct sequel to No. 01 ("what if you add
-   more circles?"). Higher effort — may want to keep banking smaller machines first.
+1. **N-circle Fourier drawing** — now that the two-circle epicycle mechanics
+   (No. 06) are live, the natural sequel is stacking several circles at
+   different integer speeds/sizes so the combined pen draws an arbitrary
+   repeating shape (even letters), with sliders/handles per harmonic. Higher
+   effort — may want to keep banking smaller machines first.
 2. **Sorting made physical** — bars you can watch a comparison sort reorder, one
    swap at a time (only if the interaction, not just animation, teaches it).
 

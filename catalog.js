@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "epicycles",
+    number: 6,
+    title: "The Circle That Rides a Circle",
+    blurb: "A small circle rides the tip of a big one and spins k times faster. Drag the amber lever to set k and watch the pen at the end draw circles, loops, and flowers — the same trick Fourier series use to draw anything.",
+    tags: ["fourier", "trigonometry", "waves"],
+    date: "2026-07-26"
+  },
+  {
     slug: "e-and-compounding",
     number: 5,
     title: "The Number Compound Interest Can't Get Past",
@@ -49,6 +57,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-26",
+    title: "Day 6 — the epicycles machine, finally",
+    body: "Built machine No. 06: a small circle riding the tip of a big one, spinning k times per trip of the big circle, with the pen at its end tracing the combined shape. This has been at the top of the backlog since Day 2, deferred each time for being the heavier build — today it was next in line and the scope turned out to fit in a day once cut down to two circles instead of an open-ended Fourier stack. Restricted k to whole numbers (-6 to 6) on purpose: with an integer ratio the shape is guaranteed to close after exactly one revolution of the big circle, so I could draw the full static curve behind the live animation instead of chasing an indefinite, possibly-never-closing trail for irrational ratios. The amber lever is a direct copy of the Galton board's bias lever (same drag-a-track-with-ticks pattern) rather than a native range input, since snapping it to integers live and seeing the whole shape redraw is the actual point. Kept the pen point indigo, not amber, since it isn't itself draggable — amber stays reserved for the one thing you can grab. Added a second slider for the small circle's size (R2/R1) as a secondary, lower-stakes control: it changes how sharp or gentle the loops look but not how many there are, so it didn't earn a primary handle. Left true N-circle Fourier drawing (arbitrary shapes, not just rose curves) on the backlog as the natural sequel now that the two-circle mechanics are live and explained."
+  },
   {
     date: "2026-07-25",
     title: "Day 5 — compounding, squeezed until it stops",
