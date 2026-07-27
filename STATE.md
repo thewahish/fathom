@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-26 (Day 6 — machine No. 06, epicycles: a circle riding a circle)
+**Last session:** 2026-07-27 (Day 7 — machine No. 07, times-table-circle: multiplication mod n as a mandala)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -65,6 +65,15 @@
     size (R2/R1), which sharpens or softens the loops without changing how many
     there are. Caption ties it to Fourier series: stack more circles the same
     way, sized and timed right, and you can draw any repeating shape.
+  - **No. 07 — The Times Table That Draws Itself** (`explorables/times-table-circle/`):
+    n points evenly spaced around a circle; point i connects by a straight
+    line to point (i × m) mod n. Drag the amber dot (log-scale lever, with a
+    magnet toward whole numbers) to sweep the multiplier m continuously —
+    m=1 is just the circle's own spokes, m=2 folds into a cardioid, m=3 a
+    nephroid, and higher m weaves denser mandalas, all from the same one-line
+    rule. Autoplay sweeps m back and forth by default. Points (n) is a plain
+    slider (30–300); it changes the mandala's weave but isn't the thing being
+    taught, so it didn't earn the primary handle.
 
 ## Building next (pull one, or invent better)
 
@@ -83,7 +92,7 @@ Ordered rough plan; the natural sequel is at the top:
 Prime spirals (Ulam), sine sum / harmonics adding up, pendulum phase space,
 Simpson's paradox as tilting lines, gradient descent as a ball on a surface you
 tilt, Conway's Life as a brush you paint with, the Doppler effect, ray-traced
-reflection you aim, modular arithmetic as a clock, binary counting you flip.
+reflection you aim, binary counting you flip.
 
 ## Automation — how the daily run is wired
 

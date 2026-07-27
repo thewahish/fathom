@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Times Table That Draws Itself — Fathom</title>
+  <meta name="description" content="Points around a circle, each connected to its multiple mod n. Drag the multiplier and watch straight lines fold into a cardioid, a nephroid, and dense mandalas — the times table, seen instead of recited.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='none' stroke='%230e7490' stroke-width='2'/><line x1='16' y1='4' x2='24' y2='24' stroke='%236366f1' stroke-width='1.5'/><line x1='16' y1='4' x2='8' y2='24' stroke='%236366f1' stroke-width='1.5'/><line x1='16' y1='4' x2='16' y2='28' stroke='%236366f1' stroke-width='1.5'/><circle cx='16' cy='4' r='2.6' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 07</span>
+      <h1>The Times Table That Draws Itself</h1>
+      <p class="lede">Put n points evenly around a circle, like hours on a clock. Draw a straight line from every point to the point that many times farther around. That's the entire rule — and dragging the multiplier turns it into a machine that paints hearts, loops, and mandalas out of nothing but multiplication.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Points evenly spaced around a circle, each connected by a line to its multiple, wrapped around the circle. Dragging the multiplier reshapes the resulting pattern from straight spokes into curved mandalas."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="play">Pause</button>
+        <div class="control">
+          <label for="speed">Sweep speed</label>
+          <input type="range" id="speed" min="0" max="100" value="30">
+        </div>
+        <div class="control">
+          <label for="n">Points (n)</label>
+          <input type="range" id="n" min="30" max="300" value="150">
+        </div>
+        <div class="control">
+          <label>multiplier (m)</label>
+          <span class="readout" id="mOut">2.00</span>
+        </div>
+        <div class="control">
+          <label id="curveName" style="min-height: 1em;"></label>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Number the points 0 to n−1 around the circle. Point <b>i</b> connects to point <b>(i × m) mod n</b> — walk m times as far around as i did, and wherever you land past a full lap, wrap back to the start. At m = 1 every point maps to itself and all you see is the circle's own spokes. Push m to 2 and every line bends the same way, and the straight spokes collapse into a single heart-shaped curve — a <b>cardioid</b>. At m = 3 it's a three-lobed <b>nephroid</b>. Keep dragging and the pattern keeps folding into denser, lacier mandalas, every one of them nothing but n straight lines obeying one multiplication rule.
+      <span class="hint">Drag the <b class="handle">amber</b> dot to set the multiplier continuously — the shapes don't jump between presets, they melt into each other. Points (n) changes how fine the mandala's weave is.</span>
+    </p>
+
+    <p class="caption">
+      This is what "mod n" really means: not a leftover-remainder trick, but a wraparound — walking around a clock face and noting where you stop. Multiplying is a rotation-and-stretch of that clock, and connecting every hour to its multiple draws the picture of that rotation. The curves you're tracing are the same ones that show up drawing cardioids and epicycloids with rolling circles (see machine No. 06) — multiplication and rotation keep turning out to be the same idea wearing different clothes.
+    </p>
+
+    <footer>
+      <span>No. 07 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

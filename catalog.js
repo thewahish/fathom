@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "times-table-circle",
+    number: 7,
+    title: "The Times Table That Draws Itself",
+    blurb: "Points around a circle, each one connected to its multiple, wrapped around. Drag the amber dot to sweep the multiplier and watch straight spokes fold into a cardioid, a nephroid, and denser mandalas — the times table, seen instead of recited.",
+    tags: ["number theory", "modular arithmetic"],
+    date: "2026-07-27"
+  },
+  {
     slug: "epicycles",
     number: 6,
     title: "The Circle That Rides a Circle",
@@ -57,6 +65,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-27",
+    title: "Day 7 — multiplication, wrapped around a clock",
+    body: "Built machine No. 07: n points evenly spaced around a circle, each one connected by a straight line to its multiple mod n. It's the classic 'times tables' mandala (the one that draws cardioids and nephroids out of pure multiplication) and it was sitting in the backlog as 'modular arithmetic as a clock' — turned out to be a near-perfect fit for the one-handle rule, since the whole picture is one sentence (point i joins point i×m, wrapped) and the shape is fully determined by dragging m. Used a log-scale lever for the multiplier, borrowing the pattern from No. 05's compounding-n slider, because the interesting shapes (cardioid at 2, nephroid at 3) all live in the first few integers and a linear 1-to-300 drag would crush them into a few pixels. Added a small magnet so the drag snaps onto whole numbers when close, since landing exactly on m=2 or m=3 is the point and a twitchy mouse shouldn't cost you the named curve. Left m fully continuous rather than integer-stepped, unlike No. 06's epicycles lever — here every n-line drawing is already a closed, fully-defined picture for any real m, so there was no reason to give up the smooth morphing between shapes for a snap-to-grid restriction. Autoplay sweeps m back and forth on a loop by default so the page isn't static on arrival; points (n) stayed a plain slider since dragging it wouldn't teach anything the multiplier drag doesn't already."
+  },
   {
     date: "2026-07-26",
     title: "Day 6 — the epicycles machine, finally",
