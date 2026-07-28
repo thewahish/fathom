@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Loop Every Pendulum Draws — Fathom</title>
+  <meta name="description" content="Drag a pendulum back and let it go. Plot its angle against its speed instead of watching it swing, and every possible motion becomes a shape — a near-circle for a gentle swing, a stretched egg near the top, a curve that never quite closes right at the edge.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 5 L10 24' stroke='%230e7490' stroke-width='2' fill='none'/><circle cx='16' cy='5' r='1.6' fill='%2364748b'/><circle cx='10' cy='24' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 08</span>
+      <h1>The Loop Every Pendulum Draws</h1>
+      <p class="lede">Pull a pendulum back and let go — you already know roughly what happens. But plot its angle against its speed instead of its position, and every possible swing turns into a shape. Pull it back further and watch the shape itself change.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Left: a pendulum hanging from a pivot, draggable by its bob. Right: a phase plot of angle versus angular velocity, tracing a closed loop as the pendulum swings — a small near-circular loop for gentle swings, a stretched loop that pinches near the edges for swings pulled close to horizontal or higher."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Preset release angles">
+          <button data-preset="20">gentle</button>
+          <button data-preset="90" class="on">wide</button>
+          <button data-preset="150">near top</button>
+          <button data-preset="177">almost balanced</button>
+        </div>
+        <div class="control">
+          <label>released at</label>
+          <span class="readout" id="angleOut">90°</span>
+        </div>
+        <div class="control">
+          <label>period</label>
+          <span class="readout" id="periodOut">1.74s</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Every point on the right is one instant of the swing: how far it's tipped, sideways, against how fast it's moving, up. A full swing is a loop, because the pendulum keeps returning to the same states. For a gentle push the loop is almost a perfect circle — that's simple harmonic motion, the same shape a clock pendulum or a spring traces. Pull it back further and the loop stretches and flattens, because the pendulum now lingers near the top of its swing, slowed nearly to a stop by gravity, then rushes through the bottom.
+      <span class="hint">Drag the <b class="handle">amber</b> bob almost all the way to horizontal, then further — toward the point where the pendulum would have to balance straight up. The loop stops looking like an oval and pinches into two sharp horns, and the <em>period</em> readout balloons: a pendulum let go one degree short of vertical takes ages just to fall the first time. That runaway edge case is called a <em>separatrix</em> — it's the same shape that shows up at the tipping point of far stranger systems, from a ball balanced on a hilltop to whether a satellite escapes an orbit for good.</span>
+    </p>
+
+    <footer>
+      <span>No. 08 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

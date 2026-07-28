@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "pendulum-loop",
+    number: 8,
+    title: "The Loop Every Pendulum Draws",
+    blurb: "Drag a pendulum back and let go. Plot its angle against its speed instead of watching it swing, and the motion becomes a shape — a near-circle for a gentle push, a stretched loop that pinches into two horns as you pull it back toward vertical.",
+    tags: ["physics", "dynamical systems"],
+    date: "2026-07-28"
+  },
+  {
     slug: "times-table-circle",
     number: 7,
     title: "The Times Table That Draws Itself",
@@ -65,6 +73,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-28",
+    title: "Day 8 — a swing, seen from the side it doesn't show you",
+    body: "Built machine No. 08: a pendulum you release by dragging its bob, plotted not as position over time but as angle against angular velocity — a phase portrait. Picked this off the parking lot (it wasn't even listed by name; 'pendulum phase space' was implicit in 'waves & oscillation' territory) over the queued N-circle Fourier sequel, which is still the heavier build and still worth banking a smaller complete machine ahead of. The loop shape turned out to have a clean closed form — energy conservation gives thetaDot^2 = 2*omega0^2*(cos(theta) - cos(theta0)) directly, so the loop redraws instantly on drag from a formula, with no simulation lag, while a live dot still runs the real symplectic-Euler integration on top to prove the analytic curve matches the actual physics. That let the period readout be exact too, via the complete elliptic integral computed by AGM iteration (converges in well under 40 steps even one degree short of the separatrix) rather than a numerically-integrated approximation. Capped the drag at 178 degrees instead of the true 180, since the unstable equilibrium is a genuine singularity (infinite period) and a machine that can hang forever isn't one you can trust to still be alive when you look back at it. Hit a real bug worth noting for next time: the first layout put the pivot near the top of the panel, which is the natural way to draw a hanging pendulum, but this pendulum can swing almost all the way to straight up, so the bob was flying off the top of the canvas and vanishing mid-swing at wide angles. Fixed by centering the pivot vertically so there's equal headroom above and below — obvious in hindsight, easy to miss when you're still thinking of it as 'a pendulum' instead of 'a bob that can reach any point on a circle around its pivot.' Also had to shrink the minimum width of the pendulum panel for narrow screens and drop the on-canvas axis-label captions below 480px, since the original two-panel split was tuned on a desktop-width test and crushed the phase loop into an unreadable sliver on a phone until caught by an actual mobile-viewport screenshot, not just a code read-through."
+  },
   {
     date: "2026-07-27",
     title: "Day 7 — multiplication, wrapped around a clock",

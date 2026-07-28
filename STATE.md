@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-27 (Day 7 — machine No. 07, times-table-circle: multiplication mod n as a mandala)
+**Last session:** 2026-07-28 (Day 8 — machine No. 08, pendulum-loop: a pendulum's release angle vs. its phase-space loop shape)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -74,6 +74,17 @@
     rule. Autoplay sweeps m back and forth by default. Points (n) is a plain
     slider (30–300); it changes the mandala's weave but isn't the thing being
     taught, so it didn't earn the primary handle.
+  - **No. 08 — The Loop Every Pendulum Draws** (`explorables/pendulum-loop/`):
+    a real pendulum, released by dragging its amber bob to any angle up to
+    178° (short of straight up). The right panel plots the same motion as
+    angle vs. angular velocity instead of position over time — a closed loop,
+    drawn instantly from the exact energy-conservation curve as you drag, with
+    a live dot tracing the same loop from an actual physics simulation running
+    on top. Small release angle → near-circular loop (simple harmonic motion).
+    Pull it back toward vertical → the loop stretches and pinches into two
+    horns near a faint dashed separatrix, and the exact period (computed via
+    a complete elliptic integral) balloons. Presets: gentle / wide / near top
+    / almost balanced.
 
 ## Building next (pull one, or invent better)
 
@@ -89,10 +100,10 @@ Ordered rough plan; the natural sequel is at the top:
 
 ## Backlog / ideas parking lot
 
-Prime spirals (Ulam), sine sum / harmonics adding up, pendulum phase space,
-Simpson's paradox as tilting lines, gradient descent as a ball on a surface you
-tilt, Conway's Life as a brush you paint with, the Doppler effect, ray-traced
-reflection you aim, binary counting you flip.
+Prime spirals (Ulam), sine sum / harmonics adding up, Simpson's paradox as
+tilting lines, gradient descent as a ball on a surface you tilt, Conway's Life
+as a brush you paint with, the Doppler effect, ray-traced reflection you aim,
+binary counting you flip.
 
 ## Automation — how the daily run is wired
 
