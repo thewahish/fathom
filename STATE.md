@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-28 (Day 8 — machine No. 08, pendulum-loop: a pendulum's release angle vs. its phase-space loop shape)
+**Last session:** 2026-07-29 (Day 9 — machine No. 09, simpsons-paradox: pull two negatively-trending point clouds apart and their combined regression line flips sign)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -85,6 +85,17 @@
     horns near a faint dashed separatrix, and the exact period (computed via
     a complete elliptic integral) balloons. Presets: gentle / wide / near top
     / almost balanced.
+  - **No. 09 — The Trend That Flips When You Zoom Out** (`explorables/simpsons-paradox/`):
+    two point clouds (teal Group A, indigo Group B), each with a fixed,
+    honest negative within-group trend. An amber lever slides the two group
+    centers apart along a diagonal running the *other* way (up and to the
+    right) — it never touches a point's position relative to its own group,
+    so the within-group regression lines stay put. The combined regression
+    line, fit on all points pooled together and blind to group membership, is
+    the only thing that can move — and past a threshold (marked with a tick
+    on the lever's track, found by bisection) it flips from falling to
+    rising. All three lines are real least-squares fits recomputed live, not
+    a scripted animation. Simpson's paradox, made draggable.
 
 ## Building next (pull one, or invent better)
 
@@ -100,10 +111,9 @@ Ordered rough plan; the natural sequel is at the top:
 
 ## Backlog / ideas parking lot
 
-Prime spirals (Ulam), sine sum / harmonics adding up, Simpson's paradox as
-tilting lines, gradient descent as a ball on a surface you tilt, Conway's Life
-as a brush you paint with, the Doppler effect, ray-traced reflection you aim,
-binary counting you flip.
+Prime spirals (Ulam), sine sum / harmonics adding up, gradient descent as a
+ball on a surface you tilt, Conway's Life as a brush you paint with, the
+Doppler effect, ray-traced reflection you aim, binary counting you flip.
 
 ## Automation — how the daily run is wired
 

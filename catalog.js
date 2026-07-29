@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "simpsons-paradox",
+    number: 9,
+    title: "The Trend That Flips When You Zoom Out",
+    blurb: "Two clouds of points, each with a clear negative trend. Drag the amber lever to pull them apart, and watch the single line fit through everyone at once — the one that ignores which group is which — flip from falling to rising.",
+    tags: ["statistics", "confounding"],
+    date: "2026-07-29"
+  },
+  {
     slug: "pendulum-loop",
     number: 8,
     title: "The Loop Every Pendulum Draws",
@@ -73,6 +81,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-29",
+    title: "Day 9 — a trend that lies when you pool it",
+    body: "Built machine No. 09: two point clouds, each with a fixed, honest negative trend, and one amber lever that slides them apart along a diagonal running the *other* way. Drag it far enough and the regression line fit through all the points combined — blind to which cloud a point came from — flips from falling to rising, even though neither cloud's own trend moved at all. Pulled this straight off the parking lot, where it had been sitting as 'Simpson's paradox as tilting lines'; it turned out to fit the one-handle rule cleanly once I found the right mechanism: the lever doesn't touch any point's position relative to its own group, it only moves the two group centers, so the within-group slopes are mathematically invariant under it and the combined slope is the only thing that can move. Computed all three regression lines (within-A, within-B, combined) as real least-squares fits on the actual displayed points every frame, rather than faking the flip with a scripted animation — same principle as No. 08's live physics dot next to its analytic curve, trust the real computation over a canned one. Added a small tick mark on the lever's track at the exact separation where the combined slope crosses zero, found once at boot by bisection, so the flip has a visible, specific location rather than just 'somewhere in there.' Caught one layering bug in an early render: I drew the within-group dashed trend lines before the point dots, so the dots (drawn on top, 32 per group) completely covered the dashed lines wherever they overlapped, and a first screenshot showed only the solid combined line with no visible group lines at all — moved the dashed lines to draw last, on top of the dots, and confirmed with a headless-browser screenshot before and after dragging the lever that both the readouts and the visible line all flip together."
+  },
   {
     date: "2026-07-28",
     title: "Day 8 — a swing, seen from the side it doesn't show you",
