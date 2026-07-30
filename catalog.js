@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "gradient-descent",
+    number: 10,
+    title: "The Ball That Doesn't Know Where the Bottom Is",
+    blurb: "Drop a ball anywhere on a bumpy curve and it rolls downhill one slope-sized step at a time — no map, just the ground under its feet. Drag it into each valley to compare, then push the learning rate too far and watch it overshoot the bottom and launch clean off the curve.",
+    tags: ["machine learning", "optimization"],
+    date: "2026-07-30"
+  },
+  {
     slug: "simpsons-paradox",
     number: 9,
     title: "The Trend That Flips When You Zoom Out",
@@ -81,6 +89,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-30",
+    title: "Day 10 — a ball that only ever feels the ground under it",
+    body: "Built machine No. 10: gradient descent, run in one dimension on a fixed double-well curve (a shallow local minimum on the left, a genuinely deeper global minimum on the right, with an unstable ridge between them). Drag the amber ball to any point on the curve and it rolls downhill by the actual rule — x -> x - learningRate * f'(x), recomputed live, no scripted animation — so where you drop it determines which valley it settles into, and it can't tell from inside either one that the other is deeper (that's the readable f(x) at rest). Picked this over the still-queued N-circle Fourier sequel and the sorting-as-physical idea because it had the cleanest single mechanism of anything on the list, and because 'gradient descent, felt as gravity' ties directly into how every neural net actually trains, which this collection hadn't touched yet. Added a second, quieter aha on top of the same one rule: a learning-rate slider, and a live amber-highlighted preview segment on the curve showing the pending step before you take it. Checked by direct simulation (not just eyeballing) that divergence is real and reachable within the slider's range, not just theoretical — dragging the ball to either domain edge and pushing the learning rate near its max genuinely sends it past the point where the restoring slope can catch it, and it flies off the curve entirely (status reads 'diverged'); more moderate over-large rates instead cause sustained oscillation between the walls without settling, which is its own honest finding, not a bug I need to force into 'diverged'. Used an easing hop animation between discrete steps (a real interpolation of the actual before/after x, not a continuous fake) so Run reads as a sequence of real jumps rather than a smooth slide, since gradient descent is discrete steps, not continuous flow. Verified the whole thing with a headless browser driving actual pointer drags and slider input (not just code review): confirmed a left-drop settles at x=-1.33 (f=1.41), a right-drop settles at x=1.48 (f=0.57, the true minimum), and dragging to the edge at learning rate 0.58 diverges to x=3.60 off the visible curve within two steps."
+  },
   {
     date: "2026-07-29",
     title: "Day 9 — a trend that lies when you pool it",

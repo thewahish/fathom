@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-29 (Day 9 — machine No. 09, simpsons-paradox: pull two negatively-trending point clouds apart and their combined regression line flips sign)
+**Last session:** 2026-07-30 (Day 10 — machine No. 10, gradient-descent: drag a ball onto a double-well curve and it rolls downhill by the actual gradient-descent rule, settling into whichever valley it started nearer to; push the learning rate up and it overshoots or flies off entirely)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -96,6 +96,17 @@
     on the lever's track, found by bisection) it flips from falling to
     rising. All three lines are real least-squares fits recomputed live, not
     a scripted animation. Simpson's paradox, made draggable.
+  - **No. 10 — The Ball That Doesn't Know Where the Bottom Is** (`explorables/gradient-descent/`):
+    a fixed double-well curve (shallow local minimum on the left, a genuinely
+    deeper global minimum on the right, an unstable ridge between them). Drag
+    the amber ball to any point on the curve; Run/Step apply real gradient
+    descent (x -> x - learningRate * f'(x), recomputed live every frame) so
+    the ball only ever knows the slope under it, not the whole shape — where
+    you drop it decides which valley it settles into. A learning-rate slider
+    is the second handle: push it up and the ball overshoots the bottom and
+    oscillates; drag the ball to a domain edge and push the rate near max and
+    it diverges outright, flying off the curve (verified by direct simulation
+    and a live headless-browser drag, not just code review).
 
 ## Building next (pull one, or invent better)
 

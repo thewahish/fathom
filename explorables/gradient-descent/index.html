@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Ball That Doesn't Know Where the Bottom Is — Fathom</title>
+  <meta name="description" content="Drop a ball on a bumpy curve and nudge it downhill one slope at a time. Watch gradient descent — the algorithm that trains almost every ML model — settle into whichever valley you dropped it near, and blow up if the learning rate is too big.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M4 10 Q9 24 14 14 Q19 4 24 24' fill='none' stroke='%230e7490' stroke-width='2.5'/><circle cx='24' cy='24' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 10</span>
+      <h1>The Ball That Doesn't Know Where the Bottom Is</h1>
+      <p class="lede">Every neural network trains by one rule: feel which way is downhill from right here, take a step, repeat. Drop this ball anywhere on the curve and watch that single rule — not the whole shape, just the slope under its feet — decide where it ends up.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A bumpy curve with two valleys, one deeper than the other. An amber ball sits on the curve and can be dragged to any point on it; buttons run gradient descent from that point, stepping the ball downhill."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="run">Run</button>
+        <button class="btn" id="step">Step</button>
+        <button class="btn" id="reset">Reset</button>
+        <div class="control">
+          <label for="lr">learning rate</label>
+          <input type="range" id="lr" min="1" max="60" value="12">
+          <span class="readout" id="lrOut">0.12</span>
+        </div>
+        <div class="control">
+          <label>x</label>
+          <span class="readout" id="xOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>f(x)</label>
+          <span class="readout" id="fOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>slope</label>
+          <span class="readout" id="slopeOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>steps</label>
+          <span class="readout" id="stepsOut">0</span>
+        </div>
+        <div class="control">
+          <label>status</label>
+          <span class="readout" id="statusOut">idle</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      This is gradient descent, run in one dimension so you can watch it happen — the same algorithm that trains almost every machine-learning model that exists. At each step it does exactly one thing: check the slope right under it, and move opposite that slope, scaled by the learning rate. It never sees the whole curve, only the ground under its own feet, which is why where you drop it decides where it lands. Compare <code>f(x)</code> at rest in each valley — one is genuinely deeper — but the ball can't tell that from inside either one.
+      <span class="hint">Drag the <b class="handle">amber</b> ball to set where it starts, then hit Run. Now push the learning rate up: instead of settling, the ball starts overshooting the bottom, bouncing wall to wall, and past a point it doesn't converge at all — it launches clean off the curve. That's not an exaggeration for effect: a learning rate set too high is one of the most common reasons a real model's training loss explodes instead of shrinking.</span>
+    </p>
+
+    <footer>
+      <span>No. 10 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
