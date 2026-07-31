@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "doppler-effect",
+    number: 11,
+    title: "The Wave That Piles Up Ahead of You",
+    blurb: "A source fires off rings at a steady rate while flying past two fixed listeners. Drag the amber lever to set its speed and watch the rings bunch up ahead of it and spread out behind — then push past the wave's own speed and they can't get in front of it at all, piling into a trailing V instead.",
+    tags: ["waves", "physics"],
+    date: "2026-07-31"
+  },
+  {
     slug: "gradient-descent",
     number: 10,
     title: "The Ball That Doesn't Know Where the Bottom Is",
@@ -89,6 +97,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-07-31",
+    title: "Day 11 — a wave that doesn't know how fast its source is moving",
+    body: "Built machine No. 11: the Doppler effect, staged as a source on a track firing an expanding ring at a fixed rate while it travels at a constant speed (a multiple of the wave's own speed c, set by an amber lever that runs from -1.8c to +1.8c). Each ring is centered on wherever the source actually was the instant it fired and grows outward at exactly c forever after — the source's motion never gets added to it — so consecutive rings end up crowded together ahead of the source and spread apart behind it, purely as a geometric consequence, no formula needed to see it happen. Picked this over continuing to bank smaller number-theory machines because 'waves & oscillation' had been sitting untouched in the good-territory list since day one, and because Doppler is usually taught as a formula to memorize (f' = f·c/(c∓v)) when it's really just circles that don't know they were fired from a moving point. Added two fixed listener posts, one on each side, that flash when a ring's expanding radius actually reaches them, and log real arrival-to-arrival intervals into a 'measured' frequency ratio shown next to the closed-form 'predicted' one, the same verify-by-independent-computation pattern as No. 08 and No. 09 rather than trusting the animation to look right — confirmed live via headless browser that the measured ratio genuinely converges onto the predicted one after enough rings have crossed (0.50c: predicted 2.00x/0.67x, measured settled at 1.97-2.00x and 0.67x by t=10s), including the early transient before convergence, which is itself an honest and correct thing to show, not noise to hide. Extended the same one lever a bit past its most obvious range: push it past 1.00c (marked with a tick and a shaded zone) and the 'ahead' formula's denominator goes to zero because the rings genuinely can no longer outrun a source moving faster than they travel — instead of breaking, the machine switches to drawing the actual envelope of that pileup, a V-shaped shock front trailing the source at the true Mach angle asin(c/v), which is the same mechanism as a sonic boom. Caught one bug while verifying with a headless drag: my first test read the canvas position once and reused it after a preset-button click had scrolled the page, so the drag coordinates silently missed the lever and looked like a dead control — re-reading the bounding box fresh immediately before dragging showed the lever responds correctly (dragged live to -1.80c and back)."
+  },
   {
     date: "2026-07-30",
     title: "Day 10 — a ball that only ever feels the ground under it",

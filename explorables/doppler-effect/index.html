@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Wave That Piles Up Ahead of You — Fathom</title>
+  <meta name="description" content="Drag a lever to set how fast a source flies past two fixed listeners. The waves it gives off keep going out at the same fixed speed no matter what — so the ones bunch up ahead of a moving source and spread out behind it. Push the speed past the wave's own and they can't get ahead of it at all.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='11' cy='16' r='9.5' fill='none' stroke='%230e7490' stroke-width='2' opacity='0.55'/><circle cx='11' cy='16' r='5' fill='none' stroke='%230e7490' stroke-width='2'/><circle cx='23.5' cy='16' r='2.6' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 11</span>
+      <h1>The Wave That Piles Up Ahead of You</h1>
+      <p class="lede">A siren doesn't change pitch. The <em>air</em> doesn't care how fast the siren is moving. Every ripple it sends out still travels at exactly the same speed in every direction — which is precisely why a moving source sounds different coming and going.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A source travels left to right (or right to left) along a line between two fixed listener posts, emitting expanding circular wavefronts at a steady rate. An amber lever above sets the source's speed as a multiple of the wave's own speed. The wavefronts bunch up ahead of the source and spread out behind it; past the wave's own speed they can no longer outrun the source and pile into a V-shaped shock front instead.">
+      </canvas>
+      <div class="controls">
+        <button class="btn primary" id="play">Pause</button>
+        <div class="seg" id="preset" role="group" aria-label="Preset source speeds">
+          <button data-preset="0">still</button>
+          <button data-preset="0.5" class="on">half c</button>
+          <button data-preset="0.9">near c</button>
+          <button data-preset="1.4">supersonic</button>
+        </div>
+        <div class="control">
+          <label>source speed</label>
+          <span class="readout" id="speedOut">0.50c →</span>
+        </div>
+        <div class="control">
+          <label>heard ahead</label>
+          <span class="readout" id="aheadOut">pred 2.00× · meas —</span>
+        </div>
+        <div class="control">
+          <label>heard behind</label>
+          <span class="readout" id="behindOut">pred 0.67× · meas —</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Every ring here is born from the exact spot the source was in when it fired, then grows outward at the same fixed speed, <em>c</em> — the source's own motion never gets added to it. So each new ring starts a little closer to the ring ahead of it (source chasing its own waves) and a little farther from the ring behind it (source running from them). Bunched-up rings arrive more often per second than they were sent — a higher pitch. Spread-out rings arrive less often — a lower one. Nothing about the wave itself changed; only where it started from moved.
+      <span class="hint">Drag the <b class="handle">amber</b> lever past <strong>1.00c</strong> and watch the front listener stop hearing anything ahead of the source at all — the rings can no longer get out in front of something moving faster than they travel, so instead they stack into a single V-shaped shock front trailing behind it. That's every sonic boom, and the reason a source right at the threshold sounds like nothing, then everything at once.</span>
+    </p>
+
+    <footer>
+      <span>No. 11 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

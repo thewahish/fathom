@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-30 (Day 10 — machine No. 10, gradient-descent: drag a ball onto a double-well curve and it rolls downhill by the actual gradient-descent rule, settling into whichever valley it started nearer to; push the learning rate up and it overshoots or flies off entirely)
+**Last session:** 2026-07-31 (Day 11 — machine No. 11, doppler-effect: drag the amber lever to set a source's speed as a multiple of the wave's own speed c; it fires expanding rings at a steady rate as it travels, which bunch up ahead of it and spread out behind, with two fixed listener posts measuring the real arrival rate live against the closed-form prediction; push past 1.00c and it can't outrun its own rings at all, piling them into a trailing Mach-cone shock front instead)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -107,6 +107,21 @@
     oscillates; drag the ball to a domain edge and push the rate near max and
     it diverges outright, flying off the curve (verified by direct simulation
     and a live headless-browser drag, not just code review).
+  - **No. 11 — The Wave That Piles Up Ahead of You** (`explorables/doppler-effect/`):
+    a source travels along a line at a constant speed, set by dragging an
+    amber lever from -1.8c to 1.8c (c = the wave's own propagation speed),
+    firing an expanding ring at a fixed rate as it goes. Each ring only ever
+    knows the point and instant it was born from, so rings end up crowded
+    together ahead of the source and spread apart behind it — the geometry
+    alone is the Doppler shift, no formula required to see it. Two fixed
+    listener posts flash when a ring's radius actually reaches them and log
+    real arrival intervals into a live "measured" frequency ratio, shown next
+    to the closed-form "predicted" one; confirmed via headless browser that
+    measured converges onto predicted once enough rings have crossed. Push
+    the lever past 1.00c (marked with a tick + shaded zone) and the source
+    outruns its own rings entirely — the machine switches to drawing the true
+    trailing Mach-cone shock front instead of a frequency, at the correct
+    asin(c/v) angle.
 
 ## Building next (pull one, or invent better)
 
@@ -122,9 +137,8 @@ Ordered rough plan; the natural sequel is at the top:
 
 ## Backlog / ideas parking lot
 
-Prime spirals (Ulam), sine sum / harmonics adding up, gradient descent as a
-ball on a surface you tilt, Conway's Life as a brush you paint with, the
-Doppler effect, ray-traced reflection you aim, binary counting you flip.
+Prime spirals (Ulam), sine sum / harmonics adding up, Conway's Life as a
+brush you paint with, ray-traced reflection you aim, binary counting you flip.
 
 ## Automation — how the daily run is wired
 
