@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Shape That's Secretly a Sum of Sines — Fathom</title>
+  <meta name="description" content="Drag eight amber levers, each one a pure tone at a different frequency, and watch the shapes they add up to. A square wave, a sawtooth, a triangle — none of them are one wave. They're all sines in a trenchcoat.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M3 20 Q7 8 11 20 T19 20' fill='none' stroke='%230e7490' stroke-width='2.2'/><rect x='22' y='10' width='3' height='14' rx='1.5' fill='%23d97706'/><rect x='27' y='15' width='3' height='9' rx='1.5' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 12</span>
+      <h1>The Shape That's Secretly a Sum of Sines</h1>
+      <p class="lede">A square wave looks nothing like a sine wave. Neither does a sawtooth, or a triangle. And yet each one is just several sine waves, at whole-number multiples of one frequency, added together in the right proportions. Build them yourself, one pure tone at a time.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A big wave graph on top shows the sum of up to eight sine harmonics. Below it, eight vertical draggable amber levers set the amplitude of each harmonic, from 1 (the fundamental) to 8."></canvas>
+      <div class="controls">
+        <button class="btn" id="play">Play</button>
+        <button class="btn" id="reset">Reset</button>
+        <div class="seg" id="preset" role="group" aria-label="Snap the levers to a target shape">
+          <button data-preset="none" class="on">none</button>
+          <button data-preset="square">square</button>
+          <button data-preset="sawtooth">sawtooth</button>
+          <button data-preset="triangle">triangle</button>
+        </div>
+        <div class="control">
+          <label>match</label>
+          <span class="readout" id="matchOut">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Each lever below is one pure tone — a plain sine wave at harmonic <em>n</em>, n times the frequency of the first one. Push a lever up or down and its tone's own ripple gets added into the big curve above, in real time. That's the entire idea: any repeating shape, no matter how sharp its corners, is some recipe of these — which frequencies, and how loud each one is.
+      <span class="hint">Drag the <b class="handle">amber</b> levers by hand, or tap a preset to snap eight of them straight to the exact recipe for a square, sawtooth, or triangle wave — then watch how close eight terms gets to the dashed target. Square and sawtooth have sharp corners, so they need more and more high harmonics that never fully die out, leaving a ripple right at the jump (called the Gibbs phenomenon — it's why sharp digital edges pick up ringing when band-limited). Triangle's corners are gentler, so its harmonics fade fast and eight terms already look almost exact. Your ears do this decomposition automatically, all day: it's how one messy pressure wave in the air becomes the separate notes of a chord.</span>
+    </p>
+
+    <footer>
+      <span>No. 12 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

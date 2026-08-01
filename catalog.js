@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "sum-of-sines",
+    number: 12,
+    title: "The Shape That's Secretly a Sum of Sines",
+    blurb: "Eight amber levers, each one a pure sine tone at a different frequency. Drag them by hand, or tap a preset to snap straight to the exact recipe for a square, sawtooth, or triangle wave, and watch how close eight simple tones get to the dashed ideal — ripples, Gibbs phenomenon, and all.",
+    tags: ["fourier", "waves", "trigonometry"],
+    date: "2026-08-01"
+  },
+  {
     slug: "doppler-effect",
     number: 11,
     title: "The Wave That Piles Up Ahead of You",
@@ -97,6 +105,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-01",
+    title: "Day 12 — a square wave confesses it's just sines wearing a trenchcoat",
+    body: "Built machine No. 12: eight sine harmonics, each with its own draggable amber lever (a vertical amplitude control, the same lever idiom as the Galton board's bias lever and the times-table circle's multiplier dot, just rotated 90 degrees into a row of eight so one hand controls one frequency), summed live into a single curve drawn above them. Dragging any one lever bends the whole sum in real time, and while dragging (or hovering) a faint dashed ghost of that harmonic's own bare sine appears in the graph, tying the abstract 'lever 3' directly to 'this specific ripple, three times as fast as the fundamental' — the same kind of before/after pairing No. 04's dot-product bar and No. 08's phase-portrait dot use to keep a control legible. Picked this off the backlog ('sine sum / harmonics adding up') over continuing to bank the still-queued, heavier N-circle Fourier sequel to No. 06, since this is the more fundamental half of that idea — Fourier synthesis of ordinary shapes, not yet epicycle-style rotating vectors — and hadn't been built yet despite 'fourier' already being a tag on No. 06. Added three presets (square, sawtooth, triangle) that snap all eight levers to the exact closed-form Fourier coefficients for that shape (4/(pi*n) on odd n for square, alternating 2/(pi*n) for sawtooth, alternating 8/(pi^2*n^2) on odd n for triangle) via an eased animation, each one drawn against a dashed 'ideal' target curve computed from the same coefficient formulas summed to 250 terms instead of 8, so the gap between 'what eight tones can do' and 'the true shape' is directly visible rather than asserted. That gap is the actual lesson: square and sawtooth have jump discontinuities, so their 8-term sums show real, correctly-computed Gibbs-phenomenon ringing that persists right at the jump (confirmed this is genuine and not a bug by computing the 250-term series at points approaching the corner in a standalone Node check, not just eyeballing the canvas), while triangle has no discontinuity, only a corner, so 8 terms already track it almost exactly except for a slightly rounded tip — verified the tip really is a rounding artifact of truncation rather than a math error by checking that the 250-term sum does converge to a sharp corner at the peak (0.998 at theta=pi/2) while the 8-term sum tops out at 0.90, both correct, just at different levels of resolution. Added a live 'match' readout (RMS distance between the current 8-term sum and the active preset's ideal target, as a rough percentage) so the square-vs-sawtooth-vs-triangle convergence-speed difference has a number attached, not just a visual impression: square settled at 87%, sawtooth 91%, triangle 99%, in the right order. Verified the whole thing with a headless-browser drag (grabbed harmonic 3's lever and confirmed both its own ghost sine and the sum curve updated live) and screenshots of all three presets plus a 390px-wide mobile layout before shipping, rather than trusting the code read-through alone."
+  },
   {
     date: "2026-07-31",
     title: "Day 11 — a wave that doesn't know how fast its source is moving",

@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-07-31 (Day 11 — machine No. 11, doppler-effect: drag the amber lever to set a source's speed as a multiple of the wave's own speed c; it fires expanding rings at a steady rate as it travels, which bunch up ahead of it and spread out behind, with two fixed listener posts measuring the real arrival rate live against the closed-form prediction; push past 1.00c and it can't outrun its own rings at all, piling them into a trailing Mach-cone shock front instead)
+**Last session:** 2026-08-01 (Day 12 — machine No. 12, sum-of-sines: eight sine harmonics, each with its own draggable amber vertical lever, summed live into one curve; drag any lever and a dashed ghost of that harmonic's own bare sine shows what it's contributing; presets snap all eight to the exact Fourier recipe for a square, sawtooth, or triangle wave and draw the true (250-term) shape as a dashed target, so the gap — including real Gibbs-phenomenon ringing on square/sawtooth — is visible against the 8-term approximation; a live match% readout tracks how close)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,20 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 12 — The Shape That's Secretly a Sum of Sines** (`explorables/sum-of-sines/`):
+    eight sine harmonics, each with its own draggable amber vertical lever
+    (amplitude, -1.35 to 1.35), summed live into one big curve. Drag any
+    lever and a faint dashed ghost of that harmonic's bare sine appears,
+    tying the control directly to the ripple it adds. Presets (square,
+    sawtooth, triangle) snap all eight levers to the exact closed-form
+    Fourier coefficients for that shape and draw the true shape (summed to
+    250 terms) as a dashed target — square and sawtooth have jump
+    discontinuities, so 8 terms show real Gibbs-phenomenon ringing that
+    never dies out; triangle has no discontinuity, only a corner, so 8
+    terms already track it closely apart from a slightly rounded tip. A
+    live "match" readout (RMS distance to the target, as %) makes the
+    convergence-speed difference concrete: square 87%, sawtooth 91%,
+    triangle 99%.
   - **No. 01 — The Circle and the Wave** (`explorables/circle-and-wave/`):
     a point circles; its height traces a sine wave. Drag the amber point to
     scrub. Modes: sine / cosine / both. Speed slider, play/pause, live readouts.
@@ -127,18 +141,19 @@
 
 Ordered rough plan; the natural sequel is at the top:
 
-1. **N-circle Fourier drawing** — now that the two-circle epicycle mechanics
-   (No. 06) are live, the natural sequel is stacking several circles at
-   different integer speeds/sizes so the combined pen draws an arbitrary
-   repeating shape (even letters), with sliders/handles per harmonic. Higher
+1. **N-circle Fourier drawing** — now that both the two-circle epicycle
+   mechanics (No. 06) and straight-line harmonic synthesis (No. 12) are
+   live, the natural sequel is stacking several rotating circles (epicycle
+   style, not straight sine bars) at different integer speeds/sizes so the
+   combined pen draws an arbitrary repeating shape (even letters). Higher
    effort — may want to keep banking smaller machines first.
 2. **Sorting made physical** — bars you can watch a comparison sort reorder, one
    swap at a time (only if the interaction, not just animation, teaches it).
 
 ## Backlog / ideas parking lot
 
-Prime spirals (Ulam), sine sum / harmonics adding up, Conway's Life as a
-brush you paint with, ray-traced reflection you aim, binary counting you flip.
+Prime spirals (Ulam), Conway's Life as a brush you paint with, ray-traced
+reflection you aim, binary counting you flip.
 
 ## Automation — how the daily run is wired
 
