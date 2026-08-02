@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-01 (Day 12 — machine No. 12, sum-of-sines: eight sine harmonics, each with its own draggable amber vertical lever, summed live into one curve; drag any lever and a dashed ghost of that harmonic's own bare sine shows what it's contributing; presets snap all eight to the exact Fourier recipe for a square, sawtooth, or triangle wave and draw the true (250-term) shape as a dashed target, so the gap — including real Gibbs-phenomenon ringing on square/sawtooth — is visible against the 8-term approximation; a live match% readout tracks how close)
+**Last session:** 2026-08-02 (Day 13 — machine No. 13, refraction: drag an amber point to set the angle a light ray hits a boundary between two media; a solid ray bends into the second medium and a dashed one reflects, both from real Snell's-law geometry off a preset index pair (air/water/glass, either direction). The real payoff is a row of faint bent chevrons straddling the boundary — each one a wavefront caught mid-crossing, anchored at a boundary point that's mathematically fixed regardless of angle, so dragging shows the rays swinging to stay joined at those fixed points rather than just asserting a bend. Past the critical angle (only exists when going from a denser to a less-dense medium, shown live in its own readout), the outgoing ray vanishes entirely into total internal reflection — verified via headless-browser drag against hand-computed Snell values)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,20 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 13 — The Ray That Bends Because Half of It Arrives Late** (`explorables/refraction/`):
+    drag an amber point on an arc above a horizontal boundary to set the angle a
+    light ray hits it. A solid ray bends into the second medium and a dashed one
+    reflects, both computed live from real Snell's-law geometry (n1 sin θ1 = n2
+    sin θ2) off one of four preset index pairs (air↔water, air↔glass). The main
+    visual is a row of faint bent chevrons straddling the boundary: each is a
+    wavefront caught mid-crossing, anchored at a boundary point whose position is
+    mathematically independent of the angle, so as you drag, the two rays swing
+    to stay joined at that same fixed lattice of points rather than the bend
+    being asserted. Past the critical angle (asin(n2/n1), only defined when
+    n1 > n2 — try water→air or glass→air, shown live in its own readout) the
+    Snell equation legitimately has no solution, so the outgoing ray vanishes
+    and the chevrons bend entirely back into the first medium: total internal
+    reflection, verified via headless-browser drag against hand-computed values.
   - **No. 12 — The Shape That's Secretly a Sum of Sines** (`explorables/sum-of-sines/`):
     eight sine harmonics, each with its own draggable amber vertical lever
     (amplitude, -1.35 to 1.35), summed live into one big curve. Drag any

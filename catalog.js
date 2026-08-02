@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "refraction",
+    number: 13,
+    title: "The Ray That Bends Because Half of It Arrives Late",
+    blurb: "Drag a light ray into water or glass. Faint wavefront chevrons show it staying unbroken as it crosses the boundary, kinking at exactly the angle that keeps them lined up — that kink is the bend. Push a slow-to-fast pair like water → air past the critical angle and the outgoing ray vanishes entirely into total internal reflection.",
+    tags: ["optics", "waves", "physics"],
+    date: "2026-08-02"
+  },
+  {
     slug: "sum-of-sines",
     number: 12,
     title: "The Shape That's Secretly a Sum of Sines",
@@ -105,6 +113,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-02",
+    title: "Day 13 — a wave that can't rip itself in two",
+    body: "Built machine No. 13: refraction, staged not as a ray-diagram formula but as a wavefront that has to stay unbroken as it crosses into a new medium. Drag an amber point to set the angle a light ray comes in at; a solid ray bends into the second medium and a dashed one reflects, both computed live from real Snell's-law geometry (n1 sin(theta1) = n2 sin(theta2)) off a preset pair of indices, never scripted. The actual payoff is the row of faint bent chevrons straddling the boundary: each one is a single wavefront caught mid-crossing, and its anchor point on the boundary sits at a fixed x = k*S for integer k, completely independent of the angle — derived on paper first (a line perpendicular to a ray direction theta, offset by k wavelengths along that ray, crosses y=0 at x = k*lambda/sin(theta), so choosing lambda1 = S*sin(theta1) and lambda2 = S*sin(theta2) forces every crossing to land at the same x = kS in both media, by construction, no coincidence) so those crossing points never move as you drag, only the two rays swing around them to stay joined at that fixed lattice of points. That's the actual mechanism, not a metaphor for it: the bend is what 'staying continuous while a fixed set of points can't move' looks like. Picked this over the still-queued N-circle Fourier sequel to keep banking one complete machine a day rather than start the heavier build; optics/waves territory was untouched and the classic 'pencil looks broken in water' fact had never been given a mechanism here, just the observation. Reused the pendulum-loop's angle-drag-around-a-pivot idiom (atan2 from a fixed point, clamped magnitude, signed for either side) for the handle, and the doppler-effect's preset-seg + readout-panel layout for the four medium pairs (air/water/glass in both directions). Added total internal reflection as a real regime, not a special-cased graphic: past the critical angle (asin(n2/n1), only defined when n1 > n2, shown live in its own readout) the Snell equation's sine argument legitimately exceeds 1, so the code just stops trying to compute an asin and draws the chevrons bending entirely back into the first medium instead — verified this triggers at the right threshold with a headless-browser drag (water to air, critical angle computed at 49 degrees, dragged to 65 degrees and confirmed the refraction readout switched to 'TIR' with the outgoing ray gone and only the thickened reflection remaining), and checked a steep non-TIR angle (65 degrees into water) shows the expected ~43-degree bend toward the normal, both against hand-computed Snell values, not just a glance at the canvas. Also checked a 400px mobile viewport before shipping."
+  },
   {
     date: "2026-08-01",
     title: "Day 12 — a square wave confesses it's just sines wearing a trenchcoat",

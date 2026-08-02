@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Ray That Bends Because Half of It Arrives Late — Fathom</title>
+  <meta name="description" content="Drag a light ray into water or glass. Watch its wavefronts — not just the ray — stay unbroken as they cross the boundary, kinking at the exact angle that keeps them lined up. Push far enough the other way and the ray can't get out at all.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><line x1='2' y1='20' x2='30' y2='20' stroke='%2364748b' stroke-width='1.5' opacity='0.5'/><line x1='7' y1='5' x2='16' y2='20' stroke='%230e7490' stroke-width='2.5'/><line x1='16' y1='20' x2='21' y2='29' stroke='%236366f1' stroke-width='2.5'/><circle cx='16' cy='20' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 13</span>
+      <h1>The Ray That Bends Because Half of It Arrives Late</h1>
+      <p class="lede">A pencil in a glass of water looks snapped in half. It isn't the light "choosing" a new direction — it's that a wave crossing into a slower medium can't stay straight and stay unbroken at the same time. It bends because it has to.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A light ray travels from a draggable point down to a fixed point on a horizontal boundary between two media, then continues into the second medium at a different angle, computed from Snell's law. Faint chevron marks show the ray's wavefronts staying unbroken as they cross the boundary, bending at the exact point of crossing. A dashed ray shows the partial reflection. Past the critical angle for a slow-to-fast medium pair, the transmitted ray vanishes and the wavefronts bend entirely back into the first medium instead — total internal reflection."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Medium pairs">
+          <button data-preset="air-water" class="on">air → water</button>
+          <button data-preset="air-glass">air → glass</button>
+          <button data-preset="water-air">water → air</button>
+          <button data-preset="glass-air">glass → air</button>
+        </div>
+        <button class="btn" id="reset">Reset angle</button>
+        <div class="control">
+          <label>incidence θ₁</label>
+          <span class="readout" id="theta1Out">40°</span>
+        </div>
+        <div class="control">
+          <label>refraction θ₂</label>
+          <span class="readout" id="theta2Out">28°</span>
+        </div>
+        <div class="control">
+          <label>n₁ · n₂</label>
+          <span class="readout" id="nOut">1.00 · 1.33</span>
+        </div>
+        <div class="control">
+          <label>critical angle</label>
+          <span class="readout" id="criticalOut">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Every wavefront (the faint bent chevrons) has to stay one continuous line as it crosses the boundary — light can't rip in two. But in the slower medium, its own wavefronts are packed closer together. The only way to keep the crossing points lined up along the boundary while packing them tighter is to swing the whole wave toward the normal, the dashed vertical line — that swing <em>is</em> the bend, and it's exactly what <b>n₁ sin θ₁ = n₂ sin θ₂</b> describes. Speed up instead of slowing down, and the wave swings the other way, away from the normal.
+      <span class="hint">Drag the <b class="handle">amber</b> point to set the incoming angle. Switch to <b>water → air</b> or <b>glass → air</b> and drag past the critical angle (marked on the readout) — the outgoing ray disappears entirely and every bit of it reflects instead. That's total internal reflection: the same trick that keeps light trapped inside a fiber-optic cable.</span>
+    </p>
+
+    <footer>
+      <span>No. 13 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
