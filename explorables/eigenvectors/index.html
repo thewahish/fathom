@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Directions a Matrix Doesn't Turn — Fathom</title>
+  <meta name="description" content="Drag an arrow all the way around a circle and watch where a matrix sends it. Almost every direction swings off to somewhere new — except a couple of special ones, which just get longer or shorter, never turned. Those are the eigenvectors.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><line x1='4' y1='28' x2='28' y2='4' stroke='%2364748b' stroke-width='1.5' stroke-dasharray='2 3' opacity='0.6'/><line x1='16' y1='16' x2='27' y2='9' stroke='%230891b2' stroke-width='2.5'/><line x1='16' y1='16' x2='9' y2='27' stroke='%236366f1' stroke-width='2.5'/><circle cx='27' cy='9' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 14</span>
+      <h1>The Directions a Matrix Doesn't Turn</h1>
+      <p class="lede">A matrix grabs every arrow in the plane and sends it somewhere else — stretched, sheared, spun. Drag one arrow all the way around a full circle and watch its image swing around too. Almost everywhere it points somewhere new. A couple of directions, though, refuse to turn at all — they just get longer or shorter, dead on the same line. Those are the eigenvectors.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A teal arrow, draggable around a full circle, represents an input vector. An indigo arrow shows where the current matrix sends it. For most angles the two arrows point in different directions; at one or two special angles, marked with dashed guide lines, they line up on the same line and only the length changes."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Matrix presets">
+          <button data-preset="stretch" class="on">stretch</button>
+          <button data-preset="shear">shear</button>
+          <button data-preset="symmetric">symmetric</button>
+          <button data-preset="rotation">rotation</button>
+          <button data-preset="spiral">spiral</button>
+        </div>
+        <button class="btn" id="reset">Reset angle</button>
+        <div class="control">
+          <label>v angle</label>
+          <span class="readout" id="thetaOut">0°</span>
+        </div>
+        <div class="control">
+          <label>Av vs v</label>
+          <span class="readout" id="diffOut">0°</span>
+        </div>
+        <div class="control">
+          <label>|Av| / |v|</label>
+          <span class="readout" id="ratioOut">1.00</span>
+        </div>
+        <div class="control">
+          <label>status</label>
+          <span class="readout" id="statusOut">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      The teal arrow is <b>v</b>, wherever you drag it on the circle. The indigo arrow is <b>Av</b> — the same vector, run through the current matrix. Sweep v all the way around and Av mostly points somewhere else entirely: the matrix is turning space, not just stretching it. But watch the "Av vs v" readout as you sweep — at one or two exact angles, marked by dashed lines through the origin, it drops to 0° (or 180°, still the same line): Av lands right back on v's own line, only longer or shorter by a factor called the <b>eigenvalue</b>. Those angles are the matrix's <b>eigenvectors</b> — the only directions it doesn't turn, just scales.
+      <span class="hint">Drag the <b class="handle">amber</b> tip around the circle. Try <em>rotation</em>: a pure spin has no direction that survives it, so the readout never touches 0° no matter where you drag — every arrow gets turned by the same fixed angle. <em>Shear</em> only has one surviving direction, not two.</span>
+    </p>
+
+    <footer>
+      <span>No. 14 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

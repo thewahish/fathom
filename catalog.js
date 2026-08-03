@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "eigenvectors",
+    number: 14,
+    title: "The Directions a Matrix Doesn't Turn",
+    blurb: "Drag an arrow all the way around a circle and watch where a matrix sends it. Almost everywhere it swings off to a new direction entirely — except at one or two special angles, marked by dashed lines and found from the real characteristic equation, where it just gets longer or shorter, dead on the same line. Try rotation: nothing survives it, and the drag never once finds one.",
+    tags: ["linear algebra", "matrices"],
+    date: "2026-08-03"
+  },
+  {
     slug: "refraction",
     number: 13,
     title: "The Ray That Bends Because Half of It Arrives Late",
@@ -113,6 +121,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-03",
+    title: "Day 14 — the directions a matrix leaves alone",
+    body: "Built machine No. 14: eigenvectors, staged as a single draggable arrow v (teal, amber-tipped) that sweeps a full circle while a second arrow Av (indigo) shows the same vector run through the current 2x2 matrix. For almost every angle the two point in visibly different directions — the actual content of 'a matrix turns space,' shown rather than asserted. At one or two exact angles, dashed guide lines mark where Av snaps back onto v's own line and only its length changes: the eigenvectors. Those lines and their labeled eigenvalues aren't picked by hand — they come out of solving the real characteristic equation (tr ± sqrt(tr^2-4det))/2 live for whatever matrix is loaded, with a small branch to handle the diagonal case (b=c=0) and the repeated-root case (shear: algebraic multiplicity 2 but only one surviving direction, shown as a single dashed line, not two) so the geometry is always derived, never scripted per preset. Picked this off the 'linear algebra as motion' territory in CLAUDE.md, which was untouched — the dot product (No. 04) covered projection, but nothing here yet showed a matrix as a thing that moves vectors around, which is the more fundamental picture eigenvectors need to land. Five presets (stretch, shear, symmetric, rotation, spiral) span the interesting cases: symmetric gives two perpendicular eigen-directions (the general fact that symmetric matrices always diagonalize orthogonally, visible without saying so); rotation and spiral have complex eigenvalues and so *no* real eigenvector at all — dragging v anywhere around the full circle, the 'Av vs v' readout never once touches 0°, and for a pure rotation it doesn't even change value as you drag, since a rotation turns every direction by the same fixed angle, which is itself worth noticing and called out in the caption's hint rather than left for the user to stumble on. Added a magnet: while dragging, getting within 4° of a real eigen-direction snaps the angle exactly onto it, the same click-into-place idiom as the times-table circle's magnet toward whole multipliers, so finding the eigenvector by feel doesn't require pixel-perfect dragging. Rescaled the unit-circle radius per preset (eased toward a target computed from each matrix's actual max stretch, sampled at 144 angles at load time, not assumed) so a preset with eigenvalue 3 (symmetric) and one with max stretch 1 (rotation) both use the full stage instead of one being cramped or one overflowing. Verified by hand: computed eigenvalues/eigenvectors for all five preset matrices on paper first (stretch: 1.8 at (1,0), 0.6 at (0,1); shear: repeated 1 at (1,0) only; symmetric: 3 at (1,1), 1 at (1,-1); rotation/spiral: complex, no real solution) and confirmed the on-screen guide-line angles and labeled lambdas match before wiring up the drag; also read through the diagonal-matrix branch of eigenInfo() by hand-tracing the stretch preset since it's the one case that doesn't go through the general b-or-c formula."
+  },
   {
     date: "2026-08-02",
     title: "Day 13 — a wave that can't rip itself in two",

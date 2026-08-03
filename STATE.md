@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-02 (Day 13 — machine No. 13, refraction: drag an amber point to set the angle a light ray hits a boundary between two media; a solid ray bends into the second medium and a dashed one reflects, both from real Snell's-law geometry off a preset index pair (air/water/glass, either direction). The real payoff is a row of faint bent chevrons straddling the boundary — each one a wavefront caught mid-crossing, anchored at a boundary point that's mathematically fixed regardless of angle, so dragging shows the rays swinging to stay joined at those fixed points rather than just asserting a bend. Past the critical angle (only exists when going from a denser to a less-dense medium, shown live in its own readout), the outgoing ray vanishes entirely into total internal reflection — verified via headless-browser drag against hand-computed Snell values)
+**Last session:** 2026-08-03 (Day 14 — machine No. 14, eigenvectors: drag an amber arrow v all the way around a circle; a second arrow shows Av, the same vector run through the current 2x2 matrix. Almost everywhere the two point in different directions — the matrix is turning space. At one or two angles, computed live from the real characteristic equation (not hard-coded) and marked with dashed guide lines, Av snaps back onto v's own line and only its length changes: those are the eigenvectors, and the drag magnets onto them. Five presets span the interesting cases: symmetric (two perpendicular eigen-directions), shear (repeated eigenvalue, only one surviving direction), and rotation/spiral (complex eigenvalues, no real eigenvector at all — the turn angle stays constant no matter where you drag). Verified by hand-computing eigenvalues for all five presets and confirming via headless-browser drags that snapping, readouts, and the rotation-invariant turn angle all match)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,22 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 14 — The Directions a Matrix Doesn't Turn** (`explorables/eigenvectors/`):
+    drag a teal, amber-tipped arrow v all the way around a circle; an indigo
+    arrow shows Av, the same vector run through the current 2x2 matrix. For
+    almost every angle the two point in different directions — direct proof
+    a matrix turns space, not just stretches it. At one or two exact angles,
+    marked with dashed guide lines and labeled with the eigenvalue, Av lands
+    back on v's own line and only its length changes: the eigenvectors. Those
+    angles are solved live from the real characteristic equation
+    ((tr ± sqrt(tr^2-4·det))/2), never hard-coded per preset, with a magnet
+    that snaps the drag onto them within 4°. Five presets: stretch and
+    symmetric both have two real eigen-directions (symmetric's are always
+    perpendicular); shear has a repeated eigenvalue but only one surviving
+    direction; rotation and spiral have complex eigenvalues and so no real
+    eigenvector anywhere — sweep v around the full circle and the "Av vs v"
+    readout never touches 0°, and for pure rotation it doesn't even change,
+    since a rotation turns every direction by the same fixed angle.
   - **No. 13 — The Ray That Bends Because Half of It Arrives Late** (`explorables/refraction/`):
     drag an amber point on an arc above a horizontal boundary to set the angle a
     light ray hits it. A solid ray bends into the second medium and a dashed one
