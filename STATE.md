@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-03 (Day 14 — machine No. 14, eigenvectors: drag an amber arrow v all the way around a circle; a second arrow shows Av, the same vector run through the current 2x2 matrix. Almost everywhere the two point in different directions — the matrix is turning space. At one or two angles, computed live from the real characteristic equation (not hard-coded) and marked with dashed guide lines, Av snaps back onto v's own line and only its length changes: those are the eigenvectors, and the drag magnets onto them. Five presets span the interesting cases: symmetric (two perpendicular eigen-directions), shear (repeated eigenvalue, only one surviving direction), and rotation/spiral (complex eigenvalues, no real eigenvector at all — the turn angle stays constant no matter where you drag). Verified by hand-computing eigenvalues for all five presets and confirming via headless-browser drags that snapping, readouts, and the rotation-invariant turn angle all match)
+**Last session:** 2026-08-04 (Day 15 — machine No. 15, Conway's Game of Life: paint any starting pattern with the amber brush on a toroidal grid, then play as every cell applies the same purely-local rule — survive on 2 or 3 live neighbors, born on exactly 3, otherwise die — with a "show counts" overlay that displays the literal neighbor count each cell is reading. Presets: glider, blinker, Gosper glider gun, random soup. Verified the neighbor-count logic against the known glider offsets in a standalone Node check, and via headless-browser drag confirmed painting flips cells, the blinker genuinely oscillates horizontal/vertical across real Step clicks, and the glider gun reaches generation 21 / population 54 while visibly firing gliders; checked a 390px mobile layout too)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,21 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 15 — The Cell That Only Counts to Eight** (`explorables/game-of-life/`):
+    a paintable Conway's Game of Life grid, wrapped toroidally. Drag the amber
+    brush to flip cells alive or dead, then Play: every cell applies one
+    purely local rule each generation (survive on 2 or 3 live neighbors, born
+    on exactly 3, otherwise die), computed off a scratch buffer so the whole
+    grid updates simultaneously. A "show counts" toggle overlays the literal
+    live-neighbor count each cell is reading, tying the number straight to
+    the rule in the caption. Presets: glider, blinker (period-2 oscillator),
+    Gosper glider gun (fires an endless stream of gliders that, on this
+    finite wraparound board, eventually loops back and collides with the gun
+    itself — called out honestly in the caption rather than hidden), and
+    random soup. Verified the neighbor-count math against known glider
+    offsets in a standalone Node check and confirmed painting, blinker
+    oscillation, and the glider gun's live generation/population counts via
+    headless-browser drag.
   - **No. 14 — The Directions a Matrix Doesn't Turn** (`explorables/eigenvectors/`):
     drag a teal, amber-tipped arrow v all the way around a circle; an indigo
     arrow shows Av, the same vector run through the current 2x2 matrix. For
@@ -182,7 +197,9 @@ Ordered rough plan; the natural sequel is at the top:
 
 ## Backlog / ideas parking lot
 
-Prime spirals (Ulam), Conway's Life as a brush you paint with, ray-traced
+Prime spirals (Ulam) — parked on reflection: no obvious drag reveals *why*
+a number is prime, so it's weak against the "if you can't drag it, it
+doesn't belong here" bar unless a better mechanism turns up. Ray-traced
 reflection you aim, binary counting you flip.
 
 ## Automation — how the daily run is wired

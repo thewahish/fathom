@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "game-of-life",
+    number: 15,
+    title: "The Cell That Only Counts to Eight",
+    blurb: "A grid where every cell's whole world is its eight neighbors: too few and it dies of loneliness, too many and it dies of crowding, exactly three and a dead one is born. Paint any pattern with the amber brush and press play — no cell has a plan, yet gliders crawl, triples blink, and a gun fires off a fresh glider forever.",
+    tags: ["cellular automata", "emergence"],
+    date: "2026-08-04"
+  },
+  {
     slug: "eigenvectors",
     number: 14,
     title: "The Directions a Matrix Doesn't Turn",
@@ -121,6 +129,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-04",
+    title: "Day 15 — a rule with no memory that grows a zoo",
+    body: "Built machine No. 15: Conway's Game of Life, staged as a paintable grid rather than a fixed demo — drag the amber brush across any cell and it flips, live or dead, so the starting pattern is entirely yours to choose, not just a preset you watch. Every generation, every cell applies the exact same local rule (survive on 2 or 3 live neighbors, get born on exactly 3, otherwise die) with zero knowledge of anything beyond its own eight neighbors, computed on a scratch buffer each step so the whole grid updates simultaneously rather than reading its own half-finished next state. Picked this off the backlog ('Conway's Life as a brush you paint with') over the still-queued, heavier N-circle Fourier sequel, and over prime spirals, which I ruled out on reflection: nothing about dragging a handle would reveal why a given cell is prime, so it fails the 'if you can't drag it, it doesn't belong here' bar in a way painting a starting pattern for a local rule doesn't. Wrapped the board toroidally (edges connect back around) rather than killing cells that wander off, mainly so the glider preset has somewhere to go without special-casing a boundary rule, and left that as an honest, visible consequence rather than hiding it: the caption calls out that the glider gun preset's endless stream of gliders eventually wraps around and collides with the gun itself on this finite board, which is a real fact about the wraparound, not a bug to paper over. Added a 'show counts' toggle that overlays each cell's live actual neighbor count (the literal number the rule is reading) directly on the grid when paused — since the machine's whole premise is a cell counting to eight, showing the count itself felt like the one addition worth making beyond paint-and-play. Verified correctness two ways before trusting the canvas: worked out the neighbor-count function against the actual glider offsets in a standalone Node check (counts came back 1,3,1,3,2 for the five live cells, which correctly reproduces the known glider survive/die pattern) rather than eyeballing the overlay numbers, which I'd initially misread by eye off a screenshot and would have shipped as 'looks right' without the independent check; and drove the page with a headless-browser pointer drag to confirm painting actually flips cells (confirmed via population count and a visible L-shaped stroke), confirmed the blinker preset genuinely oscillates horizontal-vertical-horizontal on real Step clicks (not just visually similar frames), and confirmed the Gosper glider gun reaches generation 21 with population 54 and visibly firing gliders. Checked a 390px mobile viewport before shipping; the controls stack cleanly and painting still works via pointer events."
+  },
   {
     date: "2026-08-03",
     title: "Day 14 — the directions a matrix leaves alone",

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Cell That Only Counts to Eight — Fathom</title>
+  <meta name="description" content="Every cell on this grid follows one rule based only on its eight neighbors — nothing more. Paint a pattern with the amber brush and press play, and out of that one local rule crawl gliders, blinkers, and a gun that fires gliders forever.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='4' width='8' height='8' fill='%230891b2'/><rect x='20' y='4' width='8' height='8' fill='%236366f1'/><rect x='12' y='12' width='8' height='8' fill='%230891b2'/><rect x='4' y='20' width='8' height='8' fill='%236366f1'/><rect x='20' y='20' width='8' height='8' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 15</span>
+      <h1>The Cell That Only Counts to Eight</h1>
+      <p class="lede">Give every cell on a grid one job: count your eight neighbors, and live or die by the number. No cell knows the shape it's part of, which direction anything is "moving," or that a pattern even exists. Paint one with the amber brush and press play — that's the entire machine, and it's enough to grow gliders that crawl, cells that blink, and a gun that fires forever.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A grid of square cells, each alive or dead. Painting with the pointer toggles cells on. Playing steps the grid forward: each cell counts its eight neighbors and follows one fixed rule to decide whether it lives, dies, or is born next generation."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Starting patterns">
+          <button data-preset="glider" class="on">glider</button>
+          <button data-preset="blinker">blinker</button>
+          <button data-preset="gun">glider gun</button>
+          <button data-preset="soup">random soup</button>
+        </div>
+        <button class="btn" id="clear">Clear</button>
+        <button class="btn primary" id="play">Pause</button>
+        <button class="btn" id="step">Step</button>
+        <button class="btn" id="counts">Show counts</button>
+        <div class="control">
+          <label for="speed">speed</label>
+          <input type="range" id="speed" min="1" max="30" value="10">
+        </div>
+        <div class="control">
+          <label>generation</label>
+          <span class="readout" id="genOut">0</span>
+        </div>
+        <div class="control">
+          <label>population</label>
+          <span class="readout" id="popOut">0</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Each generation, every cell looks at its eight neighbors and applies the same rule: a live cell with two or three live neighbors survives, a dead cell with exactly three live neighbors is born, and every other cell dies — of loneliness if it has fewer than two neighbors, of crowding if it has more than three. That's the whole rulebook. It's applied to every cell at once, purely from what's next door; nothing anywhere on this board has a plan.
+      <span class="hint">Drag on the grid to paint — an <b class="handle">amber</b> square previews the cell you're about to flip, on or off. Try <b>glider gun</b>: five simple shapes tucked together that, generation after generation, spit out a fresh glider that walks off toward the corner, forever — until, on this finite board, its own exhaust wraps around the edges and eventually collides with the gun that made it. Turn on <b>show counts</b> and pause mid-play to see the actual number each cell is counting, the number the rule above is reading.</span>
+    </p>
+
+    <p class="caption">
+      This is Conway's Game of Life, and the reason it matters isn't the pretty patterns — it's that a rule this small, with no memory and no global view, turns out to be able to compute anything a computer can. Gliders can carry signals; collisions between them can act as logic gates. You never told this grid to build a glider gun. You told it to count to eight, and gliders, guns, and (with enough patience and cells) computation itself fell out the other side.
+    </p>
+
+    <footer>
+      <span>No. 15 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
