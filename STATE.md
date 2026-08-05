@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-04 (Day 15 — machine No. 15, Conway's Game of Life: paint any starting pattern with the amber brush on a toroidal grid, then play as every cell applies the same purely-local rule — survive on 2 or 3 live neighbors, born on exactly 3, otherwise die — with a "show counts" overlay that displays the literal neighbor count each cell is reading. Presets: glider, blinker, Gosper glider gun, random soup. Verified the neighbor-count logic against the known glider offsets in a standalone Node check, and via headless-browser drag confirmed painting flips cells, the blinker genuinely oscillates horizontal/vertical across real Step clicks, and the glider gun reaches generation 21 / population 54 while visibly firing gliders; checked a 390px mobile layout too)
+**Last session:** 2026-08-05 (Day 16 — machine No. 16, Bezier curves via de Casteljau's algorithm: a cage of amber control points connected by straight lines; drag any point and the curve rebuilds live. At the current t, points that far along each cage segment are marked (teal), connected, then points that far along THOSE segments are marked (indigo) — the single point left over sits exactly on the curve, and sweeping t traces the whole thing, no polynomial ever evaluated. Quadratic/Cubic toggle switches between one and two rounds of averaging. Verified the cascade matches the closed-form Bernstein polynomials to floating-point precision in a standalone Node check, and via headless-browser drag confirmed control-point dragging reshapes the whole cage+curve together, the t-slider scrub and autoplay both work, and the degree toggle resets to a shape-appropriate cage; checked a 390px mobile layout too)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,23 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 16 — The Curve Built by Cutting Corners** (`explorables/bezier-curve/`):
+    a Bezier curve, built entirely from de Casteljau's algorithm rather than
+    a polynomial formula. A cage of amber control points connects by dashed
+    lines; drag any point and the cage — and the curve — reshapes instantly.
+    At the current parameter t, the point that fraction of the way along
+    each cage segment is marked (teal) and connected; the point that same
+    fraction along THOSE segments is marked (indigo); for a cubic (4 points)
+    that leaves one segment, so one more average lands on a single point,
+    which sits exactly on the curve. The solid curve itself is drawn by
+    re-running the same cascade at 140 sampled t-values, not a separate
+    closed-form evaluator, so drawn curve and live construction can't
+    silently disagree. A Quadratic/Cubic toggle drops to three points and
+    one round of averaging (a plain parabola, one color) versus four points
+    and two nested rounds. Verified the cascade against the real Bernstein
+    polynomials in a standalone Node check (agreement to 2e-16, floating-
+    point noise) and confirmed via headless-browser drag that moving a
+    control point reshapes the whole cage and curve together.
   - **No. 15 — The Cell That Only Counts to Eight** (`explorables/game-of-life/`):
     a paintable Conway's Game of Life grid, wrapped toroidally. Drag the amber
     brush to flip cells alive or dead, then Play: every cell applies one

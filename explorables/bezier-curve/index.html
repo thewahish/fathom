@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Curve Built by Cutting Corners — Fathom</title>
+  <meta name="description" content="Drag the amber control points. A Bézier curve isn't a formula you evaluate — it's built by repeatedly averaging points on straight lines, live, as the parameter sweeps through it.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M4 26 C 10 6, 22 6, 28 26' fill='none' stroke='%230891b2' stroke-width='2.2'/><circle cx='4' cy='26' r='2.4' fill='%23d97706'/><circle cx='28' cy='26' r='2.4' fill='%23d97706'/><circle cx='10' cy='6' r='2.4' fill='%23d97706'/><circle cx='22' cy='6' r='2.4' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 16</span>
+      <h1>The Curve Built by Cutting Corners</h1>
+      <p class="lede">A Bézier curve looks like it comes from some polynomial formula. It doesn't — it comes from nothing but averaging points on straight lines, over and over, until only one point is left. Drag any amber control point and watch the whole curve reshape itself.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A cage of amber control points connected by a dashed line. At the current parameter t, points that far along each segment of the cage are marked in teal and connected; points that far along those new segments are marked in indigo; the single point left after that sits on a solid curve, which is the actual Bezier curve traced as t sweeps from 0 to 1."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="play">Pause</button>
+        <button class="btn" id="reset">Reset</button>
+        <div class="seg" id="degree">
+          <button data-degree="2">Quadratic</button>
+          <button data-degree="3" class="on">Cubic</button>
+        </div>
+        <div class="control">
+          <label for="tSlider">t</label>
+          <input type="range" id="tSlider" min="0" max="1000" value="0">
+        </div>
+        <div class="control">
+          <label>t</label>
+          <span class="readout" id="tOut">0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Connect the control points with straight lines — that dashed cage never changes shape, only where you put its corners. Now pick a fraction t: mark the point that fraction of the way along <em>each</em> segment of the cage (teal), and connect those new points. Do it again — mark the point that same fraction along <em>each</em> of those new segments (indigo). For four control points that leaves one segment, so one more average lands on a single point — and that point sits exactly on the curve. Sweep t from 0 to 1 and that last surviving point traces the whole thing, solid and live, no polynomial ever written down.
+      <span class="hint">Drag any <b class="handle">amber</b> control point — the curve is rebuilt instantly from the new cage, and it never once wanders outside the cage's own outline. Switch to Quadratic to drop to three points and one round of averaging instead of two: the curve becomes a plain parabola, and you can watch the entire construction collapse to a single color.</span>
+    </p>
+
+    <footer>
+      <span>No. 16 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
