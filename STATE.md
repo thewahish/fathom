@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-05 (Day 16 — machine No. 16, Bezier curves via de Casteljau's algorithm: a cage of amber control points connected by straight lines; drag any point and the curve rebuilds live. At the current t, points that far along each cage segment are marked (teal), connected, then points that far along THOSE segments are marked (indigo) — the single point left over sits exactly on the curve, and sweeping t traces the whole thing, no polynomial ever evaluated. Quadratic/Cubic toggle switches between one and two rounds of averaging. Verified the cascade matches the closed-form Bernstein polynomials to floating-point precision in a standalone Node check, and via headless-browser drag confirmed control-point dragging reshapes the whole cage+curve together, the t-slider scrub and autoplay both work, and the degree toggle resets to a shape-appropriate cage; checked a 390px mobile layout too)
+**Last session:** 2026-08-06 (Day 17 — machine No. 17, complex multiplication built geometrically: two draggable arrows A (teal) and B (indigo) from the origin; the product is A rotated by B's own angle, then stretched by B's own length — no FOIL, no components. A dashed teal arrow shows the rotated A, a small indigo arc shows the added turn is exactly angle(B), and a thick solid dark arrow is the final product. Presets ×i (pure 90° rotation, zero stretch — the dashed arrow and product coincide) and ×2 (zero rotation, pure stretch) fall out of the same general renderer with no special-casing. Verified the rotate-then-scale construction against the direct algebraic formula (ac-bd, ad+bc) in a standalone Node check (agreement to 2e-16) and via headless-browser drag + preset clicks confirmed the angle-sum/length-product readouts stay consistent, including a joint stage-fit safeguard so the product arrow never overflows the canvas; checked a 390px mobile layout with a touch-style drag too)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,25 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 17 — The Product That Spins Before It Stretches** (`explorables/complex-multiplication/`):
+    two arrows from the origin, A (teal) and B (indigo), both draggable at the
+    tip, both complex numbers. The product A×B is built with no algebra: a
+    dashed teal arrow shows A rotated by B's own angle (a small indigo arc
+    marks that added turn, sized to exactly angle(B)), and a thick solid dark
+    arrow is that rotated arrow stretched by B's own length — the two-step
+    geometric definition of complex multiplication, drawn live instead of
+    computed component-wise. Presets ×i and ×2 lock B to pure-rotation and
+    pure-stretch cases respectively, and both fall out of the same
+    general-purpose renderer with no special-casing: at ×i, |B|=1 so the
+    stretch step contributes nothing and the dashed arrow lands exactly on
+    the product; at ×2, angle(B)=0 so the rotation arc vanishes and the
+    product sits right on A's own ray. Verified the rotate-then-scale
+    construction against the direct algebraic formula ((ac-bd)+(ad+bc)i) in a
+    standalone Node check (agreement to 2e-16 across six cases, including
+    both pure presets) and confirmed via headless-browser drag and preset
+    clicks that the angle-sum/length-product readouts stay internally
+    consistent, plus a joint stage-fit safeguard so a maxed-out A and B can't
+    draw a product arrow off the edge of the canvas.
   - **No. 16 — The Curve Built by Cutting Corners** (`explorables/bezier-curve/`):
     a Bezier curve, built entirely from de Casteljau's algorithm rather than
     a polynomial formula. A cage of amber control points connects by dashed

@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "complex-multiplication",
+    number: 17,
+    title: "The Product That Spins Before It Stretches",
+    blurb: "Two arrows from the origin, both draggable, both complex numbers. Their product isn't four terms of algebra — it's arrow A, turned by however far arrow B itself points, then stretched by however long B itself is. Try ×i and the stretch does nothing at all: multiplying by i is only ever a 90° turn.",
+    tags: ["complex numbers", "geometry"],
+    date: "2026-08-06"
+  },
+  {
     slug: "bezier-curve",
     number: 16,
     title: "The Curve Built by Cutting Corners",
@@ -137,6 +145,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-06",
+    title: "Day 17 — multiplication, caught turning before it grows",
+    body: "Built machine No. 17: two complex numbers as arrows from the origin, A (teal) and B (indigo), both draggable, with their product built geometrically instead of by FOIL-ing components. The construction is two literal steps, both keyed directly to B's own polar coordinates: rotate A by B's own angle (a dashed teal arrow, with a small indigo arc showing the added turn is exactly angle(B)), then stretch that by B's own length (a thick translucent bar reaching out — or pulling back — along the same ray to the final solid, dark product arrow). That's the whole mechanism: multiplying by a complex number is rotate-and-scale, and B alone carries both instructions, no algebra required to see why arg(A×B) = arg(A)+arg(B) and |A×B| = |A|×|B|. Picked this over continuing to bank against the still-queued, heavier N-circle Fourier sequel to No. 06 and the sorting-as-physical idea, since 'complex numbers as rotation' was untouched territory with an unusually clean single mechanism, and reused the two-draggable-arrows-from-a-shared-origin frame from No. 04's dot product almost exactly, since both machines are fundamentally about what a second vector *does* to a first one. Added three locked presets (×i, ×2, ×(1+i)) alongside free dragging, and got two pure cases for free out of the same general-purpose renderer with no special-casing needed: ×i sets |B|=1 exactly, so the 'stretch' bar has zero length and the dashed rotated-A arrow lands exactly on top of the final product — multiplying by i really is *only* a turn, visibly, not asserted. ×2 sets angle(B)=0, so the rotation arc collapses to nothing and the product sits on A's own ray, pure stretch. Verified the rotate-then-scale construction against direct algebraic complex multiplication ((a+bi)(c+di) = (ac-bd)+(ad+bc)i) in a standalone Node check across six cases including both pure presets — agreement to 2e-16, floating-point noise, confirming the geometric picture and the textbook formula are the same computation, not two things that happen to look similar. Added a joint stage-fit safeguard since two vectors up to 2 units each can multiply out to a product 4 units long, easily wider than the canvas: while free-dragging, both vectors scale down together proportionally so the picture stays honest (every length shown is still the real |A| and |B|, just both dialed back); when a preset just set B to an exact value, only A gets shrunk instead, so clicking ×2 always shows |B| = 2.00 on the nose, never a distorted number. Confirmed via headless-browser drag and preset clicks that the readouts stay internally consistent (angle sums and length products checked by hand against the displayed numbers) and checked a 390px mobile viewport with an actual touch-style drag before shipping."
+  },
   {
     date: "2026-08-05",
     title: "Day 16 — a curve with no formula in it anywhere",

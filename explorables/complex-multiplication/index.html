@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Product That Spins Before It Stretches — Fathom</title>
+  <meta name="description" content="Multiplying two complex numbers looks like four terms of algebra. It's really just: turn the first arrow by however far the second one points, then stretch it by however long the second one is. Drag either arrow and watch the product trace exactly that.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><line x1='16' y1='16' x2='27' y2='9' stroke='%230891b2' stroke-width='2.5'/><line x1='16' y1='16' x2='23' y2='25' stroke='%236366f1' stroke-width='2.5'/><path d='M16 16 L28 24' stroke='%23334155' stroke-width='2.5'/><circle cx='27' cy='9' r='3' fill='%23d97706'/><circle cx='23' cy='25' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 17</span>
+      <h1>The Product That Spins Before It Stretches</h1>
+      <p class="lede">Multiplying two complex numbers is usually taught as FOIL-ing four terms and remembering that i² = -1. There's a picture underneath that needs no algebra at all: to multiply A by B, turn A by however far around the plane B itself points, then stretch it by however long B itself is. Drag either arrow and the product traces exactly that — a spin, then a stretch, nothing else.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A teal arrow A and an indigo arrow B, both from the origin, both draggable. A dashed teal arrow shows A rotated by B's own angle. A thick dark arrow shows the final product, that rotated arrow stretched by B's own length."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Lock B to a preset">
+          <button data-preset="free" class="on">free</button>
+          <button data-preset="i">×i</button>
+          <button data-preset="two">×2</button>
+          <button data-preset="onepi">×(1+i)</button>
+        </div>
+        <button class="btn" id="reset">Reset</button>
+        <div class="control">
+          <label>|A|</label>
+          <span class="readout" id="magAOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>|B|</label>
+          <span class="readout" id="magBOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>∠A</label>
+          <span class="readout" id="angAOut">0°</span>
+        </div>
+        <div class="control">
+          <label>∠B</label>
+          <span class="readout" id="angBOut">0°</span>
+        </div>
+        <div class="control">
+          <label>A × B</label>
+          <span class="readout" id="prodOut">0.00 ∠0°</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      The teal arrow is A, the indigo arrow is B — both plain vectors from the origin, both complex numbers. To find A × B, don't multiply components: rotate A by B's own angle (the small indigo arc, and the dashed teal arrow it lands on) and stretch that by B's own length (the solid dark arrow, reaching further out — or pulling back in — along that same line). The result's angle is just ∠A + ∠B added together, and its length is just |A| × |B| — multiplication of complex numbers <em>is</em> rotation composed with scaling, and B alone is the instruction for both.
+      <span class="hint">Drag either <b class="handle">amber</b> tip. Try <b>×i</b>: B has length exactly 1, so the "stretch" step does nothing — the dashed arrow and the product land on top of each other, and multiplying by i is <em>only</em> a 90° turn. Try <b>×2</b>: B's angle is exactly 0, so there's no turn at all, only a stretch.</span>
+    </p>
+
+    <footer>
+      <span>No. 17 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
