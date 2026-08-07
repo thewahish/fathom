@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Wave Hiding Behind the Dots — Fathom</title>
+  <meta name="description" content="Drag how often you sample a wave. Slow it down past a threshold and a completely different, slower wave sneaks through the exact same dots — aliasing, the reason a spinning wheel on camera can look like it's spinning backwards.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M2 20 Q 7.5 6,13 20 T24 20' stroke='%230891b2' stroke-width='2' fill='none'/><path d='M2 22 Q 13 30,24 18' stroke='%236366f1' stroke-width='2' fill='none' stroke-dasharray='2,2.4'/><circle cx='7.5' cy='13' r='2' fill='%23334155'/><circle cx='18.5' cy='13.4' r='2' fill='%23334155'/><circle cx='27' cy='10' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 18</span>
+      <h1>The Wave Hiding Behind the Dots</h1>
+      <p class="lede">A row of dots sampled off a wiggling signal doesn't pin down just one wave — infinitely many sine waves can thread through the exact same points. Sample slowly enough and a slower, wrong wave quietly takes over.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A fixed continuous sine wave in teal, sampled by an amber lever that sets samples per second. Dark dots mark where samples are taken. A dashed indigo wave is the lowest-frequency sine that fits exactly through those same dots. Below twice the wave's own frequency the dashed wave visibly differs from the teal one between dots; above it, the two curves lock together."></canvas>
+      <div class="controls">
+        <div class="seg" id="preset" role="group" aria-label="Preset sample rates">
+          <button data-preset="6">oversampled</button>
+          <button data-preset="2.3">just enough</button>
+          <button data-preset="1.4" class="on">aliased</button>
+          <button data-preset="0.6">way under</button>
+        </div>
+        <div class="control">
+          <label>true freq</label>
+          <span class="readout" id="trueOut">1.00 Hz</span>
+        </div>
+        <div class="control">
+          <label>sample rate</label>
+          <span class="readout" id="fsOut">1.40 Hz</span>
+        </div>
+        <div class="control">
+          <label>samples/cycle</label>
+          <span class="readout" id="spcOut">1.40</span>
+        </div>
+        <div class="control">
+          <label>looks like</label>
+          <span class="readout" id="seenOut">0.40 Hz</span>
+        </div>
+        <div class="control">
+          <label>verdict</label>
+          <span class="readout" id="verdictOut">ALIASED</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      The solid teal wave never changes — it's a fixed 1 Hz signal. The only thing you control is the <b class="handle">amber</b> lever: how many times a second you're allowed to look at it. Every dark dot is a sample, and the dashed indigo curve is the <em>lowest-frequency</em> sine wave that still hits every single dot exactly — the simplest explanation a sampler stuck with only those dots could give for what it saw. Below the "2×" tick (twice the true frequency — the Nyquist rate) that simplest explanation is a genuinely different, slower wave, and it visibly peels away from the real one in the gaps between samples even though it agrees on every dot. Cross above "2×" and there's no room left for any impostor: the real wave becomes the only sine that can pass through all of them, so the dashed curve snaps down and locks onto the solid one.
+      <span class="hint">Drag the lever slowly across the "1×" tick and watch the dots flatten onto a single line — sampling exactly as often as the wave itself repeats, you catch it at the same phase every time and it looks perfectly still. That's also why a spinning wheel filmed at the wrong frame rate can appear frozen, or turning backwards.</span>
+    </p>
+
+    <footer>
+      <span>No. 18 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

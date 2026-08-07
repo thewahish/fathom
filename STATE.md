@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-06 (Day 17 — machine No. 17, complex multiplication built geometrically: two draggable arrows A (teal) and B (indigo) from the origin; the product is A rotated by B's own angle, then stretched by B's own length — no FOIL, no components. A dashed teal arrow shows the rotated A, a small indigo arc shows the added turn is exactly angle(B), and a thick solid dark arrow is the final product. Presets ×i (pure 90° rotation, zero stretch — the dashed arrow and product coincide) and ×2 (zero rotation, pure stretch) fall out of the same general renderer with no special-casing. Verified the rotate-then-scale construction against the direct algebraic formula (ac-bd, ad+bc) in a standalone Node check (agreement to 2e-16) and via headless-browser drag + preset clicks confirmed the angle-sum/length-product readouts stay consistent, including a joint stage-fit safeguard so the product arrow never overflows the canvas; checked a 390px mobile layout with a touch-style drag too)
+**Last session:** 2026-08-07 (Day 18 — machine No. 18, aliasing: a fixed 1 Hz sine wave sampled by one amber lever (samples/second). Dark dots mark the samples; a dashed indigo curve is the lowest-frequency sine that still fits every dot exactly. Below 2x the true frequency (the Nyquist rate) that curve is a genuinely different, slower wave, visibly wrong between the dots even while agreeing on all of them; above it, no impostor has room to exist and the dashed curve locks onto the real one. Derived the matching-wave formula from scratch (d = f0 - fs*round(f0/fs)) and caught a real tie-break subtlety exactly at the Nyquist boundary in a standalone Node check, fixed with a tiny epsilon bias so landing on "2x" reads as faithful rather than a flickering mirror image. Verified sample agreement to ~1e-14 across 15 sample rates and full-curve coincidence above Nyquist in Node; caught and fixed a real mobile bug via a 390px screenshot where the "2x (Nyquist)" tick label overprinted the "1x" label at narrow widths.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,30 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 18 — The Wave Hiding Behind the Dots** (`explorables/aliasing/`):
+    a fixed 1 Hz continuous sine wave (teal), sampled by the one draggable
+    control — an amber lever setting samples per second. Every sample is a
+    dark dot; a dashed indigo curve is drawn as the lowest-frequency sine
+    that still passes through every one of those same dots exactly. Below
+    twice the true frequency (the Nyquist rate, marked "2×" on the lever's
+    track) that curve is a genuinely different, slower wave — visibly wrong
+    in every gap between the dots even though it's forced to agree on all
+    of them; cross back above "2×" and no other sine has room left to fit,
+    so the impostor collapses exactly onto the real signal. The matching
+    construction (any sinusoid whose signed frequency differs from the true
+    one by an exact integer multiple of the sample rate hits identical
+    values at every sample instant) was derived from scratch and verified
+    in a standalone Node check: samples agree to ~1e-14 across sample rates
+    from 0.4x to 6.5x the true frequency on both sides of Nyquist, and the
+    two curves coincide exactly (to 0) everywhere, not just at the dots,
+    once oversampled. Caught a genuine tie-break subtlety right at the
+    Nyquist boundary itself (an exact half-integer ratio is ambiguous
+    between two mirror-image reconstructions) and biased it by a hair so
+    landing exactly on "2×" reads as faithful. Confirmed via headless-
+    browser preset clicks and live drag that all five readouts track
+    consistently, and caught + fixed a real mobile bug via a 390px
+    screenshot where the "2× (Nyquist)" tick label overprinted "1×" at
+    narrow track widths.
   - **No. 17 — The Product That Spins Before It Stretches** (`explorables/complex-multiplication/`):
     two arrows from the origin, A (teal) and B (indigo), both draggable at the
     tip, both complex numbers. The product A×B is built with no algebra: a
