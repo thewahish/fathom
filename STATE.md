@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-07 (Day 18 — machine No. 18, aliasing: a fixed 1 Hz sine wave sampled by one amber lever (samples/second). Dark dots mark the samples; a dashed indigo curve is the lowest-frequency sine that still fits every dot exactly. Below 2x the true frequency (the Nyquist rate) that curve is a genuinely different, slower wave, visibly wrong between the dots even while agreeing on all of them; above it, no impostor has room to exist and the dashed curve locks onto the real one. Derived the matching-wave formula from scratch (d = f0 - fs*round(f0/fs)) and caught a real tie-break subtlety exactly at the Nyquist boundary in a standalone Node check, fixed with a tiny epsilon bias so landing on "2x" reads as faithful rather than a flickering mirror image. Verified sample agreement to ~1e-14 across 15 sample rates and full-curve coincidence above Nyquist in Node; caught and fixed a real mobile bug via a 390px screenshot where the "2x (Nyquist)" tick label overprinted the "1x" label at narrow widths.)
+**Last session:** 2026-08-08 (Day 19 — machine No. 19, secant-to-tangent: a fixed point P and a draggable amber point Q on a curve. A solid indigo secant line runs through both, its slope nothing but rise over run; a dashed line marks the true tangent at P, computed once from the real derivative. Drag Q toward P and h = x_Q - x_P shrinks toward 0 — the secant's slope stops approximating the tangent and becomes it, the indigo line visually disappearing into the dashed one. Three curve presets (parabola, sine, cubic) share one renderer; a P-position slider and an Animate sweep are the secondary controls. Verified derivative formulas against numerical central differences (~5e-10 agreement) and confirmed linear O(h) convergence of secant to tangent slope by hand and via headless-browser drag (h=0.007 -> slope within 0.003 of true tangent, on screen); checked a 390px mobile screenshot and all controls before shipping.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,28 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 19 — The Line That Forgets Which Curve It Came From** (`explorables/secant-to-tangent/`):
+    a fixed point P and a draggable amber point Q, both on a curve. The solid
+    indigo line through both is a secant — its slope is nothing but rise over
+    run, `(f(x_Q) - f(x_P)) / (x_Q - x_P)`, the honest average steepness of
+    the curve over that whole stretch. The dashed line is the tangent at P,
+    computed once from the real derivative and never touched again. Drag Q
+    far from P and the two lines visibly disagree; drag Q in close and
+    h = x_Q - x_P shrinks toward 0, and the secant's slope stops
+    approximating the tangent and becomes indistinguishable from it — the
+    indigo line disappears into the dashed one. Three curve presets
+    (parabola, sine, cubic) share one general-purpose renderer with no
+    special-casing; the cubic has an inflection point, so with P near the
+    middle the secant swings through zero slope from the wrong side before
+    settling. A P-position slider and an Animate sweep (h oscillating back
+    and forth through a close pass by P) are the secondary controls.
+    Verified all three derivative formulas against central-difference
+    numerical derivatives in a standalone Node check (~5e-10 agreement) and
+    confirmed the secant slope converges linearly (O(h)) to the tangent
+    slope by hand and via headless-browser drag (dragging to h=0.007 brings
+    the live slope readout within 0.003 of the true tangent value on
+    screen). Checked a 390px mobile screenshot and all controls (presets, P
+    slider, animate, drag) before shipping.
   - **No. 18 — The Wave Hiding Behind the Dots** (`explorables/aliasing/`):
     a fixed 1 Hz continuous sine wave (teal), sampled by the one draggable
     control — an amber lever setting samples per second. Every sample is a

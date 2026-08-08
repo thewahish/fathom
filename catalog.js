@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "secant-to-tangent",
+    number: 19,
+    title: "The Line That Forgets Which Curve It Came From",
+    blurb: "A fixed point P and an amber point Q, both on a curve. The line through them — a secant — is nothing but rise over run, an honest average slope. Drag Q toward P and h shrinks toward 0; the secant stops approximating the tangent, drawn once from real calculus, and lands on it exactly. The derivative, felt as a limit.",
+    tags: ["calculus", "limits"],
+    date: "2026-08-08"
+  },
+  {
     slug: "aliasing",
     number: 18,
     title: "The Wave Hiding Behind the Dots",
@@ -153,6 +161,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-08",
+    title: "Day 19 — a limit you can watch settle instead of take on faith",
+    body: "Built machine No. 19: a fixed point P and a draggable amber point Q, both riding a curve, with a solid indigo line through both of them — a secant, computed from nothing but rise over run, (f(x_Q) - f(x_P)) / (x_Q - x_P) — and a dashed line marking the true tangent at P, computed once from the real derivative and never touched again. Dragging Q toward P is dragging h = x_Q - x_P toward 0, and the payoff is watching the secant's slope readout stop approximating the tangent's and become indistinguishable from it, with the indigo line visually disappearing into the dashed one. Picked this off untouched 'growth/decay'-adjacent calculus territory: a derivative is defined in every textbook as a limit, lim(h->0) of that exact secant-slope expression, but a limit as printed notation is inert — you can't feel a limsup happening. Turning it into two points on a curve, one you drag, made the limit into a live rotation you cause with your hand instead of a definition you accept. Three curve presets (parabola, sine, cubic) share one general-purpose renderer with no special-casing — the cubic is the most interesting since it's the only one with an inflection point, so with P set near the middle the secant swings through zero slope from the wrong side on its way to settling, visible directly in the caption's hint. Added a P-position slider as the one secondary control (any point on the curve is a fair place to ask 'what's the slope right here'), and an Animate toggle that sweeps Q's h back and forth through a full swing including a close pass by P, for anyone who wants to watch the convergence happen without dragging by hand. Verified the derivative formulas for all three curves against central-difference numerical derivatives in a standalone Node check (agreement to ~5e-10, floating-point-plus-h^2 noise) and confirmed the secant slope converges linearly to the tangent slope as h shrinks by orders of magnitude (h=1 -> diff 0.4, h=0.1 -> diff 0.04, h=0.01 -> diff 0.004, exactly the expected O(h) rate for a generic point, and confirmed via headless-browser drag that dragging Q to within h=0.007 of P brings the live secant-slope readout to within 0.003 of the true tangent slope on screen, not just in the math. Checked a 390px mobile screenshot and all three preset switches, the P slider, and the animate loop before shipping."
+  },
   {
     date: "2026-08-07",
     title: "Day 18 — two different waves, caught agreeing on everything you actually measured",
