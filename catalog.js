@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "newton-method",
+    number: 20,
+    title: "The Guess That Decides Which Root You Find",
+    blurb: "A cubic with three roots, and one amber starting guess. Step draws the tangent line at your point and slides you to where THAT line crosses zero — Newton's method, one straight line standing in for a curve at a time. A precomputed strip shows which root every possible start eventually reaches: three calm bands, and a seam between them that's genuinely chaotic.",
+    tags: ["calculus", "chaos", "numerical methods"],
+    date: "2026-08-09"
+  },
+  {
     slug: "secant-to-tangent",
     number: 19,
     title: "The Line That Forgets Which Curve It Came From",
@@ -161,6 +169,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-09",
+    title: "Day 20 — the same method, the same curve, three different endings",
+    body: "Built machine No. 20: Newton's method on f(x) = x^3 - x, a cubic with three real roots at -1, 0, and 1. The single amber handle is a starting guess sitting on the curve; Step draws the tangent line at that point (the curve's own local slope, nothing else) and animates the guess sliding down THAT straight line to where it crosses zero, then dropping back onto the curve to read the next slope — so every iteration is visibly a straight-line problem standing in for the curved one, not a formula applied silently. Picked this as the natural next stop after No. 19's secant-to-tangent, which built the tangent line as a limit but never used it for anything; Newton's method is the payoff of having one. The real content isn't the convergence itself (that part is almost boring - it's fast and monotone from most starting points) but what happens on the seam between three basins of attraction: for a cubic with three real roots, which root you land on as a function of where you started is a genuinely chaotic map, one of the earliest examples ever studied (Barna, 1950s), decades before 'chaos' had a name. Rather than assert that, precomputed a full 'answer key' strip beneath the axis - every possible starting x, run through 80 real Newton iterations off-screen at boot, colored by which root (or 'never settled') it reached - so dragging the amber point across it shows the three calm bands and then, in the middle stretch, watches the color flicker across pixel-scale drags. Verified two exact, checkable facts from the literature before trusting the visualization: the critical points x = +-1/sqrt(3) have f'(x) exactly 0 (confirmed to float precision in a standalone Node check), so Newton has nothing to divide by there and the machine reports 'stuck' rather than crashing or silently producing garbage; and x = 1/sqrt(5) is an exact period-2 cycle - Newton maps it to its own negative and back, forever, verified by iterating it six times in Node and watching it alternate sign exactly rather than drift. Added a small drag magnet onto both of those exact x-values (a discoverable feature would otherwise need pixel-perfect mouse precision to ever reach either one), since the caption invites trying them by hand and that has to actually be reachable, not just true in principle. Also caught, via the same Node check, a genuine tie-break subtlety mirroring No. 18's aliasing boundary: sampling the answer-key strip densely right next to 1/sqrt(5) (steps of 0.0005) shows the classification flip through 'unresolved', root -1, and root +1 within a window barely 0.001 wide - confirming the chaos is real at the resolution the strip can show, not a rendering artifact. Checked Step, Run/Pause, Reset, dragging (including both magnets), and the stuck/converged/diverged/unresolved status text via a headless-browser pass, plus a 390px mobile screenshot, before shipping."
+  },
   {
     date: "2026-08-08",
     title: "Day 19 — a limit you can watch settle instead of take on faith",

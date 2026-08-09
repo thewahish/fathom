@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Guess That Decides Which Root You Find — Fathom</title>
+  <meta name="description" content="Drag a starting guess along a curve. Each step draws the tangent line at your current point and slides you to where it crosses zero — Newton's method, one straight line at a time. Which of three roots you land on depends, sometimes wildly, on where you started.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M3 24 C 10 24, 12 6, 19 6 S 28 24, 29 8' fill='none' stroke='%230e7490' stroke-width='2.5'/><circle cx='23.5' cy='16.4' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 20</span>
+      <h1>The Guess That Decides Which Root You Find</h1>
+      <p class="lede">Newton's method finds where a curve crosses zero by drawing the tangent line at your current guess and sliding to where <em>that line</em> crosses instead — a straight-line problem standing in for a curved one, repeated until it settles. This curve has three roots. Drag the amber starting point and watch which one you get.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="The cubic curve x cubed minus x, with three roots at -1, 0, and 1. A draggable amber point sits on the curve as the current guess. Stepping draws the tangent line at that point, slides the guess along it to where it crosses zero, then drops it back onto the curve. A colored strip beneath the axis shows, for every possible starting point, which root it eventually reaches."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="stepBtn">Step</button>
+        <button class="btn" id="runBtn">Run</button>
+        <button class="btn" id="resetBtn">Reset</button>
+        <div class="control">
+          <label>x</label>
+          <span class="readout" id="xOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>f(x)</label>
+          <span class="readout" id="fxOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>step</label>
+          <span class="readout" id="stepOut">0</span>
+        </div>
+        <div class="control">
+          <label>status</label>
+          <span class="readout" id="statusOut">ready</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      The curve is <code>f(x) = x³ − x</code>, which crosses zero at exactly three places: −1, 0, and 1, colored teal, indigo, and dark on the axis. Drag the <b class="handle">amber</b> point anywhere on the curve to set a starting guess, then hit Step: it draws the tangent line at your point — the curve's own local slope — and slides down that straight line to where <em>it</em> hits zero, then drops back onto the curve to read the next slope. Run repeats that until it settles. The strip under the axis is the answer key, computed in advance for every possible starting x: which of the three roots that point eventually reaches. Most of it is calm — three clean bands. But drag into the middle stretch and watch the bands flicker; find the starting point <code>x ≈ 0.4472</code> and Step through it by hand — it doesn't converge at all, bouncing forever between two mirror-image guesses. A tiny nudge either way sends you to a different root entirely. Same method, same curve, same number of steps — the only thing that changed was where you started.
+      <span class="hint">Try starting exactly on a hump (x ≈ ±0.577, where the curve turns around): the slope there is zero, so Newton has nothing to divide by and can't take a step at all.</span>
+    </p>
+
+    <footer>
+      <span>No. 20 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

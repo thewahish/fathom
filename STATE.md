@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-08 (Day 19 — machine No. 19, secant-to-tangent: a fixed point P and a draggable amber point Q on a curve. A solid indigo secant line runs through both, its slope nothing but rise over run; a dashed line marks the true tangent at P, computed once from the real derivative. Drag Q toward P and h = x_Q - x_P shrinks toward 0 — the secant's slope stops approximating the tangent and becomes it, the indigo line visually disappearing into the dashed one. Three curve presets (parabola, sine, cubic) share one renderer; a P-position slider and an Animate sweep are the secondary controls. Verified derivative formulas against numerical central differences (~5e-10 agreement) and confirmed linear O(h) convergence of secant to tangent slope by hand and via headless-browser drag (h=0.007 -> slope within 0.003 of true tangent, on screen); checked a 390px mobile screenshot and all controls before shipping.)
+**Last session:** 2026-08-09 (Day 20 — machine No. 20, newton-method: Newton's method on f(x) = x^3 - x, a cubic with three real roots (-1, 0, 1). One amber starting guess sits on the curve; Step draws the tangent line at that point and animates the guess sliding down THAT straight line to where it crosses zero, then dropping back onto the curve to read the next slope — the two-phase animation makes each iteration visibly a straight-line stand-in for the curve, not a formula applied silently. A precomputed strip beneath the axis colors every possible starting x by which root (teal/-1, indigo/0, dark/+1) it eventually reaches — three calm bands with a genuinely chaotic seam between them (Barna, 1950s). Drag magnets snap onto the two exact special values that make the mechanism fail outright: x = ±1/√3 (flat tangent, "stuck") and x = ±1/√5 (an exact, verified period-2 cycle that never converges). Verified fp(±1/√3)=0 to float precision, the exact 2-cycle at 1/√5 by direct iteration, and the odd-symmetry of the basin map (classify(-x) = -classify(x)) as an independent correctness check against the rendered pixels, all in a standalone Node check; confirmed Step/Run/Reset/drag/both magnets and the stuck/converged/unresolved status text via headless-browser drive, plus a 390px mobile screenshot, before shipping.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,30 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 20 — The Guess That Decides Which Root You Find** (`explorables/newton-method/`):
+    Newton's method on the fixed cubic f(x) = x^3 - x, which has three real
+    roots (-1, 0, 1). The one amber handle is a starting guess on the curve;
+    Step draws the tangent line there and animates the guess in two phases —
+    sliding down the tangent to where that straight line crosses zero, then
+    dropping vertically back onto the curve to read the next slope — so an
+    iteration is visibly "solve the easy straight-line problem instead,"
+    repeated, not a black-box update rule. Run chains steps automatically;
+    Reset restarts the same story from the same start. A precomputed strip
+    under the axis is the answer key: every possible starting x, run through
+    80 real iterations off-screen at boot, colored by which root it reaches
+    (teal -1, indigo 0, dark +1) or left gray if it never settles. Most of
+    the strip is three calm bands, but the seam between them is genuinely
+    chaotic — one of the first chaotic maps ever studied (Barna, 1950s),
+    decades before "chaos" had a name. Two drag magnets make the two exact
+    breaking points actually reachable by hand: x = ±1/√3, where f'(x) = 0
+    so Newton has nothing to divide by ("stuck"), and x = ±1/√5, an exact
+    period-2 cycle — Newton maps it to its own negative and back, forever,
+    never converging. Verified both special values and f(x)=x^3-x's odd
+    symmetry (which mirrors the whole basin map: converging to root r from x
+    implies converging to -r from -x) in a standalone Node check, then used
+    that symmetry as an independent cross-check against actual rendered
+    strip-pixel colors (sampled via headless-browser canvas readback) rather
+    than just trusting the same code path twice.
   - **No. 19 — The Line That Forgets Which Curve It Came From** (`explorables/secant-to-tangent/`):
     a fixed point P and a draggable amber point Q, both on a curve. The solid
     indigo line through both is a secant — its slope is nothing but rise over
