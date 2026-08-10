@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "insertion-sort",
+    number: 21,
+    title: "The Bar That Knows Exactly When to Stop",
+    blurb: "The next unsorted bar, amber, dragged left through the already-sorted ones. Every bar bigger than it slides out of the way as it passes, and it can go no further than the exact spot where it belongs — a hard wall built from real comparisons, not asserted. Reach the wall and it locks in; stop short and it springs back. Insertion sort, felt one bar at a time.",
+    tags: ["algorithms", "computer science"],
+    date: "2026-08-10"
+  },
+  {
     slug: "newton-method",
     number: 20,
     title: "The Guess That Decides Which Root You Find",
@@ -169,6 +177,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-10",
+    title: "Day 21 — sorting, done by feel instead of by formula",
+    body: "Built machine No. 21: insertion sort, staged as one amber bar you physically drag through an already-sorted row. The mechanism is the whole algorithm's inner loop, not a diagram of it: the next unsorted bar can be dragged left through the sorted stretch, every sorted bar taller than it visibly slides out of the way as it passes, and the drag hits a hard wall at the exact index where the bar belongs — computed live from real 'is this bigger than me?' comparisons against the sorted prefix, not asserted or pre-solved for display. Release short of the wall and the bar springs back unsorted, still yours to place; drag it all the way and it locks in with a small pulse, the sorted stretch grows by one bar, and the next one becomes the active handle. Picked this off the backlog ('sorting made physical') over the still-queued, heavier N-circle Fourier sequel to No. 06 and No. 12, since it was the smaller complete unit and the backlog note specifically flagged it needed the interaction to teach the algorithm, not just animate it — solved that by making the wall itself be the comparison, so dragging past it is physically impossible rather than merely discouraged. Worked out the key simplification before writing any drag code: since the sorted prefix never gets touched mid-drag (only where the active bar splices into it), the correct insertion point is a single fixed slot for the whole drag, found once via the classic 'walk left while the neighbor is bigger' scan — so the wall doesn't need to be recomputed step by step, just computed once at grab-time and clamped against. Added Step (animate one insertion) and Run (chain them with a short pause) for anyone who wants to watch the whole row sort itself, both reusing the identical animate-to-wall-then-commit logic as a real drag release, so there's no separate 'demo' code path that could quietly disagree with what dragging does. Tracked running totals for comparisons and shifts (real insertion-sort counts: shifts = elements moved, comparisons = shifts plus one failed check unless the bar reached the very start of the row) so Shuffle-ing repeatedly makes the best-case-vs-worst-case spread (as low as 8, as high as the 36-comparison worst case for 9 bars) a number you watch move, not a claim in the caption. Verified via headless-browser drive: Step advancing the sorted count correctly (1/9 to 5/9 over four steps, with comparisons and shifts ticking up consistently), Run completing a full sort to 9/9 with the Run/Step buttons correctly disabling once sorted, a real pointer drag committing a correct insertion (1/9 to 2/9, sorted stretch still ascending), and the same drag reproduced with touch-style events at a 390px mobile viewport. Confirmed the only console error on load is the pre-existing Google Fonts network block shared by every page in this environment, not something the new machine introduced."
+  },
   {
     date: "2026-08-09",
     title: "Day 20 — the same method, the same curve, three different endings",

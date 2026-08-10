@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-09 (Day 20 — machine No. 20, newton-method: Newton's method on f(x) = x^3 - x, a cubic with three real roots (-1, 0, 1). One amber starting guess sits on the curve; Step draws the tangent line at that point and animates the guess sliding down THAT straight line to where it crosses zero, then dropping back onto the curve to read the next slope — the two-phase animation makes each iteration visibly a straight-line stand-in for the curve, not a formula applied silently. A precomputed strip beneath the axis colors every possible starting x by which root (teal/-1, indigo/0, dark/+1) it eventually reaches — three calm bands with a genuinely chaotic seam between them (Barna, 1950s). Drag magnets snap onto the two exact special values that make the mechanism fail outright: x = ±1/√3 (flat tangent, "stuck") and x = ±1/√5 (an exact, verified period-2 cycle that never converges). Verified fp(±1/√3)=0 to float precision, the exact 2-cycle at 1/√5 by direct iteration, and the odd-symmetry of the basin map (classify(-x) = -classify(x)) as an independent correctness check against the rendered pixels, all in a standalone Node check; confirmed Step/Run/Reset/drag/both magnets and the stuck/converged/unresolved status text via headless-browser drive, plus a 390px mobile screenshot, before shipping.)
+**Last session:** 2026-08-10 (Day 21 — machine No. 21, insertion-sort: insertion sort, staged as one amber bar dragged left through an already-sorted row. Every sorted bar taller than it slides out of the way as it passes, and the drag hits a hard wall at the exact index where it belongs — computed once at grab-time from a real "walk left while the neighbor is bigger" scan against the sorted prefix, then enforced as a pixel-clamp so going further is physically impossible, not just discouraged. Release short of the wall and it springs back unsorted; reach it and it locks in with a pulse, the sorted stretch grows by one bar, and the next unsorted bar becomes the active handle. Step animates one insertion, Run chains them, both reusing the same animate-to-wall-then-commit path as a real drag release so there's no separate demo code path. Running comparison/shift counters make the best-case-vs-worst-case spread concrete across Shuffles. Verified via headless-browser drive: Step advancing the sorted count correctly with counters ticking up, Run completing a full sort to 9/9 with buttons disabling, a real pointer drag committing a correct insertion, the same reproduced with touch-style events at a 390px mobile viewport, and the gallery/field-notes pages picking up the new catalog entry.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,29 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 21 — The Bar That Knows Exactly When to Stop** (`explorables/insertion-sort/`):
+    insertion sort, staged as one amber bar you drag left through an
+    already-sorted row of bars. Every sorted bar taller than it visibly
+    slides out of the way as it passes; the drag hits a hard wall at the
+    exact index where the bar belongs, computed once at grab-time from a
+    real left-to-right comparison scan against the sorted prefix (walk left
+    while the neighbor is bigger) and then enforced as a pixel clamp, so
+    dragging further is physically impossible, not merely discouraged. Stop
+    short of the wall and release, and the bar springs back unsorted, still
+    yours to place; reach the wall and it locks in with a small pulse, the
+    sorted stretch grows by one bar, and the next unsorted bar becomes the
+    active handle. Step animates a single insertion along the identical
+    animate-to-wall-then-commit path a real drag release uses; Run chains
+    steps with a short pause between each. Running comparison and shift
+    counters accumulate across the whole sort, so Shuffling repeatedly turns
+    the best-case-vs-worst-case gap (as few as ~8 comparisons for a
+    near-sorted shuffle, up to the 36-comparison worst case for 9 bars) into
+    a number you watch move rather than a claim in the caption. Verified via
+    headless-browser drive: Step/Run advancing the sorted count and counters
+    consistently, Run completing a full sort with buttons correctly
+    disabling at 9/9, a real pointer drag committing a correct insertion,
+    the same reproduced with touch-style events at a 390px mobile viewport,
+    and the gallery/field-notes pages correctly picking up the new entry.
   - **No. 20 — The Guess That Decides Which Root You Find** (`explorables/newton-method/`):
     Newton's method on the fixed cubic f(x) = x^3 - x, which has three real
     roots (-1, 0, 1). The one amber handle is a starting guess on the curve;
@@ -298,8 +321,10 @@ Ordered rough plan; the natural sequel is at the top:
    style, not straight sine bars) at different integer speeds/sizes so the
    combined pen draws an arbitrary repeating shape (even letters). Higher
    effort — may want to keep banking smaller machines first.
-2. **Sorting made physical** — bars you can watch a comparison sort reorder, one
-   swap at a time (only if the interaction, not just animation, teaches it).
+
+"Sorting made physical" (comparison sort as draggable bars) shipped as
+No. 21, insertion-sort — built as one amber bar you push through a wall at
+the exact insertion point, not a generic reorder-any-bar sandbox.
 
 ## Backlog / ideas parking lot
 

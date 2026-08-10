@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Bar That Knows Exactly When to Stop — Fathom</title>
+  <meta name="description" content="Drag the amber bar as far left as it'll go — it stops exactly where it belongs. That single move, repeated one bar at a time, is insertion sort's entire inner loop, felt instead of read.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='18' width='5' height='10' fill='%230e7490'/><rect x='12' y='12' width='5' height='16' fill='%230e7490'/><rect x='20' y='6' width='5' height='22' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 21</span>
+      <h1>The Bar That Knows Exactly When to Stop</h1>
+      <p class="lede">Sorting doesn't need a formula — just one rule, applied over and over: pick up the next bar and slide it left past everything bigger than it, until something stops you. Drag the amber bar as far left as it'll go. Where it locks in is exactly where it belongs.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A row of bars of different heights. The tallest already-sorted bars sit on the left in ascending order; the rest wait untouched on the right. One amber bar, the next in line, can be dragged left through the sorted bars — bigger bars slide out of the way as it passes, and it can go no further than the exact point where it belongs, where it locks into the sorted row."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="run">Run</button>
+        <button class="btn" id="step">Step</button>
+        <button class="btn" id="shuffle">Shuffle</button>
+        <div class="control">
+          <label>sorted</label>
+          <span class="readout" id="sortedOut">1 / 9</span>
+        </div>
+        <div class="control">
+          <label>comparisons</label>
+          <span class="readout" id="cmpOut">0</span>
+        </div>
+        <div class="control">
+          <label>shifts</label>
+          <span class="readout" id="shiftOut">0</span>
+        </div>
+        <div class="control">
+          <label>status</label>
+          <span class="readout" id="statusOut">idle</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      This is insertion sort's entire inner loop, done by hand instead of by a computer: grab the next unsorted bar and try to drag it into the sorted stretch on the left. Every sorted bar taller than it slides out of the way as you pass; the moment you reach one that's shorter — or run out of bars — you physically can't go any further. That wall isn't decoration, it's the comparison itself: the exact spot where the bar belongs, found by feel, one "is this bigger than me?" at a time. Release before you hit the wall and the bar springs back, still unsorted; drag it all the way and it clicks into place, the sorted stretch grows by one bar, and the next one becomes yours to place.
+      <span class="hint">Hit <b>Step</b> to watch one insertion happen automatically, or <b>Run</b> to watch the whole row sort itself, one wall at a time. With 9 bars the worst case is 36 comparisons — <b>Shuffle</b> a few times and watch that number swing between a lucky near-sorted shuffle and an unlucky reversed one.</span>
+    </p>
+
+    <footer>
+      <span>No. 21 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
