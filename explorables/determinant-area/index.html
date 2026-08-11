@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Determinant, Seen as Area — Fathom</title>
+  <meta name="description" content="Drag two arrows from the origin. The parallelogram they sweep out IS the determinant — its area when the vectors splay apart, exactly zero the instant they line up.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><polygon points='5,27 20,27 27,12 12,12' fill='%236366f1' fill-opacity='0.28'/><line x1='5' y1='27' x2='20' y2='27' stroke='%230e7490' stroke-width='2.5'/><line x1='5' y1='27' x2='12' y2='12' stroke='%236366f1' stroke-width='2.5'/><circle cx='20' cy='27' r='3' fill='%23d97706'/><circle cx='12' cy='12' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 22</span>
+      <h1>The Determinant, Seen as Area</h1>
+      <p class="lede">"ad − bc" is a formula you memorize. Drag two arrows from the origin instead and watch what it's actually counting: the parallelogram they sweep between them, growing, shrinking, flattening to nothing the instant the arrows line up.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Two arrows u and v from a shared origin, spanning a filled parallelogram. A dashed guide line runs through u; a perpendicular drop from v's tip onto that line marks the parallelogram's height."></canvas>
+      <div class="controls">
+        <button class="btn" id="reset">Reset</button>
+        <div class="control">
+          <label>base |u|</label>
+          <span class="readout" id="baseOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>height</label>
+          <span class="readout" id="heightOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>area</label>
+          <span class="readout" id="areaOut">0.00</span>
+        </div>
+        <div class="control">
+          <label>det [u v]</label>
+          <span class="readout" id="detOut">0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Drag <b>u</b> (teal) and <b>v</b> (indigo) — they're the two columns of a 2×2 matrix. Together they sweep out a parallelogram, and its <em>signed</em> area is exactly the determinant: <b>det = u_x v_y − u_y v_x</b>. You can see why without trusting the algebra — drop a perpendicular from v's tip onto the dashed line through u, and that gives a base (|u|, along u) and a height (how far off that line v actually sits). Base times height is the parallelogram's area, and it lands on the same number the formula gives every time. Swing v across to the other side of u's line and the height flips sign — the fill flips from teal to indigo, and the determinant goes negative: the two vectors traded places in orientation, clockwise instead of counterclockwise. Drag v until it lines up with u — same direction or exactly opposite — and the parallelogram collapses to a flat segment: height hits zero, area hits zero, det hits zero. That's what "the matrix is singular" means: two directions that carry no leftover room between them, so together they can't cover any area at all — the matrix squashes the whole plane down onto a line.
+      <span class="hint">Drag either <b class="handle">amber</b> arrowtip. Watch the fill color flip when v crosses to the other side of u, and flatten to a line when u and v line up.</span>
+    </p>
+
+    <footer>
+      <span>No. 22 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

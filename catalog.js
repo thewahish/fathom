@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "determinant-area",
+    number: 22,
+    title: "The Determinant, Seen as Area",
+    blurb: "Two amber-tipped arrows from the origin — the columns of a matrix. Drag either and watch the parallelogram they sweep grow, shrink, and flip color the instant one crosses to the other's far side. Base times a real perpendicular height gives the same number as \"ad − bc\" every time, and drag the arrows into line and it collapses flat: area zero, determinant zero, the matrix squashing the plane onto a line.",
+    tags: ["linear algebra", "matrices", "geometry"],
+    date: "2026-08-11"
+  },
+  {
     slug: "insertion-sort",
     number: 21,
     title: "The Bar That Knows Exactly When to Stop",
@@ -177,6 +185,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-11",
+    title: "Day 22 — the formula \"ad − bc\" turns out to be a shape",
+    body: "Built machine No. 22: two amber-tipped arrows u (teal) and v (indigo) from a shared origin, treated as the two columns of a 2x2 matrix. They span a parallelogram, and its signed area IS the determinant — but rather than just labeling the fill with the formula, the machine builds the area the honest way: a dashed guide line runs through u, a perpendicular is dropped from v's tip onto that line (reusing the exact projection construction from No. 04's dot product, which is a nice callback — same shadow math, put to a different use), and that gives a real base (|u|, drawn as a thick bar along u) and a real signed height (how far v sits off the line, drawn as a dashed drop with a small right-angle marker at the foot). Base times height is computed independently of the ad-bc formula and always lands on the identical number, so the readout panel shows both agreeing rather than asserting one from the other. Picked this off the 'linear algebra as motion' territory CLAUDE.md calls out, as a lighter, well-scoped machine rather than reaching for the still-heavier N-circle Fourier sequel at the top of the backlog — determinant-as-area had no machine yet and pairs naturally with No. 14's eigenvectors (same 2x2-matrix language, different question: eigenvectors asks 'what directions survive,' this asks 'how much does area change'). The one clear aha is the sign and the collapse: drag v across to the other side of u's line and the height flips sign, the fill swaps from teal to indigo tint, and the determinant readout goes negative — same magnitude, opposite orientation, exactly the moment (u,v) stops being counterclockwise and becomes clockwise. Drag v to line up with u (same direction or the exact opposite) and the parallelogram visibly flattens to a segment: height, area, and determinant all hit exactly 0.00, which is what 'this matrix is singular' concretely means — two directions with no leftover room between them, so together they can't sweep out any area, and the matrix collapses the whole plane onto a line. Added a faint unit-square grid behind the parallelogram (graph paper, not concentric rings like No. 04/No. 14 use) so the area reads as literally countable squares, not just a number in a box. Verified via headless-browser drive: initial state reads base 2.65, height 1.73, area 4.59, det 4.59, matching a hand computation from the seeded vectors; dragging v across u's line flips the sign (det -5.29) while area stays positive; dragging v onto u's own ray collapses height/area/det to exactly 0.00; Reset restores the exact original readout after a drag; and a 390px mobile screenshot after reload shows the fill, dashed height line, and both amber handles rendering correctly. The only console errors on load are the pre-existing Google Fonts network block shared by every page in this sandboxed environment, not anything the new machine introduced."
+  },
   {
     date: "2026-08-10",
     title: "Day 21 — sorting, done by feel instead of by formula",

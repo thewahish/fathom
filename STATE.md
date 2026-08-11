@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-10 (Day 21 — machine No. 21, insertion-sort: insertion sort, staged as one amber bar dragged left through an already-sorted row. Every sorted bar taller than it slides out of the way as it passes, and the drag hits a hard wall at the exact index where it belongs — computed once at grab-time from a real "walk left while the neighbor is bigger" scan against the sorted prefix, then enforced as a pixel-clamp so going further is physically impossible, not just discouraged. Release short of the wall and it springs back unsorted; reach it and it locks in with a pulse, the sorted stretch grows by one bar, and the next unsorted bar becomes the active handle. Step animates one insertion, Run chains them, both reusing the same animate-to-wall-then-commit path as a real drag release so there's no separate demo code path. Running comparison/shift counters make the best-case-vs-worst-case spread concrete across Shuffles. Verified via headless-browser drive: Step advancing the sorted count correctly with counters ticking up, Run completing a full sort to 9/9 with buttons disabling, a real pointer drag committing a correct insertion, the same reproduced with touch-style events at a 390px mobile viewport, and the gallery/field-notes pages picking up the new catalog entry.)
+**Last session:** 2026-08-11 (Day 22 — machine No. 22, determinant-area: two amber-tipped arrows u, v from the origin (the two columns of a 2x2 matrix) spanning a parallelogram whose signed area IS the determinant. Built the area honestly rather than just labeling it: a dashed guide line through u, a perpendicular dropped from v's tip onto it (reusing No. 04's dot-product projection construction), giving a real base (|u|) and real signed height whose product independently matches "ad − bc" every time. Drag v across u's line and the height sign flips, the fill swaps teal/indigo, and det goes negative — orientation flip, made visible. Drag v into line with u and the parallelogram flattens to a segment: height, area, and det all hit exactly 0, the concrete meaning of "singular." A faint unit-square grid behind it makes the area literally countable. Verified via headless-browser drive: initial readouts match a hand computation, sign flips on a cross-drag, collapses to exactly 0.00 on a collinear drag, Reset restores the original state, and a 390px mobile screenshot renders the fill/height/handles correctly.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,32 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 22 — The Determinant, Seen as Area** (`explorables/determinant-area/`):
+    two arrows u (teal) and v (indigo) from the origin, both amber-tipped and
+    draggable, treated as the two columns of a 2x2 matrix. They span a
+    parallelogram, and its signed area is the determinant — built the honest
+    way rather than just labeled: a dashed guide line runs through u, a
+    perpendicular drops from v's tip onto it (the same projection
+    construction as No. 04's dot product, reused for a different question),
+    giving a real base (|u|, a thick bar along u) and a real signed height
+    (a dashed drop with a right-angle marker at the foot). Base times height
+    always matches "ad − bc" independently computed, shown side by side in
+    the readouts. Drag v across to the far side of u's line and the height
+    sign flips, the fill swaps from teal tint to indigo tint, and the
+    determinant readout goes negative — the moment (u, v) stops being
+    counterclockwise. Drag v into line with u (same direction or opposite)
+    and the parallelogram visibly flattens to a segment: height, area, and
+    determinant all hit exactly 0, the concrete meaning of a singular
+    matrix — two directions with no room left between them, so together
+    they sweep no area and the matrix collapses the plane onto a line. A
+    faint unit-square grid sits behind everything so area reads as literally
+    countable squares. Verified via headless-browser drive: initial
+    readouts (base 2.65, height 1.73, area 4.59, det 4.59) match a hand
+    computation from the seeded vectors, a cross-drag flips the sign to
+    -5.29 while area stays positive, a collinear drag collapses all three
+    to exactly 0.00, Reset restores the original readout after a drag, and
+    a 390px mobile screenshot renders the fill, dashed height line, and
+    both handles correctly.
   - **No. 21 — The Bar That Knows Exactly When to Stop** (`explorables/insertion-sort/`):
     insertion sort, staged as one amber bar you drag left through an
     already-sorted row of bars. Every sorted bar taller than it visibly
@@ -325,6 +351,10 @@ Ordered rough plan; the natural sequel is at the top:
 "Sorting made physical" (comparison sort as draggable bars) shipped as
 No. 21, insertion-sort — built as one amber bar you push through a wall at
 the exact insertion point, not a generic reorder-any-bar sandbox.
+
+"Linear algebra as motion" gained a second entry, determinant-area, shipped
+as No. 22 — a lighter, well-scoped pick over the still-queued N-circle
+Fourier sequel above, banking a smaller complete machine first.
 
 ## Backlog / ideas parking lot
 
