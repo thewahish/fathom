@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-11 (Day 22 — machine No. 22, determinant-area: two amber-tipped arrows u, v from the origin (the two columns of a 2x2 matrix) spanning a parallelogram whose signed area IS the determinant. Built the area honestly rather than just labeling it: a dashed guide line through u, a perpendicular dropped from v's tip onto it (reusing No. 04's dot-product projection construction), giving a real base (|u|) and real signed height whose product independently matches "ad − bc" every time. Drag v across u's line and the height sign flips, the fill swaps teal/indigo, and det goes negative — orientation flip, made visible. Drag v into line with u and the parallelogram flattens to a segment: height, area, and det all hit exactly 0, the concrete meaning of "singular." A faint unit-square grid behind it makes the area literally countable. Verified via headless-browser drive: initial readouts match a hand computation, sign flips on a cross-drag, collapses to exactly 0.00 on a collinear drag, Reset restores the original state, and a 390px mobile screenshot renders the fill/height/handles correctly.)
+**Last session:** 2026-08-12 (Day 23 — machine No. 23, softmax-temperature: five draggable amber score bars feed a real softmax (numerically stable: subtract max before exponentiating), drawn as one horizontal bar split into five colored segments whose widths ARE the probabilities and always fill exactly full — push one score up and every other segment gives width back, since the bar is a fixed resource, not a scoreboard. A temperature slider (with cold/neutral/hot presets) holds scores fixed and only rescales them before exponentiating: cold stretches score gaps into huge exponential gaps so the leader swallows the bar (argmax); hot crushes scores toward 0 so slices drift toward uniform — the exact dial a language model's sampler turns, called out by name in the caption. First machine in "how ML models actually work" territory. Verified via headless-browser drive: initial readouts match a hand computation (54% winner from seeded scores), dragging a losing score up pulls the leader's share down without touching temperature, cold/hot presets push the leader to 71%/25% respectively, Reset restores the exact initial readout, and a fresh-navigation 390px mobile screenshot renders cleanly (an initial mobile screenshot showed a ghosted topbar duplicate from resizing an already-interacted-with page mid-test — reproduced the same artifact on an already-shipped machine under the same conditions, confirming it's a screenshot-capture quirk, not a shipped bug).)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,28 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 23 — The Dial Between a Coin Flip and a Sure Thing** (`explorables/softmax-temperature/`):
+    five draggable amber score bars (raw values, any sign) feed a real softmax,
+    p_i = exp(x_i/T) / sum_j exp(x_j/T), computed the numerically-stable way
+    (subtract the max before exponentiating so extreme drags never overflow).
+    The result draws as one horizontal bar split into five colored segments
+    whose widths ARE the probabilities, clipped to a single rounded shape so
+    it reads as one bar that structurally can never be anything but full —
+    push a score up and its segment grows only by taking width back from the
+    other four. Thin bezier connectors fan from each score bar down to its
+    own segment so the mapping never has to be inferred from position alone.
+    A temperature slider (with cold/neutral/hot presets) holds the scores
+    fixed and only rescales them before exponentiating: cold stretches modest
+    score gaps into huge exponential gaps so the leading segment swallows the
+    bar (argmax); hot crushes every score toward 0 first so the segments
+    drift toward an even fifth regardless of the scores — the exact dial a
+    language model's sampler turns, named in the caption. Verified via
+    headless-browser drive: initial readouts (54% winner) match a hand
+    computation from the seeded scores [1.6, 0.4, -0.8, 2.2, -0.3]; dragging
+    a losing bar's score up pulls the leader's share from 54% to 38% with
+    temperature untouched; cold/hot presets push the same leader to 71%/25%;
+    Reset restores the exact initial readout; and a fresh-navigation 390px
+    mobile screenshot renders every control and the full-width bar cleanly.
   - **No. 22 — The Determinant, Seen as Area** (`explorables/determinant-area/`):
     two arrows u (teal) and v (indigo) from the origin, both amber-tipped and
     draggable, treated as the two columns of a 2x2 matrix. They span a
@@ -355,6 +377,12 @@ the exact insertion point, not a generic reorder-any-bar sandbox.
 "Linear algebra as motion" gained a second entry, determinant-area, shipped
 as No. 22 — a lighter, well-scoped pick over the still-queued N-circle
 Fourier sequel above, banking a smaller complete machine first.
+
+softmax-temperature shipped as No. 23 — again picked over the still-queued
+N-circle Fourier sequel above (still higher effort than a one-day unit), and
+opens "how ML models actually work" territory that CLAUDE.md names but
+nothing had touched yet. N-circle Fourier remains the natural next pull
+whenever a session has room for the bigger build.
 
 ## Backlog / ideas parking lot
 

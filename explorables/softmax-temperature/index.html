@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Dial Between a Coin Flip and a Sure Thing — Fathom</title>
+  <meta name="description" content="Drag five raw scores and watch them get squeezed into five probabilities that always sum to exactly one. A temperature dial decides whether that squeeze reads as an even coin flip or a dead certainty — the same knob that sets how sure a language model sounds.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='5' y='18' width='4' height='9' rx='1' fill='%230891b2'/><rect x='14' y='9' width='4' height='18' rx='1' fill='%230891b2'/><rect x='23' y='21' width='4' height='6' rx='1' fill='%236366f1'/><circle cx='16' cy='6' r='2.6' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 23</span>
+      <h1>The Dial Between a Coin Flip and a Sure Thing</h1>
+      <p class="lede">Five raw scores, dragged by hand, get squeezed into five probabilities that always add up to exactly one — push one up and every other one has to give something back. A single dial called temperature decides whether that squeeze lands on an even coin flip or a runaway certainty.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Five draggable amber score bars above a horizontal bar split into five colored segments. Each segment's width is that score's probability after softmax, and the five segments always fill the full width. A temperature slider and cold/neutral/hot presets reshape how sharply the highest score wins."></canvas>
+      <div class="controls">
+        <button class="btn" id="reset">Reset</button>
+        <div class="seg" id="preset" role="group" aria-label="Snap the temperature to a preset">
+          <button data-t="0.15">cold</button>
+          <button data-t="1" class="on">neutral</button>
+          <button data-t="4">hot</button>
+        </div>
+        <div class="control">
+          <label for="temp">temperature</label>
+          <input type="range" id="temp" min="0.15" max="4" step="0.01" value="1">
+        </div>
+        <div class="control">
+          <label>T</label>
+          <span class="readout" id="tempOut">1.00</span>
+        </div>
+        <div class="control">
+          <label>top pick</label>
+          <span class="readout" id="winnerOut">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Each bar up top is a raw score — could be a classifier's confidence in five labels, or a language model's leaning toward five candidate words. Raw scores can be any number, positive or negative, and they don't have to add up to anything in particular, so they can't be used as probabilities directly. Softmax fixes that with two steps: exponentiate every score (so nothing is negative and bigger scores blow up faster than smaller ones), then divide each by the total. What's left is five numbers that are all positive and sum to exactly one — a real probability for each option, shown as the width of its slice in the bar below.
+      <span class="hint">Drag the <b class="handle">amber</b> tips to change the scores — notice a slice never grows in isolation, it always grows by taking width from the others, because the bar is always exactly full. Then drag <b class="handle">temperature</b> down toward cold: exponentiating divides every score by T first, so shrinking T stretches the small gaps between scores into huge gaps between exponentials, and the largest score's slice swallows the whole bar — softmax collapses toward simply picking the winner. Push T up toward hot and every score gets divided down near zero before exponentiating, so the scores barely differ anymore and the slices even out toward a plain coin flip, almost regardless of what the scores actually said. This exact dial is what "temperature" means when you sample text out of a language model, including the one that built this page: low temperature plays it safe and repeats the likeliest word, high temperature takes long-shot words seriously too.</span>
+    </p>
+
+    <footer>
+      <span>No. 23 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
