@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Window That Only Ever Sees Nine Pixels — Fathom</title>
+  <meta name="description" content="Drag a 3x3 window across a picture. At every stop it multiplies its nine pixels by nine fixed weights and adds them up — slide it everywhere with the same weights and a whole new picture, an edge map or a blur, paints itself in one cell at a time. This is a convolutional layer, worked by hand.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='2' y='2' width='9' height='9' fill='%230891b2'/><rect x='12' y='2' width='9' height='9' fill='%236366f1'/><rect x='22' y='2' width='8' height='9' fill='%230891b2'/><rect x='2' y='12' width='9' height='9' fill='%236366f1'/><rect x='12' y='12' width='9' height='9' fill='%23d97706'/><rect x='22' y='12' width='8' height='9' fill='%230891b2'/><rect x='2' y='22' width='9' height='8' fill='%230891b2'/><rect x='12' y='22' width='9' height='8' fill='%236366f1'/><rect x='22' y='22' width='8' height='8' fill='%230891b2'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 24</span>
+      <h1>The Window That Only Ever Sees Nine Pixels</h1>
+      <p class="lede">A little 3×3 window slides across a picture. At every stop it can only see the nine pixels directly underneath it — it multiplies each by a fixed weight, adds the nine products, and hands that one number to the output map at that exact spot. Slide it everywhere, reusing the same nine weights every time, and a whole new picture paints itself in.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="Two pixel grids side by side. The left grid is a fixed picture of a small house. An amber-bordered 3x3 window sits on it, draggable, with its nine weights printed on top of the pixels they multiply. The right grid is the output feature map: dragging the window paints in the matching output cell, teal for a high response and indigo for a low one, leaving the rest unpainted until visited."></canvas>
+      <div class="controls">
+        <button class="btn" id="reset">Reset</button>
+        <div class="seg" id="preset" role="group" aria-label="Choose the window's nine weights">
+          <button data-k="identity">identity</button>
+          <button data-k="blur">blur</button>
+          <button data-k="sharpen">sharpen</button>
+          <button data-k="edgesV" class="on">vertical edges</button>
+          <button data-k="edgesH">horizontal edges</button>
+        </div>
+        <button class="btn" id="sweep">Sweep</button>
+        <div class="control">
+          <label>output cell</label>
+          <span class="readout" id="posOut">—</span>
+        </div>
+        <div class="control">
+          <label>value</label>
+          <span class="readout" id="valOut">—</span>
+        </div>
+        <div class="control">
+          <label>painted</label>
+          <span class="readout" id="coverOut">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Every pixel in the left grid is just a number from 0 (dark) to 1 (bright). The nine numbers printed on the amber window are the kernel — fixed weights, one per pixel underneath. At the window's current spot, the machine multiplies each of the nine pixels by the weight sitting on top of it and adds the results into a single number: that's the whole operation, a dot product between nine weights and nine pixels. The window never sees anything outside itself — not the roof, not the door, just whatever nine pixels it's currently sitting on — yet sliding those same nine weights to every position on the picture is enough to build the entire output map on the right.
+      <span class="hint">Drag inside the <b class="handle">input</b> grid to slide the amber window — the <b>output</b> grid paints in only where you've dragged, one cell at a time, because that's genuinely all the window has reported so far. Switch to <b>vertical edges</b> or <b>horizontal edges</b> and drag along a wall of the house: the output flares teal or indigo exactly where bright meets dark and stays flat and unpainted-looking over flat paint, because subtracting neighboring pixels — which is what those particular nine weights do — is zero wherever nothing changes. Try <b>blur</b> to watch sharp edges melt into averages, or <b>sharpen</b> to watch them get harder. <b>Sweep</b> lets the window visit every position on its own and finish the whole output map.</span>
+    </p>
+
+    <p class="caption">
+      This is a convolutional layer, run by hand. Real ones stack dozens of these little windows and slide each across the whole image, and none of the nine weights in this machine's presets are hand-picked in a real network — they start out random and get nudged, pixel-grid by pixel-grid, into edge- and texture-detectors purely by training on millions of labeled images, the same slope-following update as gradient descent (No. 10), repeated at enormous scale.
+    </p>
+
+    <footer>
+      <span>No. 24 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

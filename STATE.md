@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-12 (Day 23 — machine No. 23, softmax-temperature: five draggable amber score bars feed a real softmax (numerically stable: subtract max before exponentiating), drawn as one horizontal bar split into five colored segments whose widths ARE the probabilities and always fill exactly full — push one score up and every other segment gives width back, since the bar is a fixed resource, not a scoreboard. A temperature slider (with cold/neutral/hot presets) holds scores fixed and only rescales them before exponentiating: cold stretches score gaps into huge exponential gaps so the leader swallows the bar (argmax); hot crushes scores toward 0 so slices drift toward uniform — the exact dial a language model's sampler turns, called out by name in the caption. First machine in "how ML models actually work" territory. Verified via headless-browser drive: initial readouts match a hand computation (54% winner from seeded scores), dragging a losing score up pulls the leader's share down without touching temperature, cold/hot presets push the leader to 71%/25% respectively, Reset restores the exact initial readout, and a fresh-navigation 390px mobile screenshot renders cleanly (an initial mobile screenshot showed a ghosted topbar duplicate from resizing an already-interacted-with page mid-test — reproduced the same artifact on an already-shipped machine under the same conditions, confirming it's a screenshot-capture quirk, not a shipped bug).)
+**Last session:** 2026-08-13 (Day 24 — machine No. 24, convolution-kernel: a draggable amber 3x3 window slides over a fixed 16x16 pixel-value grid (a small house, built from geometry, not an image asset). Wherever it sits it multiplies its nine weights against the nine pixels underneath, sums them, and writes that number into the matching cell of a 14x14 output map — real "valid" convolution, computed live. The output only paints where the window has actually visited, so dragging slowly leaves a visible trail rather than the whole map appearing at once. Five kernel presets (identity, blur, sharpen, vertical/horizontal Sobel edges) share one code path; a Sweep button auto-visits every position to finish the map. Opens a second machine in "how ML models actually work" territory (started by No. 23). Verified via headless-browser drive: initial readout (raw 2.80 at output cell (10,4)) matches a hand computation for the shipped default position (straddling the wall's left edge — the first default tried, at the roof/wall boundary, correctly read 0.00 since vertical edges only see left-right gradients, caught by hand before shipping); dragging paints a growing trail of output cells; switching presets clears and reflows the map; Sweep reaches 100% and resets its own label; Reset restores the exact initial readout; a 390px mobile viewport renders both grids, all controls, and a real touch-style drag correctly; and the gallery/field-notes pages pick up the new entry.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,27 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 24 — The Window That Only Ever Sees Nine Pixels** (`explorables/convolution-kernel/`):
+    a draggable amber 3x3 window slides over a fixed 16x16 pixel-value grid
+    (a small house, built from row/column geometry in code, not an image
+    asset). Wherever the window sits, it multiplies its nine weights against
+    the nine pixels directly underneath, sums the nine products, and writes
+    that single number into the matching cell of a 14x14 output map on the
+    right — real "valid" convolution, computed live off the same pixel array
+    the input panel draws from. The output only ever paints where the window
+    has actually visited, staying an empty outline everywhere else, so a slow
+    drag leaves a visible trail instead of the whole map appearing at once.
+    The nine weights are printed live on the window's own cells (teal
+    positive, indigo negative, muted zero) so the arithmetic is checkable by
+    eye. Five presets (identity, blur, sharpen, vertical/horizontal
+    Sobel-style edges) share one code path; a Sweep button auto-visits all
+    196 positions to finish the map on its own. Verified via headless-browser
+    drive: the shipped default position (straddling the wall's left edge)
+    reads raw 2.80, matching a hand computation; dragging paints a growing
+    trail; switching presets clears and reflows the map; Sweep reaches 100%
+    and its button label resets; Reset restores the exact initial readout;
+    and a 390px mobile viewport renders both grids and a real touch-style
+    drag correctly.
   - **No. 23 — The Dial Between a Coin Flip and a Sure Thing** (`explorables/softmax-temperature/`):
     five draggable amber score bars (raw values, any sign) feed a real softmax,
     p_i = exp(x_i/T) / sum_j exp(x_j/T), computed the numerically-stable way
@@ -383,6 +404,13 @@ N-circle Fourier sequel above (still higher effort than a one-day unit), and
 opens "how ML models actually work" territory that CLAUDE.md names but
 nothing had touched yet. N-circle Fourier remains the natural next pull
 whenever a session has room for the bigger build.
+
+convolution-kernel shipped as No. 24 — a second entry in "how ML models
+actually work," again picked over the still-queued N-circle Fourier sequel
+above. A natural next step in this same territory: an actual small trained
+(or hand-set) multi-layer network you can watch classify something live,
+now that softmax's output layer (No. 23) and a convolution kernel's feature
+extraction (No. 24) both exist as standalone pieces.
 
 ## Backlog / ideas parking lot
 

@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "convolution-kernel",
+    number: 24,
+    title: "The Window That Only Ever Sees Nine Pixels",
+    blurb: "A 3x3 amber window, dragged by hand across a small pixel-grid house. Wherever it sits, it multiplies its nine fixed weights against the nine pixels underneath and sums them into one number — the whole operation, no more. Slide it everywhere and an output map paints itself in, one cell per stop: switch weights and the same house turns into a blur, a sharpen, or a live edge map, flaring exactly where bright meets dark.",
+    tags: ["machine learning", "computer vision"],
+    date: "2026-08-13"
+  },
+  {
     slug: "softmax-temperature",
     number: 23,
     title: "The Dial Between a Coin Flip and a Sure Thing",
@@ -193,6 +201,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-13",
+    title: "Day 24 — a nine-number window that never sees the whole picture",
+    body: "Built machine No. 24: convolution, made physical as a 3x3 amber window you drag across a fixed 16x16 pixel-value grid (a small house, built entirely from row/column geometry in code — no image asset, matching the no-assets rule). Wherever the window sits, the machine multiplies its nine weights against the nine pixels directly underneath and sums them into one number — real convolution ('valid' mode, output size input-2), computed live off the same IMG array the input panel draws from, never precomputed or faked. That single number gets written into the matching cell of a 14x14 output map on the right, and — this is the one clear aha the drag itself has to carry — the output only paints in where the window has actually visited, staying an empty outline everywhere else, because that's genuinely all the window has reported so far; drag slowly across a wall and watch the feature map fill in behind you one cell at a time rather than appearing all at once. Five kernel presets (identity, blur, sharpen, and Sobel-style vertical/horizontal edge detectors) sit behind one seg control and share the same convAt()/paintAt() code path, so switching weights is never a special case — just different numbers multiplied against the same nine pixels. The nine weights themselves are printed live on top of the window's own cells (teal for positive, indigo for negative, muted for zero) so the arithmetic is checkable by eye, not just asserted; the output cells reuse the same teal/indigo split, diverging around each kernel's natural neutral point (0.5 for the sum-to-1 kernels, a raw value of 0 re-centered to 0.5 for the sum-to-0 edge kernels) rather than a literal grayscale photo readout, which kept the whole machine inside the 'colors come only from window.FATHOM' rule instead of introducing a bare grayscale palette. Picked this off CLAUDE.md's 'how ML models actually work' territory that softmax-temperature (No. 23) opened but didn't return to, and specifically over the still-queued, heavier N-circle Fourier sequel — a convolution kernel was the smaller complete unit and this territory had exactly one machine in it. Added a Sweep button as the payoff for anyone who wants to see the whole feature map at once (auto-advances the window through all 196 positions on a real requestAnimationFrame-timed loop, not a canned animation — it calls the identical paintAt() a manual drag calls), and a Reset that clears the map, restores the default vertical-edges kernel, and returns the window to a start position straddling the wall's own left edge (background meeting house) so the very first view already shows a strong, saturated edge response rather than a blank or zero grid — the first default I tried, straddling the roof/wall boundary instead, turned out to read a perfectly correct but visually boring 0.00, since that spot has a top-bottom brightness change but no left-right one, and vertical edges only ever look left-right; caught that by hand-computing before touching the browser, not after. Verified by hand: computed convAt for the actual shipped default (edgesV, output cell (10,4)) against the IMG array on paper — raw 2.80, row by row (0.70 + 1.40 + 0.70) — and confirmed it matches the live readout exactly; confirmed blur's nine equal 1/9 weights always keep values inside the input's own [0.10, 0.82] range while sharpen's 5/-1 weights can overshoot outside [0,1] at the sharpest edges — intentional, clamped in the display mapping, and read as the correct 'sharpening saturates' visual, not a bug. Then checked in-browser (served locally): dragging across the house wall visibly paints teal/indigo streaks that track the visible edges, switching kernels correctly clears and reflows the output map, Sweep fills in the entire 196-cell map and stops itself and relabels back to 'Sweep', Reset restores the exact starting readout, and the layout holds together at a 390px-wide viewport (both grids shrink together, the weight-number overlay only draws once cells are wide enough to hold text legibly, and the two-grid layout never needs to stack)."
+  },
   {
     date: "2026-08-12",
     title: "Day 23 — five raw scores fighting over one bar that's always full",
