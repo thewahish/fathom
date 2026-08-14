@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Neuron That Can Only Draw Straight Lines — Fathom</title>
+  <meta name="description" content="One amber arrow is a neuron's weight vector. Drag it and watch the straight line it defines split a scatter of points into two guesses. Train it with the real perceptron rule: it locks onto a perfect split when the data allows one, and keeps changing forever when the data is laid out like XOR — proof a single neuron can only ever draw a line.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='9' cy='9' r='3.4' fill='%230891b2'/><circle cx='23' cy='23' r='3.4' fill='%230891b2'/><circle cx='23' cy='9' r='3.4' fill='%236366f1'/><circle cx='9' cy='23' r='3.4' fill='%236366f1'/><line x1='2' y1='30' x2='30' y2='2' stroke='%23d97706' stroke-width='2.6' stroke-linecap='round'/><circle cx='27' cy='5' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 25</span>
+      <h1>The Neuron That Can Only Draw Straight Lines</h1>
+      <p class="lede">An artificial neuron is a weighted sum plus a bias — nothing more. Drag the one amber arrow, its weight vector, and you're dragging the only thing a single neuron ever gets to decide: where a straight line sits, and how sharply it commits to either side of it.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A scatter of teal and indigo points on a grid. One draggable amber arrow from the origin is a neuron's weight vector; a dashed line perpendicular to it is the neuron's decision boundary, and the background is tinted teal or indigo by how confidently the neuron would classify that spot. Points the current line gets wrong are marked with a dotted ring."></canvas>
+      <div class="controls">
+        <button class="btn" id="reset">Reset</button>
+        <div class="seg" id="dataset" role="group" aria-label="Choose the point layout">
+          <button data-set="clusters" class="on">clusters</button>
+          <button data-set="xor">XOR</button>
+        </div>
+        <button class="btn" id="step">Step</button>
+        <button class="btn" id="run">Run</button>
+        <div class="control">
+          <label for="bias">bias</label>
+          <input type="range" id="bias" min="-3" max="3" step="0.05" value="0.3">
+        </div>
+        <div class="control">
+          <label>b</label>
+          <span class="readout" id="biasOut">0.30</span>
+        </div>
+        <div class="control">
+          <label>w</label>
+          <span class="readout" id="weightsOut">—</span>
+        </div>
+        <div class="control">
+          <label>correct</label>
+          <span class="readout" id="accOut">—</span>
+        </div>
+        <div class="control">
+          <label>epochs</label>
+          <span class="readout" id="epochOut">0</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Everything a single neuron computes fits in one line: z = w1·x + w2·y + b, then guess class 1 if z is positive and class 0 if it's negative. That's it — no matter how the weights are chosen, the boundary between the two guesses is exactly where z = 0, which is always a straight line (a plane, in higher dimensions). The dashed line here is drawn from that exact equation, perpendicular to the weight arrow, because the weight vector's direction is literally the direction the boundary can't run — it's the direction z changes fastest in. Drag the arrow longer and the background's color commits harder to teal or indigo near the line instead of fading gently through pearl in between: a bigger weight vector means a steeper, more confident sigmoid, the same "sharpness" knob temperature dials down in No. 23's softmax.
+      <span class="hint">Drag the <b class="handle">amber</b> arrow to rotate and rescale the boundary by hand — watch the <b>correct</b> readout and the dotted rings (misclassified points) move with it. <b>Step</b> and <b>Run</b> train the same two numbers with the classic perceptron rule: nudge the weights toward every point the line currently gets wrong. On <b>clusters</b> — two clouds with real daylight between them — training locks onto a perfect split within a couple of epochs and the buttons disable themselves, because there's nothing left to fix. Switch to <b>XOR</b> — four clouds arranged so same-label points sit diagonally opposite each other — and no straight line can ever separate it (the best any line can do is 3 of its 4 clusters, capped at 75% correct); keep training and the epoch counter climbs while the line just keeps sliding and rotating, never settling. That failure is exactly what stalled neural networks for over a decade after Minsky and Papert pointed it out in 1969 — a single neuron can only ever cut the plane with one straight line, and some patterns simply don't have one.</span>
+    </p>
+
+    <footer>
+      <span>No. 25 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

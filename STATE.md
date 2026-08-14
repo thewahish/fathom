@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-13 (Day 24 — machine No. 24, convolution-kernel: a draggable amber 3x3 window slides over a fixed 16x16 pixel-value grid (a small house, built from geometry, not an image asset). Wherever it sits it multiplies its nine weights against the nine pixels underneath, sums them, and writes that number into the matching cell of a 14x14 output map — real "valid" convolution, computed live. The output only paints where the window has actually visited, so dragging slowly leaves a visible trail rather than the whole map appearing at once. Five kernel presets (identity, blur, sharpen, vertical/horizontal Sobel edges) share one code path; a Sweep button auto-visits every position to finish the map. Opens a second machine in "how ML models actually work" territory (started by No. 23). Verified via headless-browser drive: initial readout (raw 2.80 at output cell (10,4)) matches a hand computation for the shipped default position (straddling the wall's left edge — the first default tried, at the roof/wall boundary, correctly read 0.00 since vertical edges only see left-right gradients, caught by hand before shipping); dragging paints a growing trail of output cells; switching presets clears and reflows the map; Sweep reaches 100% and resets its own label; Reset restores the exact initial readout; a 390px mobile viewport renders both grids, all controls, and a real touch-style drag correctly; and the gallery/field-notes pages pick up the new entry.)
+**Last session:** 2026-08-14 (Day 25 — machine No. 25, neuron-boundary: one draggable amber arrow IS a single artificial neuron's weight vector w=(w1,w2), drawn from the origin like No. 04's dot-product arrows. Its direction sets a dashed decision-boundary line (z = w1*x + w2*y + b = 0, drawn from real geometry) across a scatter of teal/indigo points; its length sets how sharply a live sigmoid-tinted background commits to either color. A bias slider translates the line; a perceptron-rule Step/Run trains w and b by hand-verified update. Two dataset presets: "clusters" (linearly separable — training locks onto a perfect split in 1-2 epochs and self-disables) and "XOR" (four corner clouds — provably capped at 75%, verified via a 60-trial Node Monte Carlo; training never converges, oscillating forever) — the historical Minsky-Papert 1969 limitation that motivated multi-layer networks, named in the caption. Deliberately scoped smaller than the backlog's "multi-layer network" suggestion (a single neuron, not stacked layers) as one clean day's unit; sets up any future multi-layer machine's motivation for free. Verified via headless-browser drive: initial 31%/26 correct matches Node-verified range for the shipped default weights; dragging the arrow by hand reaches a real 100% split and auto-disables Step/Run; Reset restores the exact original readout; Run on "clusters" converges in 1 epoch and self-disables; switching to "XOR" resets state and Run visibly climbs the epoch counter while accuracy oscillates and Step/Run correctly stay enabled; the identical drag reproduced with touch-style events at a 390px mobile viewport reaches 100% the same way; and the gallery/field-notes pages pick up the new entry.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,42 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 25 — The Neuron That Can Only Draw Straight Lines** (`explorables/neuron-boundary/`):
+    one draggable amber arrow, drawn from the origin exactly like No. 04's
+    dot-product arrows, IS a single artificial neuron's weight vector
+    w = (w1, w2). Its direction sets the orientation of a dashed decision
+    boundary — the real line z = w1*x + w2*y + b = 0, derived geometrically
+    as the perpendicular through the closest point on that line to the
+    origin, not just asserted — across a scatter of teal/indigo points; its
+    length sets how sharply a live sigmoid-tinted background commits to
+    either color near the line versus fading through pearl further away,
+    a direct visual echo of the "sharpness" knob No. 23's softmax
+    temperature dials. A bias slider translates the line without rotating
+    it. Two presets: "clusters" (two separated Gaussian clouds) and "XOR"
+    (four corner clouds arranged so same-label points sit diagonally
+    opposite each other). Step/Run train w and b with the classic
+    perceptron rule (nudge toward every currently-misclassified point, one
+    epoch per Step); on "clusters" it locks onto a perfect split within 1-2
+    epochs and Step/Run self-disable (mirroring insertion-sort's
+    disable-at-sorted pattern); on "XOR" no straight line can ever separate
+    it (best possible accuracy is a stable 75%, verified via a 60-trial
+    Node Monte Carlo sweep across random layouts) so training keeps
+    changing the line forever, the epoch counter climbing with no
+    settling — the exact 1969 Minsky-Papert limitation that forced neural
+    networks to stack more than one neuron, named directly in the caption.
+    Deliberately scoped smaller than the backlog's "multi-layer network you
+    can watch classify something live" suggestion — one neuron, not several
+    stacked layers — as a clean one-day unit that sets up any future
+    multi-layer machine's motivation for free. Verified via headless-
+    browser drive: initial 31%/26 correct matches a Node-verified range for
+    the shipped default weights; a real pointer drag onto the arrow tip
+    reaches a hand-found 100% split and correctly auto-disables Step/Run;
+    Reset restores the exact original readout; Run on "clusters" converges
+    to 100% in exactly 1 epoch and self-disables; switching to "XOR" resets
+    state and Run visibly climbs the epoch counter while accuracy
+    oscillates and Step/Run correctly stay enabled throughout; and the
+    identical drag reproduced with touch-style pointer events at a 390px
+    mobile viewport reaches 100% the same way.
   - **No. 24 — The Window That Only Ever Sees Nine Pixels** (`explorables/convolution-kernel/`):
     a draggable amber 3x3 window slides over a fixed 16x16 pixel-value grid
     (a small house, built from row/column geometry in code, not an image
@@ -407,10 +443,19 @@ whenever a session has room for the bigger build.
 
 convolution-kernel shipped as No. 24 — a second entry in "how ML models
 actually work," again picked over the still-queued N-circle Fourier sequel
-above. A natural next step in this same territory: an actual small trained
-(or hand-set) multi-layer network you can watch classify something live,
-now that softmax's output layer (No. 23) and a convolution kernel's feature
-extraction (No. 24) both exist as standalone pieces.
+above.
+
+neuron-boundary shipped as No. 25 — a single artificial neuron as one
+draggable weight-vector arrow, deliberately scoped smaller than "a small
+trained multi-layer network" (one neuron, not stacked layers), again
+picked over the still-queued N-circle Fourier sequel. It ends by proving,
+via the XOR preset, that one neuron structurally caps out at 75% and can
+never be trained past it — which makes the natural next step in "how ML
+models actually work" territory unusually well-motivated: an actual small
+multi-layer network (two neurons feeding a third, say) that CAN solve the
+XOR layout this machine's single neuron provably can't, closing the loop
+this machine opens. N-circle Fourier remains queued whenever a session has
+room for that bigger build instead.
 
 ## Backlog / ideas parking lot
 
