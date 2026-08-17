@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "xor-network",
+    number: 26,
+    title: "Two Neurons Draw the Line One Couldn't",
+    blurb: "Two amber-tipped weight-vector arrows, one teal-shafted and one indigo-shafted, each drawing its own straight boundary line exactly like yesterday's single neuron. Alone, neither line can separate an XOR-shaped scatter of four corner clusters — each gets at best 3 of 4 right. Wired through one fixed third neuron (\"line 1 says yes AND line 2 says no\"), their overlap carves out a diagonal band a single line could never draw, reliably clearing the 75% ceiling a lone neuron was stuck at.",
+    tags: ["machine learning", "neural networks"],
+    date: "2026-08-17"
+  },
+  {
     slug: "neuron-boundary",
     number: 25,
     title: "The Neuron That Can Only Draw Straight Lines",
@@ -209,6 +217,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-17",
+    title: "Day 26 — the fix for yesterday's failure",
+    body: "Built machine No. 26, the direct sequel No. 25 set up: two neurons instead of one, closing the loop that machine's XOR preset opened by proving a single neuron structurally caps out at 75%. Same visual grammar as No. 25 — an amber-tipped arrow from the origin IS a neuron's weight vector, dragging it reshapes a dashed z=0 boundary line — but now there are two of them (teal-shafted neuron 1, indigo-shafted neuron 2, both amber-tipped and independently draggable, reusing the two-arrows-from-one-origin idiom determinant-area (No. 22) established for u/v). Each hidden neuron still only ever draws one straight line and still only ever gets 3 of the 4 XOR corner clusters right on its own — verifiable by dragging either arrow alone and watching the other's line hold the classification back. What's new is a third, FIXED neuron downstream (not draggable, no third handle needed) wired as output = h1 − h2 − 0.5, i.e. \"neuron 1 fires AND neuron 2 doesn't\": it doesn't draw a third line, it draws the overlap of the two half-planes, and that overlap is a wedge/band a single straight cut structurally cannot match. The background tints by that combined output, not either hidden neuron's own field, so the payoff reads as one coherent shape rather than two overlaid heatmaps. Derived the actual working weights by hand rather than guessing: for the same four-corner dataset generator No. 25's XOR preset already used (kept byte-for-byte identical, same gaussianPair/makePoint/buildXor, so both machines describe literally the same data), solved for the exact valid bias range that isolates each extreme corner (the bottom-left cluster for neuron 1's OR-line, the top-right cluster for neuron 2's AND-line), then picked the bias at the midpoint of each valid range for the best worst-case margin (1.3×|w| out from center) instead of an arbitrary in-range value — a standalone Node Monte Carlo (10,000 simulated random layouts, scratchpad script, not committed) confirmed that choice never once dips at or below the single-neuron's proven 75%/21-of-28 ceiling, median lands on a clean 28/28, worst case 23/28. Noticed midway through that the mathematically optimal solution has both weight vectors pointing the exact same direction (1,1) — two parallel lines, differing only in bias, carving a diagonal band — which could have looked like a rendering bug (one arrow hiding the other) rather than the intended second aha; fixed by giving the two arrows different lengths (2.4 and 1.8) while keeping the identical direction, so both amber tips stay independently visible and grabbable even in the solved state, confirmed by cropping a headless-browser screenshot in tight on the tip region. A 'Solve it' button snaps straight to that hand-verified solution (no training loop this time — No. 25 already covered gradient-following via the perceptron rule, and stacking a backprop story into a two-day-old idea felt like the wrong day's unit); Reset restores the deliberately mismatched, roughly-50%-correct starting weights. Verified in-browser via a local static server + headless Playwright drive: initial state reads 14/28 (50%), Solve it reaches 28/28 (100%) with the exact weights computed above, Reset restores the exact initial readout, a real pointer drag onto either arrow's tip changes only that neuron's own two readout numbers and immediately moves the accuracy count, the bias sliders update their neuron's line without touching the other, a 390px mobile viewport renders and accepts a touch-style drag the same way, and the only console warning on load is the pre-existing Google Fonts network block already documented as shared across every page in this sandboxed environment."
+  },
   {
     date: "2026-08-14",
     title: "Day 25 — the failure that forced neurons to team up",

@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-14 (Day 25 — machine No. 25, neuron-boundary: one draggable amber arrow IS a single artificial neuron's weight vector w=(w1,w2), drawn from the origin like No. 04's dot-product arrows. Its direction sets a dashed decision-boundary line (z = w1*x + w2*y + b = 0, drawn from real geometry) across a scatter of teal/indigo points; its length sets how sharply a live sigmoid-tinted background commits to either color. A bias slider translates the line; a perceptron-rule Step/Run trains w and b by hand-verified update. Two dataset presets: "clusters" (linearly separable — training locks onto a perfect split in 1-2 epochs and self-disables) and "XOR" (four corner clouds — provably capped at 75%, verified via a 60-trial Node Monte Carlo; training never converges, oscillating forever) — the historical Minsky-Papert 1969 limitation that motivated multi-layer networks, named in the caption. Deliberately scoped smaller than the backlog's "multi-layer network" suggestion (a single neuron, not stacked layers) as one clean day's unit; sets up any future multi-layer machine's motivation for free. Verified via headless-browser drive: initial 31%/26 correct matches Node-verified range for the shipped default weights; dragging the arrow by hand reaches a real 100% split and auto-disables Step/Run; Reset restores the exact original readout; Run on "clusters" converges in 1 epoch and self-disables; switching to "XOR" resets state and Run visibly climbs the epoch counter while accuracy oscillates and Step/Run correctly stay enabled; the identical drag reproduced with touch-style events at a 390px mobile viewport reaches 100% the same way; and the gallery/field-notes pages pick up the new entry.)
+**Last session:** 2026-08-17 (Day 26 — machine No. 26, xor-network: the direct sequel No. 25 set up. Two neurons instead of one, same arrow-IS-the-weight-vector idiom (teal-shafted neuron 1, indigo-shafted neuron 2, both amber-tipped and independently draggable, reusing determinant-area's two-arrows-from-one-origin idiom), each still only drawing one straight line and still only getting 3 of 4 XOR corner clusters right alone. A third, FIXED output neuron (no handle — output = h1 − h2 − 0.5, "neuron 1 fires AND neuron 2 doesn't") combines their two half-planes into a diagonal-band overlap no single line can match; background tints by that combined answer. Exact solution weights hand-derived (bias at the midpoint of each valid isolating range, for best worst-case margin) and stress-tested in a Node Monte Carlo (10,000 simulated layouts on the identical dataset generator No. 25 already used): never once dips at/below the single-neuron's proven 75% ceiling, median 28/28. Solve it button snaps to that solution (two arrows deliberately given different lengths along the same direction so both amber tips stay independently visible/grabbable, not a training loop — No. 25 already covered the perceptron-rule story); Reset restores a deliberately-wrong ~50%-correct start. Verified via a local static server + headless Playwright drive: initial 14/28 (50%), Solve it reaches 28/28 (100%) with the exact computed weights, Reset restores the exact initial readout, real pointer drags on each arrow tip and each bias slider independently move only that neuron's own readouts and the shared accuracy count, a 390px mobile viewport renders and accepts a touch-style drag the same way, a tight screenshot crop confirms both amber handles stay visible and distinct in the solved state, and the gallery/field-notes pages pick up the new entry.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,41 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 26 — Two Neurons Draw the Line One Couldn't** (`explorables/xor-network/`):
+    the direct sequel to No. 25. Two hidden neurons, each an amber-tipped
+    weight-vector arrow from the origin exactly like No. 25's one arrow
+    (teal-shafted neuron 1, indigo-shafted neuron 2, both independently
+    draggable — the two-arrows-from-one-origin idiom determinant-area
+    established for u/v, reused here for two neurons instead of two
+    vectors), each still drawing only one straight dashed boundary line
+    (color-matched to its own arrow) and still only ever isolating one
+    corner of an XOR-shaped four-cluster scatter from the other three — 3
+    of 4 right, at best, same ceiling No. 25 proved. A third neuron sits
+    downstream, fixed (no handle): output = h1 − h2 − 0.5, "neuron 1 fires
+    AND neuron 2 doesn't." It draws no line of its own — it draws the
+    overlap of the two half-planes, a diagonal band no single straight cut
+    could ever match, and the background tints by that combined answer,
+    not either hidden neuron's own field. The exact working weights were
+    hand-derived (bias set to the midpoint of each neuron's valid
+    corner-isolating range, for the best worst-case margin) and stress-
+    tested in a standalone Node Monte Carlo across 10,000 simulated
+    layouts of the identical dataset generator No. 25's XOR preset already
+    used: never once falls at or below the single-neuron's proven 75%
+    ceiling, median a clean 28/28. A Solve it button snaps straight to
+    that solution — deliberately built from two different-length arrows
+    along the same direction (rather than a training loop, which No. 25
+    already covered) so both amber tips stay independently visible and
+    grabbable even though the optimal solution is two parallel lines.
+    Reset restores a deliberately-wrong ~50%-correct start. Verified via a
+    local static server plus a headless-browser Playwright drive: initial
+    14/28 (50%); Solve it reaches 28/28 (100%) with the exact hand-derived
+    weights; Reset restores the exact initial readout; a real pointer drag
+    on either arrow's tip, and each bias slider independently, move only
+    that neuron's own two readout numbers and the shared accuracy count; a
+    390px mobile viewport renders correctly and accepts a touch-style
+    drag the same way; and a tight screenshot crop confirms both amber
+    handles stay visibly distinct and separately grabbable in the solved,
+    collinear state.
   - **No. 25 — The Neuron That Can Only Draw Straight Lines** (`explorables/neuron-boundary/`):
     one draggable amber arrow, drawn from the origin exactly like No. 04's
     dot-product arrows, IS a single artificial neuron's weight vector
@@ -450,12 +485,19 @@ draggable weight-vector arrow, deliberately scoped smaller than "a small
 trained multi-layer network" (one neuron, not stacked layers), again
 picked over the still-queued N-circle Fourier sequel. It ends by proving,
 via the XOR preset, that one neuron structurally caps out at 75% and can
-never be trained past it — which makes the natural next step in "how ML
+never be trained past it — which made the natural next step in "how ML
 models actually work" territory unusually well-motivated: an actual small
-multi-layer network (two neurons feeding a third, say) that CAN solve the
-XOR layout this machine's single neuron provably can't, closing the loop
-this machine opens. N-circle Fourier remains queued whenever a session has
-room for that bigger build instead.
+multi-layer network (two neurons feeding a third) that CAN solve the XOR
+layout this machine's single neuron provably can't, closing the loop this
+machine opens.
+
+xor-network shipped as No. 26, closing that exact loop — two neurons
+feeding one fixed output neuron, solving the XOR layout No. 25 proved a
+single neuron never can. "How ML models actually work" territory now has
+four entries (gradient-descent, softmax-temperature, convolution-kernel,
+neuron-boundary/xor-network as a pair). N-circle Fourier remains the
+longest-queued idea, still parked for a session with room for that bigger
+build; nothing else is currently queued above it.
 
 ## Backlog / ideas parking lot
 

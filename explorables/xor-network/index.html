@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Two Neurons Draw the Line One Couldn't — Fathom</title>
+  <meta name="description" content="Two draggable amber arrows are two neurons' weight vectors, each drawing its own straight boundary line. Alone, neither line can separate an XOR-shaped scatter of points. Combined through one fixed output neuron, their two lines carve out a region a single line never could — the exact fix that revived neural networks after the 1969 single-neuron limitation.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='9' cy='9' r='3.4' fill='%230891b2'/><circle cx='23' cy='23' r='3.4' fill='%230891b2'/><circle cx='23' cy='9' r='3.4' fill='%236366f1'/><circle cx='9' cy='23' r='3.4' fill='%236366f1'/><line x1='16' y1='30' x2='30' y2='16' stroke='%23d97706' stroke-width='2.6' stroke-linecap='round'/><line x1='2' y1='16' x2='16' y2='2' stroke='%23d97706' stroke-width='2.6' stroke-linecap='round'/><circle cx='27' cy='13' r='3' fill='%23d97706'/><circle cx='13' cy='5' r='3' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 26</span>
+      <h1>Two Neurons Draw the Line One Couldn't</h1>
+      <p class="lede">Yesterday's neuron could only ever cut the plane with one straight line — and some layouts, like XOR, don't have a line that works. Here are two neurons instead of one. Drag their two amber arrows and watch their two lines combine into a shape a single line can never draw.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A scatter of teal and indigo points laid out like XOR, in four corner clusters. Two draggable amber-tipped arrows from the origin are two neurons' weight vectors — one teal-shafted, one indigo-shafted — each with its own dashed boundary line in a matching color. The background is tinted by the combined output of both neurons through a fixed third neuron. Points the combined network gets wrong are marked with a dotted ring."></canvas>
+      <div class="controls">
+        <button class="btn" id="reset">Reset</button>
+        <button class="btn" id="solve">Solve it</button>
+        <div class="control">
+          <label for="bias1">b1</label>
+          <input type="range" id="bias1" min="-6" max="6" step="0.05" value="-0.3">
+        </div>
+        <div class="control">
+          <label>w1, b1</label>
+          <span class="readout" id="n1Out">—</span>
+        </div>
+        <div class="control">
+          <label for="bias2">b2</label>
+          <input type="range" id="bias2" min="-6" max="6" step="0.05" value="0.3">
+        </div>
+        <div class="control">
+          <label>w2, b2</label>
+          <span class="readout" id="n2Out">—</span>
+        </div>
+        <div class="control">
+          <label>correct</label>
+          <span class="readout" id="accOut">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Each amber arrow is still exactly what it was yesterday: a neuron's weight vector, drawn from the origin, setting the direction and confidence of one straight decision line (z = w·x + b, boundary at z = 0 — the teal dashed line for neuron 1, the indigo dashed line for neuron 2). Neither line, on its own, can separate these four corners: each one can only ever isolate a single corner from the other three, getting at best 3 of 4 clusters right. What's new is a third, fixed neuron sitting downstream, wired as "neuron 1 says yes AND neuron 2 says no" (output = h1 − h2 − 0.5, positive when the first neuron fires and the second doesn't). It doesn't draw a third line at all — it draws the <em>overlap</em> of the two lines' half-planes, a wedge no single straight cut could ever match. The background tints by that combined answer, not either neuron's alone.
+      <span class="hint">Drag either <b class="handle">amber</b> tip to reshape that neuron's own line — watch the <b>correct</b> readout and the dotted misclassified rings move as you go. The bias sliders slide each line without rotating it. <b>Solve it</b> snaps both neurons to one working solution: two parallel lines, one just past each far corner, so only the diagonal band between them lights up teal — the two corners XOR calls "true." That solution alone reaches well past the 75% ceiling a single neuron was stuck at yesterday, usually landing on all 28 points, sometimes losing one or two to noisy outliers near the band's edge. Two straight lines, layered, can carve a shape neither one could draw alone — the whole reason real networks stack more than one neuron.</span>
+    </p>
+
+    <footer>
+      <span>No. 26 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
