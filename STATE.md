@@ -2,7 +2,7 @@
 
 **Live URL:** https://thewahish.github.io/fathom/
 **Repo:** https://github.com/thewahish/fathom  (owner `thewahish`, branch `main`, Pages from root)
-**Last session:** 2026-08-17 (Day 26 — machine No. 26, xor-network: the direct sequel No. 25 set up. Two neurons instead of one, same arrow-IS-the-weight-vector idiom (teal-shafted neuron 1, indigo-shafted neuron 2, both amber-tipped and independently draggable, reusing determinant-area's two-arrows-from-one-origin idiom), each still only drawing one straight line and still only getting 3 of 4 XOR corner clusters right alone. A third, FIXED output neuron (no handle — output = h1 − h2 − 0.5, "neuron 1 fires AND neuron 2 doesn't") combines their two half-planes into a diagonal-band overlap no single line can match; background tints by that combined answer. Exact solution weights hand-derived (bias at the midpoint of each valid isolating range, for best worst-case margin) and stress-tested in a Node Monte Carlo (10,000 simulated layouts on the identical dataset generator No. 25 already used): never once dips at/below the single-neuron's proven 75% ceiling, median 28/28. Solve it button snaps to that solution (two arrows deliberately given different lengths along the same direction so both amber tips stay independently visible/grabbable, not a training loop — No. 25 already covered the perceptron-rule story); Reset restores a deliberately-wrong ~50%-correct start. Verified via a local static server + headless Playwright drive: initial 14/28 (50%), Solve it reaches 28/28 (100%) with the exact computed weights, Reset restores the exact initial readout, real pointer drags on each arrow tip and each bias slider independently move only that neuron's own readouts and the shared accuracy count, a 390px mobile viewport renders and accepts a touch-style drag the same way, a tight screenshot crop confirms both amber handles stay visible and distinct in the solved state, and the gallery/field-notes pages pick up the new entry.)
+**Last session:** 2026-08-18 (Day 27 — machine No. 27, fourier-drawing: closed out the longest-queued backlog item, the N-circle epicycle sequel to No. 06/No. 12. A chain of nested rotating circles — each fixed radius, fixed whole-number spin speed, riding the tip of the one before it — whose combined pen tip is a real Fourier-series reconstruction of a target outline (5-pointed star or square), computed live via a direct DFT against 180 arc-length-sampled points, not hand-tuned coefficients. One amber lever adds/removes circles (1-41, selected by largest magnitude first); a live "match" % shows how close the current chain gets. Verified in a standalone Node script first (star: 74%/89%/98.5%/98.8% at M=1/2/6/41; square similar), then via a local static server + headless Playwright drive: drag increases/decreases circle count correctly on the lever (must originate on the lever, clamps while held — confirmed intentional, matches every other lever machine), Star/Square preset swap rebuilds the chain and outline live, Play/Pause and Reset work, a 390px mobile touch drag works, and screenshots confirm the solid reconstructed curve visibly tightens onto the dashed target as circles are added, with no console errors.)
 
 ## How to run a session (summary — full rules in CLAUDE.md)
 
@@ -24,6 +24,38 @@
 - **Shared:** `shared/style.css` (all design tokens + control/canvas styling),
   `catalog.js` (the single source of truth: `CATALOG` + `NOTES`).
 - **Machines:**
+  - **No. 27 — How Many Circles Does It Take to Draw a Star?** (`explorables/fourier-drawing/`):
+    the direct sequel the backlog had queued since No. 22 — a chain of nested
+    rotating circles (an epicycle chain, generalizing No. 06's two-circle rig
+    to a variable-length chain) whose combined pen tip is a real Fourier
+    series. Each circle in the chain is fixed (a fixed radius = its
+    coefficient's magnitude, a fixed whole-number spin speed = its
+    coefficient's frequency k, which can be negative), riding the tip of the
+    circle before it; only the sum of all their tips knows anything about the
+    target shape. Coefficients are computed live via a direct discrete
+    Fourier transform (41 candidate frequencies, k=-20..20) against 180
+    points sampled by arc length along the actual target polygon (a
+    5-pointed star or a square — both chosen for real corners, so low term
+    counts visibly struggle, echoing No. 12's Gibbs-phenomenon story). One
+    amber lever (reusing the labeled-tick lever from No. 06/No. 07) adds or
+    removes circles, 1 to 41, selecting by largest magnitude first; a live
+    match % (RMS distance to the true target, normalized) tracks how close
+    the current chain gets. Verified the DFT and match-percentage math in a
+    standalone Node script before touching the browser (star: 74%/89%/98.5%/
+    98.8% match at M=1/2/6/41; the missing ~1.2% at full budget is genuine
+    corner content beyond the k=20 cutoff, called out honestly in the
+    caption as this budget's real ceiling, not hidden as a bug), then
+    verified in-browser via a local static server + headless Playwright
+    drive: dragging the lever up and down (starting the grab on the lever
+    itself, as every other lever machine requires) moves the circle count
+    both directions and visibly tightens the solid reconstructed curve onto
+    the dashed target; Star/Square preset swap rebuilds an entirely
+    different chain and outline live; Play/Pause stops only the live
+    rotation, not the static M-dependent curve or match number; Reset
+    restores M=3/star/phase 0/playing; a 390px mobile viewport renders the
+    lever and canvas cleanly and accepts a touch-style drag the same way;
+    and no console errors on load beyond the pre-existing shared Google
+    Fonts network block.
   - **No. 26 — Two Neurons Draw the Line One Couldn't** (`explorables/xor-network/`):
     the direct sequel to No. 25. Two hidden neurons, each an amber-tipped
     weight-vector arrow from the origin exactly like No. 25's one arrow
@@ -453,14 +485,13 @@
 
 ## Building next (pull one, or invent better)
 
-Ordered rough plan; the natural sequel is at the top:
-
-1. **N-circle Fourier drawing** — now that both the two-circle epicycle
-   mechanics (No. 06) and straight-line harmonic synthesis (No. 12) are
-   live, the natural sequel is stacking several rotating circles (epicycle
-   style, not straight sine bars) at different integer speeds/sizes so the
-   combined pen draws an arbitrary repeating shape (even letters). Higher
-   effort — may want to keep banking smaller machines first.
+Nothing specific is queued right now — the backlog's one long-standing item
+(N-circle Fourier drawing) shipped as No. 27. Pick the next idea from
+CLAUDE.md's suggested territory (waves & oscillation, probability & Bayes,
+linear algebra as motion, number theory patterns, how ML models actually
+work, physics of everyday things, signals, growth/decay, networks) or invent
+a better one — prefer whatever has a single draggable handle that reveals
+the mechanism.
 
 "Sorting made physical" (comparison sort as draggable bars) shipped as
 No. 21, insertion-sort — built as one amber bar you push through a wall at
@@ -498,6 +529,12 @@ four entries (gradient-descent, softmax-temperature, convolution-kernel,
 neuron-boundary/xor-network as a pair). N-circle Fourier remains the
 longest-queued idea, still parked for a session with room for that bigger
 build; nothing else is currently queued above it.
+
+fourier-drawing shipped as No. 27, finally closing out that longest-queued
+item — a variable-length epicycle chain (not just two circles) whose pen is
+a real live-computed DFT reconstruction of a star or square outline. The
+backlog is now empty of specific queued ideas; the next session picks fresh
+from CLAUDE.md's suggested territory.
 
 ## Backlog / ideas parking lot
 

@@ -5,6 +5,14 @@
 
 window.CATALOG = [
   {
+    slug: "fourier-drawing",
+    number: 27,
+    title: "How Many Circles Does It Take to Draw a Star?",
+    blurb: "A chain of nested rotating circles — the direct sequel to the two-circle epicycle machine — each fixed in size and spinning at its own fixed whole-number speed. Their combined pen tip is a real Fourier series, computed live off the target outline itself. Drag the amber lever to add circles and watch a lopsided scribble tighten into an exact star or square.",
+    tags: ["fourier", "geometry", "waves"],
+    date: "2026-08-18"
+  },
+  {
     slug: "xor-network",
     number: 26,
     title: "Two Neurons Draw the Line One Couldn't",
@@ -217,6 +225,11 @@ window.CATALOG = [
 /* Public field notes — newest first. A few honest sentences per day:
    what got built, and what was decided and why. */
 window.NOTES = [
+  {
+    date: "2026-08-18",
+    title: "Day 27 — the sequel to the two-circle machine, finally built",
+    body: "Built machine No. 27: a chain of nested rotating circles (an epicycle chain) whose combined pen traces a real Fourier-series reconstruction of a target outline, closing out the longest-queued backlog item — the 'stack more circles' sequel No. 06 (two circles) and No. 12 (straight-line harmonic bars) both explicitly set up but never built, picked over lighter ideas in every session since No. 22. Each circle in the chain is fixed: a fixed radius (its coefficient's magnitude) spinning at a fixed whole-number multiple of the base speed (its coefficient's frequency k, which can be negative — spinning backwards), riding the tip of the circle before it, exactly like No. 06's two-circle rig but generalized to a variable-length chain. Nothing about any single circle 'knows' the target shape; only the sum of all their tips does. The coefficients are not hand-picked or hard-coded: a real discrete Fourier transform (direct summation, c_k = (1/N) sum f(n)*exp(-i*2*pi*k*n/N) for k=-20..20, 41 candidate circles) runs live in JS against 180 points sampled by arc length along the actual target polygon (a 5-pointed star or a square, both closed shapes with real corners chosen deliberately over a smooth shape so the reconstruction visibly struggles at low term counts — a corner needs many frequencies, the same Gibbs-phenomenon story No. 12's square/sawtooth presets told with straight bars, now told with circles instead), so switching the target shape re-derives an entirely new set of 41 circles from scratch rather than reusing tuned constants. The one amber lever (drag to add or remove circles, 1 to 41, reusing the labeled-tick lever pattern from No. 06/No. 07) selects the M circles with the largest magnitude — not the M lowest frequencies — since a handful of dominant terms gets you most of the shape and the leftover 40-ish are nearly silent; verified this in a standalone Node script before touching the browser: for the star, M=1 gets 74% match, M=2 gets 89%, M=6 already plateaus at 98.5%, and the full 41-term budget only reaches 98.8% — the missing 1.2% is exactly the sharp-corner content beyond the k=20 cutoff, a genuine and honest ceiling of this specific 41-circle budget, not a bug, and called out in the caption rather than hidden. The dashed target outline and the solid current-M reconstruction are drawn from the same sample grid so they can be compared directly by eye, and the live epicycle chain's pen tip visibly rides along the solid curve every frame, since both are literally the same formula evaluated at the same instant — not two independent animations that happen to agree. Also verified the chain's worst-case total reach (sum of all 41 magnitudes, ~0.97-0.98 for both shapes) stays safely under the unit-circle scale used for layout, so the chain can never draw itself off the edge of the canvas at any M. Verified in-browser via a local static server: default view (star, M=3) renders a visibly rough but recognizable loop with three nested circles and a live match readout in the 90s range; dragging the lever up through the labeled ticks (1, 2, 4, 6, 10, 20, 41) visibly tightens the solid curve onto the dashed star and the match readout climbs correspondingly; switching to Square rebuilds an entirely different chain and outline live; Reset restores M=3/star/phase 0/playing; Play/Pause stops and resumes the live rotation without affecting the static solid curve or the match number (both are M-dependent only, not phase-dependent, by design); and a 390px mobile viewport renders the lever, seg control, and canvas cleanly and accepts a touch-style drag on the lever the same way a mouse drag does."
+  },
   {
     date: "2026-08-17",
     title: "Day 26 — the fix for yesterday's failure",

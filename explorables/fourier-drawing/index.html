@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Many Circles Does It Take to Draw a Star? — Fathom</title>
+  <meta name="description" content="A chain of rotating circles, nested tip to tip. Drag the amber lever to add more of them and watch their combined pen tighten from a rough loop onto an exact star or square — a real Fourier series, built live.">
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='13' cy='17' r='9' fill='none' stroke='%230e7490' stroke-width='2'/><circle cx='21' cy='10' r='4.5' fill='none' stroke='%236366f1' stroke-width='2'/><circle cx='21' cy='10' r='2.4' fill='%23d97706'/></svg>">
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <span class="mark">Fathom</span>
+        <span class="tag">ideas you can turn over in your hands</span>
+      </a>
+      <nav class="links">
+        <a href="../../index.html">Machines</a>
+        <a href="../../field-notes.html">Field notes</a>
+        <a href="../../about.html">About</a>
+      </nav>
+    </header>
+
+    <a class="back" href="../../index.html">← All machines</a>
+
+    <div class="explorable-head">
+      <span class="idx">No. 27</span>
+      <h1>How Many Circles Does It Take to Draw a Star?</h1>
+      <p class="lede">One circle riding another can draw a loop or a flower. Chain up more of them — each its own fixed size, spinning at its own fixed whole-number speed — and their combined pen tip can trace almost any repeating outline at all. Drag the lever to add circles and watch a rough scribble sharpen into a five-pointed star.</p>
+    </div>
+
+    <div class="stage">
+      <canvas id="c" aria-label="A chain of nested rotating circles, each attached to the tip of the last, spinning together. Their combined pen tip traces a solid curve that tightens toward a dashed target shape — a star or a square — as more circles are added."></canvas>
+      <div class="controls">
+        <button class="btn primary" id="play">Pause</button>
+        <button class="btn" id="reset">Reset</button>
+        <div class="seg" id="preset" role="group" aria-label="Choose the target shape">
+          <button data-preset="star" class="on">Star</button>
+          <button data-preset="square">Square</button>
+        </div>
+        <div class="control">
+          <label for="speed">Speed</label>
+          <input type="range" id="speed" min="0" max="100" value="35">
+        </div>
+        <div class="control">
+          <label>circles</label>
+          <span class="readout" id="mOut">3</span>
+        </div>
+        <div class="control">
+          <label>match</label>
+          <span class="readout" id="matchOut">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="caption">
+      Every circle in the chain is fixed — a fixed radius, spinning at a fixed whole-number multiple of the base speed, forever. Circle 1 rides the origin; circle 2 rides the tip of circle 1; circle 3 rides the tip of circle 2; and so on. None of them knows anything about a star or a square — each is just turning in its own dumb little loop. What draws the shape is the <em>sum</em>: the final pen tip is the sum of every arm's position at that instant, and that sum is a real Fourier series, computed live off the actual target outline (not hand-tuned) by measuring, for 41 candidate whole-number speeds, how much a circle spinning at that speed and phase would need to contribute to reproduce the shape exactly. The dashed outline is the true target; the solid curve is what the current chain actually draws.
+      <span class="hint">Drag the <b class="handle">amber</b> lever to change how many circles are in the chain. Star and Square swap the target; Speed changes how fast the chain turns.</span>
+    </p>
+
+    <p class="caption">
+      With just one or two circles the pen barely leaves a lopsided oval — you're seeing only the loudest one or two frequencies. Add circles and each new one is quieter than the last (their radii shrink fast), but every one nudges the sum a little closer to the sharp corners of the target, the same way adding more digits after a decimal point narrows in on a number without ever needing infinitely many to get close. This is exactly the trick behind compressing sound and images: keep the loudest few frequencies, throw away the rest, and the result is still recognizable. It's also, unglamorously, how epicycles were once used to predict planets — a chain of circles standing in for an orbit nobody yet had the right equation for.
+    </p>
+
+    <footer>
+      <span>No. 27 · <a href="../../field-notes.html">field notes</a></span>
+      <span><a href="../../index.html">← Back to the machines</a></span>
+    </footer>
+  </div>
+
+  <script src="../../shared/chrome.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
